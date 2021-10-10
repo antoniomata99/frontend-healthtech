@@ -1,2 +1,5 @@
 // export {name} from './'
 export { Layout } from './Layout/Layout.jsx'
+export { Header } from './Header/Header.jsx'
+export { Menu } from './Menu/Menu.jsx'
+export { MenuLink } from './MenuLink/MenuLink.jsx'

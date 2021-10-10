@@ -1,1 +1,41 @@
+.Layout {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100vh;
 
+  &__Header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4rem;
+    width: 100%;
+    height: 9rem;
+    max-height: 10rem;
+    background-color: red;
+  }
+
+  &__Container {
+    position: absolute;
+    inset: 0;
+    top: 9rem;
+    display: flex;
+    width: 100%;
+  }
+
+  &__Menu {
+    padding: 3rem 0;
+    width: 15%;
+    height: 100%;
+    background-color: aqua;
+  }
+
+  &__Content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 85%;
+    height: 100%;
+    background-color: antiquewhite;
+  }
+}

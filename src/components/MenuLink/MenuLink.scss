@@ -1,0 +1,16 @@
+.MenuLink {
+  margin-bottom: 0.4rem;
+  padding: 1rem 4rem;
+
+  &__link {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1rem 0;
+    font-size: 1.4rem;
+  }
+
+  &__link svg {
+    margin-right: 1rem;
+  }
+}
