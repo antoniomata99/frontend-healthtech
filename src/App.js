@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 // * Components
-import { Layout } from './components'
+import { Layout, Schedule } from './components'
 // * Styles
 import './globals.scss'
 
@@ -12,7 +12,7 @@ function App() {
     <Router>
       <Layout>
         <Switch>
-          <Route path='/' component={Home} />
+          <Route path='/' component={Schedule} />
         </Switch>
       </Layout>
     </Router>

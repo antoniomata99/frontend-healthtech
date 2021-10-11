@@ -1,0 +1,17 @@
+.ScheduleData {
+  &__Header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #e5e5e5;
+    border-bottom: 0.1rem solid black;
+    border-top-left-radius: 0.6rem;
+    border-top-right-radius: 0.6rem;
+
+    &-item {
+      font-size: 1.6rem;
+      font-weight: 500;
+    }
+  }
+}

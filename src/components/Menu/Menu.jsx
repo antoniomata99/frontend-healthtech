@@ -1,4 +1,5 @@
 import React from 'react'
+import './Menu.scss'
 // * Icons
 import { BsFillPieChartFill, BsFillFilePersonFill, BsFillPersonFill, BsFillPersonCheckFill, BsFillGearFill } from 'react-icons/bs'
 import { MdLocalHospital, MdMeetingRoom } from 'react-icons/md'
@@ -17,13 +18,15 @@ const menu = [
 
 const Menu = () => {
   return (
-    <nav>
-      <ul>
-        {menu.map((item) => (
-          <MenuLink {...item} />
-        ))}
-      </ul>
-    </nav>
+    <div className='Menu'>
+      <nav>
+        <ul>
+          {menu.map((item) => (
+            <MenuLink {...item} />
+          ))}
+        </ul>
+      </nav>
+    </div>
   )
 }
 
