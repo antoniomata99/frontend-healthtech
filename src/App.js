@@ -1,7 +1,8 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 // * Components
-import { Layout, Schedule } from './components'
+import { Layout } from './components'
+import { Schedule, ConsultingRooms } from './pages'
 // * Styles
 import './globals.scss'
 
@@ -12,8 +13,11 @@ function App() {
     <Router>
       <Layout>
         <Switch>
-          <Route path='/schedule'>
+          <Route path='/doctor/schedule'>
             <Schedule />
+          </Route>
+          <Route path='/consulting-rooms'>
+            <ConsultingRooms />
           </Route>
           <Route path='/'>
             <Home />

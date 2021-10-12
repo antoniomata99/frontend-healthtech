@@ -1,10 +1,10 @@
 import React from 'react'
 import './Schedule.scss'
 // * Components
-import { Form, DataTable, DataItem } from '../'
+import { Form, DataTable, DataItem, Message } from '../../components'
 
-const titles = [{ name: 'Start time' }, { name: 'End time' }]
-const data = [{ name: '00:00' }, { name: '00:00' }]
+const titles = ['Start time', 'End time']
+const data = ['00:00', '00:00']
 
 const Schedule = () => {
   return (
@@ -16,11 +16,7 @@ const Schedule = () => {
         </div>
       </Form>
       <div className='Schedule-Table'>
-        <DataTable titles={titles}>
-          {/* //TODO: No data text */}
-          <DataItem data={data} />
-          <DataItem />
-        </DataTable>
+        <DataTable titles={titles}>{data.length > 0 ? <DataItem data={data} /> : <Message text='No schedules to show' />}</DataTable>
       </div>
     </section>
   )

@@ -1,15 +1,12 @@
 .MenuLink {
-  // margin-bottom: 0.4rem;
   padding: 1rem 4rem;
   background-color: transparent;
-  border-top: 0.1rem solid transparent;
-  border-bottom: 0.1rem solid transparent;
+  border: 0;
+  box-shadow: 0px 0px 7px 0px transparent;
   transition: 0.1s;
 
   &:hover {
-    background-color: #f3f3f3;
-    border-top-color: black;
-    border-bottom-color: black;
+    box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.28);
   }
 
   &__link {

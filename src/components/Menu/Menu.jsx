@@ -10,8 +10,8 @@ const menu = [
   { link: '/', Icon: BsFillPieChartFill, text: 'Dashboard' },
   { link: '#', Icon: BsFillFilePersonFill, text: 'Profile' },
   { link: '#', Icon: BsFillPersonFill, text: 'Patient' },
-  { link: '/schedule', Icon: MdLocalHospital, text: 'Doctor' },
-  { link: '#', Icon: MdMeetingRoom, text: 'Consulting rooms' },
+  { link: '/doctor/schedule', Icon: MdLocalHospital, text: 'Doctor' },
+  { link: '/consulting-rooms', Icon: MdMeetingRoom, text: 'Consulting rooms' },
   { link: '#', Icon: BsFillPersonCheckFill, text: 'Users' },
   { link: '#', Icon: BsFillGearFill, text: 'Settings' },
 ]
