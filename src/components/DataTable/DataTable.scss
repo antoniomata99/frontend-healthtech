@@ -1,4 +1,4 @@
-.ScheduleData {
+.DataTable {
   &__Header {
     display: flex;
     justify-content: space-between;
@@ -12,6 +12,16 @@
     &-item {
       font-size: 1.6rem;
       font-weight: 500;
+      width: 33.3%;
+      text-align: center;
+
+      &:first-child {
+        text-align: left;
+      }
+
+      &:last-child {
+        text-align: right;
+      }
     }
   }
 }

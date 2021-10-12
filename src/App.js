@@ -12,7 +12,12 @@ function App() {
     <Router>
       <Layout>
         <Switch>
-          <Route path='/' component={Schedule} />
+          <Route path='/schedule'>
+            <Schedule />
+          </Route>
+          <Route path='/'>
+            <Home />
+          </Route>
         </Switch>
       </Layout>
     </Router>

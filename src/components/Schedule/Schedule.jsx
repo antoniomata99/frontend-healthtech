@@ -1,25 +1,26 @@
 import React from 'react'
 import './Schedule.scss'
 // * Components
-import { ScheduleData } from '../'
+import { Form, DataTable, DataItem } from '../'
+
+const titles = [{ name: 'Start time' }, { name: 'End time' }]
+const data = [{ name: '00:00' }, { name: '00:00' }]
 
 const Schedule = () => {
   return (
     <section className='Schedule'>
-      <div className='Schedule-Container'>
-        <h4 className='Schedule-Container__Text'>Add Schedule</h4>
-        <form action='' className='Schedule-Form'>
-          <div className='Schedule-Form__Container'>
-            <input className='Schedule-Form__Input Schedule-Form__Input--start' type='time' name='start' id='start-time' min='06:00' max='20:00' required />
-            <input className='Schedule-Form__Input Schedule-Form__Input--end' type='time' name='end' id='end-time' min='06:00' max='20:00' required />
-          </div>
-          <button className='Schedule-Form__Button' type='submit'>
-            Create Schedule
-          </button>
-        </form>
-      </div>
+      <Form title='Add Schedule' buttonText='Create Schedule'>
+        <div className='Schedule-Form__Container'>
+          <input className='Schedule-Form__Input Schedule-Form__Input--start' type='time' name='start' id='start-time' min='06:00' max='20:00' required />
+          <input className='Schedule-Form__Input Schedule-Form__Input--end' type='time' name='end' id='end-time' min='06:00' max='20:00' required />
+        </div>
+      </Form>
       <div className='Schedule-Table'>
-        <ScheduleData />
+        <DataTable titles={titles}>
+          {/* //TODO: No data text */}
+          <DataItem data={data} />
+          <DataItem />
+        </DataTable>
       </div>
     </section>
   )

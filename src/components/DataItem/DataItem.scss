@@ -1,0 +1,26 @@
+.DataItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 1rem;
+
+  &:nth-child(2n) {
+    background-color: #f7f7f7;
+  }
+
+  &__Data-item {
+    font-size: 1.4rem;
+    width: 33.3%;
+    text-align: center;
+
+    &:first-child {
+      text-align: left;
+    }
+  }
+
+  &__Buttons {
+    display: flex;
+    justify-content: flex-end;
+    width: 33.3%;
+  }
+}
