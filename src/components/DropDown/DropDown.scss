@@ -1,0 +1,13 @@
+.DropDown {
+  margin-left: 2rem;
+  padding: 0.5rem 2rem;
+  font-size: 1.4rem;
+  border: 0.1rem solid black;
+  border-radius: 0.6rem;
+  outline: none;
+  text-transform: capitalize;
+
+  &__value {
+    text-transform: capitalize;
+  }
+}
