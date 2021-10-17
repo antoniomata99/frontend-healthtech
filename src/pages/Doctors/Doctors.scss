@@ -1,0 +1,62 @@
+.Doctors {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 50%;
+
+  &__Link {
+    position: relative;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    padding: 20rem 1rem 1rem 0;
+    width: 49%;
+    border-radius: 0.6rem;
+    box-shadow: 1px -1px 7px 0px rgba(0, 0, 0, 0.28);
+    background-repeat: no-repeat;
+    background-size: cover;
+    transform: scale(1);
+    transition: 0.5s;
+
+    &--doctors {
+      width: 100%;
+      margin-bottom: 1rem;
+      background-image: url(https://img.freepik.com/free-photo/elevated-view-stethoscope-blue-background_23-2148050517.jpg?size=626&ext=jpg);
+      background-position-y: -3rem;
+    }
+    &--schedule {
+      background-image: url(https://qmue4.files.wordpress.com/2019/12/projectschedulemanagement.jpg);
+    }
+    &--specialty {
+      background-image: url(https://3dlancer.net/upload/galleries/943/4943/mri-machine-83478-xxl.jpg);
+    }
+  }
+
+  &__Link:hover {
+    transform: scale(1.02);
+  }
+
+  &__Link:hover &__Text {
+    opacity: 1;
+    transform: translateY(0);
+    background-color: #00000033;
+  }
+
+  &__Text {
+    position: absolute;
+    inset: 0;
+    color: white;
+    display: flex;
+    justify-content: end;
+    align-items: flex-end;
+    padding: 0 1rem 1rem 0;
+    background-color: transparent;
+    font-size: 1.6rem;
+    opacity: 0;
+    border-radius: inherit;
+    transform: translateY(-1rem);
+    transition: 0.3s;
+  }
+}

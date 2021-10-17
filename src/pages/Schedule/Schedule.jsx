@@ -1,7 +1,7 @@
 import React from 'react'
 import './Schedule.scss'
 // * Components
-import { Form, DataTable, DataItem, Message } from '../../components'
+import { Form, DataTable, DataItem, Message, BackArrow } from '../../components'
 
 const titles = ['Start time', 'End time']
 const data = ['00:00', '00:00']
@@ -18,6 +18,7 @@ const Schedule = () => {
       <div className='Schedule-Table'>
         <DataTable titles={titles}>{data.length > 0 ? <DataItem data={data} /> : <Message text='No schedules to show' />}</DataTable>
       </div>
+      <BackArrow link='/doctor' />
     </section>
   )
 }

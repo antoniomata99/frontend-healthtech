@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 // * Components
 import { Layout } from './components'
-import { Schedule, ConsultingRooms } from './pages'
+import { ConsultingRooms, Doctors, Schedule } from './pages'
 // * Styles
 import './globals.scss'
 
@@ -15,6 +15,9 @@ function App() {
         <Switch>
           <Route path='/doctor/schedule'>
             <Schedule />
+          </Route>
+          <Route path='/doctor'>
+            <Doctors />
           </Route>
           <Route path='/consulting-rooms'>
             <ConsultingRooms />
