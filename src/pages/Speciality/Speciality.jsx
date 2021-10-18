@@ -1,8 +1,8 @@
 import React from 'react'
-import { Form, DataTable, DataItem, Message, DropDown } from '../../components'
+import { Form, DataTable, DataItem, Message, DropDown, BackArrow } from '../../components'
 import './Speciality.scss'
 
-const titles = ['ID', 'Nombre', 'Descripción', 'Estado', 'Acciones']
+const titles = ['ID', 'Nombre', 'Descripción', 'Estado']
 const data = ['001', 'Urología', 'Profesional de Urología', 'Activo']
 
 const activeElements = [
@@ -23,7 +23,9 @@ const Speciality = () =>{
         <div className='Schedule-Table'>
             <DataTable titles={titles}>{data.length > 0 ? <DataItem data={data} /> : <Message text='No hay información disponible' />} </DataTable>
         </div>
+        <BackArrow link='/doctor' />
     </section>
     )
 }
+
 export { Speciality }
