@@ -11,6 +11,29 @@ const activeElements = [
 ]
 
 const Speciality = () =>{
+    React.useEffect(() => {
+        getData()
+    }, [])
+    
+    const getData = async () => {
+        
+        /*
+        const data = await fetch('', {
+            method: 'GET'
+            process.env.REACT_APP_NOT_SECRET_CODE + '/api/especialidad/?format=json'
+        });
+        */
+        const data = await fetch('https://healt-tech-back.herokuapp.com/api/especialidad/?format=json', {
+            method: 'GET',
+            mode: 'cors'
+        }).then(response => {
+            console.log('Response:', response)
+            return response.json();
+        })
+        
+        //const jsonxd = await data.json()
+        //console.log(jsonxd)
+    }
     return(
     <section className="Speciality">
         <Form title='Agregar Especialidad' buttonText='Crear Especialidad'>
