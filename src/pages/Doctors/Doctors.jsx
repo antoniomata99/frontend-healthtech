@@ -12,7 +12,7 @@ const Doctors = () => {
       <Link to='/doctor/schedule' className='Doctors__Link Doctors__Link--schedule'>
         <h1 className='Doctors__Text'>Schedule</h1>
       </Link>
-      <Link to='#' className='Doctors__Link Doctors__Link--specialty'>
+      <Link to='/doctor/speciality' className='Doctors__Link Doctors__Link--specialty'>
         <h1 className='Doctors__Text'>Specialty</h1>
       </Link>
     </div>

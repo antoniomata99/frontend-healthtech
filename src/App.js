@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 // * Components
 import { Layout } from './components'
-import { ConsultingRooms, Doctors, Schedule } from './pages'
+import { ConsultingRooms, Doctors, Schedule, Speciality, Login } from './pages'
 // * Styles
 import './globals.scss'
 
@@ -13,8 +13,14 @@ function App() {
     <Router>
       <Layout>
         <Switch>
+          <Route path="/login">
+            <Login />
+          </Route>
           <Route path='/doctor/schedule'>
             <Schedule />
+          </Route>
+          <Route path='/doctor/speciality'>
+            <Speciality />
           </Route>
           <Route path='/doctor'>
             <Doctors />
