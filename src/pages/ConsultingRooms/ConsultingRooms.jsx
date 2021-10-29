@@ -3,7 +3,7 @@ import './ConsultingRooms.scss'
 // * Components
 import { Form, DataTable, DataItem, Message, DropDown } from '../../components'
 
-const titles = ['ID', 'Name', 'Code', 'Active', 'Piso']
+const titles = ['ID', 'Name', 'Code', 'Active', 'Floor']
 const data = ['001', 'Especialidad', 'E-001', 'True', '1']
 const activeElements = [
   { id: 1, value: false },
@@ -19,10 +19,10 @@ const floorElements = [
 const ConsultingRooms = () => {
   return (
     <section className='Schedule'>
-      <Form title='Add consulting room' buttonText='Create Room'>
+      <Form title='Add consulting room' buttonText='Add'>
         <div className='Schedule-Form__Container'>
-          <input className='Schedule-Form__Input Schedule-Form__Input--start' type='text' name='name' id='start-time' placeholder='Name' required />
-          <input className='Schedule-Form__Input Schedule-Form__Input--end' type='text' name='code' id='end-time' placeholder='Code' required />
+          <input className='Schedule-Form__Input Schedule-Form__Input--start' type='text' name='name' id='start-time' placeholder='e.g Room 001' required />
+          <input className='Schedule-Form__Input Schedule-Form__Input--end' type='text' name='code' id='end-time' placeholder='e.g Room-001' required />
           <DropDown name='active' options={activeElements} />
           <DropDown name='floor' options={floorElements} />
         </div>
