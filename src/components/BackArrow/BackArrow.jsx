@@ -8,6 +8,7 @@ const BackArrow = ({ link }) => {
   return (
     <Link to={link} className='BackArrow'>
       <AiOutlineArrowLeft />
+      <span>Back</span>
     </Link>
   )
 }

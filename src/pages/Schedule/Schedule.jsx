@@ -1,12 +1,30 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Schedule.scss'
 // * Components
 import { Form, DataTable, DataItem, Message, BackArrow } from '../../components'
+import axios from 'axios'
 
 const titles = ['Start time', 'End time']
 const data = ['00:00', '00:00']
 
 const Schedule = () => {
+  useEffect(() => {
+    ;(async () => {
+      await axios
+        .get('https://healt-tech-back.herokuapp.com/api/especialidad/', {
+          headers: {
+            'Content-Type': 'application/json',
+            changeOrigin: true,
+            'Access-Control-Allow-Origin': '*',
+          },
+          mode: 'cors',
+        })
+        .then((res) => {
+          console.log(res.data)
+        })
+    })()
+  }, [])
+
   return (
     <section className='Schedule'>
       <Form title='Add Schedule' buttonText='Create Schedule'>

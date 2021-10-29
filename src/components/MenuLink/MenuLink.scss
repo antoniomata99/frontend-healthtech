@@ -2,11 +2,12 @@
   padding: 1rem 4rem;
   background-color: transparent;
   border: 0;
-  box-shadow: 0px 0px 7px 0px transparent;
-  transition: 0.1s;
+  border-left: 0.5rem solid transparent;
+  transition: 0.3s;
 
   &:hover {
-    box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.28);
+    background-color: #fbfbfb;
+    border-left-color: rgb(183, 183, 252);
   }
 
   &__link {

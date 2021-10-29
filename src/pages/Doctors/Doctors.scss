@@ -17,8 +17,6 @@
     box-shadow: 1px -1px 7px 0px rgba(0, 0, 0, 0.28);
     background-repeat: no-repeat;
     background-size: cover;
-    transform: scale(1);
-    transition: 0.5s;
 
     &--doctors {
       width: 100%;
@@ -34,29 +32,26 @@
     }
   }
 
-  &__Link:hover {
-    transform: scale(1.02);
-  }
-
   &__Link:hover &__Text {
     opacity: 1;
-    transform: translateY(0);
-    background-color: #00000033;
   }
 
   &__Text {
     position: absolute;
-    inset: 0;
-    color: white;
+    bottom: 0;
+    left: 0;
+    right: 0;
     display: flex;
     justify-content: end;
     align-items: flex-end;
-    padding: 0 1rem 1rem 0;
-    background-color: transparent;
+    color: white;
+    background: linear-gradient(to top, black -123%, transparent 84%);
+    padding: 3rem 1rem 1rem 0;
     font-size: 1.6rem;
     opacity: 0;
     border-radius: inherit;
-    transform: translateY(-1rem);
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
     transition: 0.3s;
   }
 }
