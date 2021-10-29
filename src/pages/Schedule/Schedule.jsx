@@ -2,12 +2,13 @@ import React, { useEffect } from 'react'
 import './Schedule.scss'
 // * Components
 import { Form, DataTable, DataItem, Message, BackArrow } from '../../components'
-import axios from 'axios'
+//import axios from 'axios'
 
 const titles = ['Start time', 'End time']
 const data = ['00:00', '00:00']
 
 const Schedule = () => {
+  /*
   useEffect(() => {
     ;(async () => {
       await axios
@@ -23,8 +24,9 @@ const Schedule = () => {
           console.log(res.data)
         })
     })()
+    
   }, [])
-
+*/
   return (
     <section className='Schedule'>
       <Form title='Add Schedule' buttonText='Create Schedule'>
