@@ -6,7 +6,7 @@ import './Doctors.scss'
 const Doctors = () => {
   return (
     <div className='Doctors'>
-      <Link to='#' className='Doctors__Link Doctors__Link--doctors'>
+      <Link to='/doctor/list' className='Doctors__Link Doctors__Link--doctors'>
         <h1 className='Doctors__Text'>Doctors</h1>
       </Link>
       <Link to='/doctor/schedule' className='Doctors__Link Doctors__Link--schedule'>

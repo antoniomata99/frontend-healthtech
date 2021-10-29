@@ -1,5 +1,6 @@
 export { Schedule } from './Schedule/Schedule.jsx'
 export { ConsultingRooms } from './ConsultingRooms/ConsultingRooms.jsx'
 export { Doctors } from './Doctors/Doctors.jsx'
+export { DoctorsList } from './DoctorsList/DoctorsList.jsx'
 export { Speciality } from './Speciality/Speciality.jsx'
 export { Login } from './Login/Login.jsx'

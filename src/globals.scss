@@ -9,3 +9,42 @@ html {
 a {
   text-decoration: none;
 }
+
+.Table__header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  font-size: 1.4rem;
+  background-color: #dddddd;
+  border-top-left-radius: 0.6rem;
+  border-top-right-radius: 0.6rem;
+}
+
+.Table__Item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.4rem;
+  padding: 1rem 1rem 2rem;
+}
+.Table__Item:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+.Table__Content {
+  padding: 1rem 0 0;
+}
+
+h2.Table__Title {
+  width: 33%;
+  font-weight: bold;
+}
+h2.Table__Title:last-child {
+  text-align: end;
+}
+
+.Table__Data {
+  width: 33%;
+}
+.Table__Data:last-child {
+  display: flex;
+  justify-content: end;
+}

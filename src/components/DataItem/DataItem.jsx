@@ -3,9 +3,9 @@ import './DataItem.scss'
 // * Components
 import { Button } from '../'
 // * Icons
-import { RiEdit2Line, RiDeleteBin6Line } from 'react-icons/ri'
+import { RiEdit2Line, RiDeleteBin6Line, RiEyeFill } from 'react-icons/ri'
 
-const DataItem = ({ data = [] }) => {
+const DataItem = ({ data = [], view = false }) => {
   return (
     <div className='DataItem'>
       {data.length > 0 &&
@@ -15,12 +15,17 @@ const DataItem = ({ data = [] }) => {
           </h2>
         ))}
       <div className='DataItem__Buttons'>
-        <Button name='Edit' modifier='edit'>
+        <Button modifier='edit'>
           <RiEdit2Line />
         </Button>
-        <Button name='Delete' modifier='delete'>
+        <Button modifier='delete'>
           <RiDeleteBin6Line />
         </Button>
+        {view && (
+          <Button modifier='view'>
+            <RiEyeFill />
+          </Button>
+        )}
       </div>
     </div>
   )
