@@ -21,8 +21,8 @@ const Menu = () => {
     <div className='Menu'>
       <nav>
         <ul>
-          {menu.map((item) => (
-            <MenuLink {...item} />
+          {menu.map((item, index) => (
+            <MenuLink {...item} key={index} />
           ))}
         </ul>
       </nav>

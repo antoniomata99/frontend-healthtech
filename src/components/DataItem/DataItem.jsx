@@ -6,7 +6,6 @@ import { Button } from '../'
 import { RiEdit2Line, RiDeleteBin6Line } from 'react-icons/ri'
 
 const DataItem = ({ data = [] }) => {
-  console.log(data[0].name)
   return (
     <div className='DataItem'>
       {data.length > 0 &&
