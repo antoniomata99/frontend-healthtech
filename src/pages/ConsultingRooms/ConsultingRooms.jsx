@@ -6,11 +6,9 @@ import { Form, DataTable, DataItem, Message, DropDown, Button } from '../../comp
 import { RiEdit2Line, RiDeleteBin6Line, RiEyeFill } from 'react-icons/ri'
 import axios from 'axios'
 
-const titles = ['ID', 'Name', 'Code', 'Active', 'Floor']
-const data = ['001', 'Especialidad', 'E-001', 'True', '1']
 const activeElements = [
-  { id: 1, value: false },
-  { id: 2, value: true },
+  { id: 1, value: 'Activo' },
+  { id: 2, value: 'Inactivo' },
 ]
 const floorElements = [
   { id: 1, value: 1 },
@@ -23,7 +21,7 @@ const ConsultingRooms = ({ view = false }) => {
   const [dataRooms, setDataRooms] = useState([])
   useEffect(() => {
     axios
-      .get('https://healt-tech-back.herokuapp.com/api/horarioMedico/')
+      .get('https://healt-tech-back.herokuapp.com/api/consultorio/')
       .then((res) => res.data)
       .then((data) => {
         setDataRooms(data)
@@ -44,16 +42,20 @@ const ConsultingRooms = ({ view = false }) => {
         <div className='Table'>
           <div className='Table__header'>
             <h2 className='Table__Title'>ID</h2>
-            <h2 className='Table__Title'>Start time</h2>
-            <h2 className='Table__Title'>End time</h2>
+            <h2 className='Table__Title'>Name</h2>
+            <h2 className='Table__Title'>Code</h2>
+            <h2 className='Table__Title'>Floor</h2>
+            <h2 className='Table__Title'>State</h2>
             <h2 className='Table__Title'>Actions</h2>
           </div>
           <div className='Table__Content'>
             {dataRooms.map((item) => (
               <div className='Table__Item'>
-                <div className='Table__Data'>{item.id_horario_medico}</div>
-                <div className='Table__Data'>{item.hora_inicio}</div>
-                <div className='Table__Data'>{item.hora_fin}</div>
+                <div className='Table__Data'>{item.id_consultorio}</div>
+                <div className='Table__Data'>{item.nombre}</div>
+                <div className='Table__Data'>{item.codigo}</div>
+                <div className='Table__Data'>{item.piso}</div>
+                <div className='Table__Data'>{item.estado}</div>
                 <div className='Table__Data'>
                   <div className='DataItem__Buttons'>
                     <Button modifier='edit'>
