@@ -3,12 +3,12 @@ import { Form, DataTable, DataItem, Message, DropDown, BackArrow, Button} from '
 import './Speciality.scss'
 import { RiEdit2Line, RiDeleteBin6Line, RiEyeFill } from 'react-icons/ri'
 
-const titles = ['ID', 'Nombre', 'Descripción', 'Estado']
+const titles = ['ID', 'Name', 'Description', 'State']
 const data = ['001', 'Urología', 'Profesional de Urología', 'Activo']
 
 const activeElements = [
-    {id: 1, value: false},
-    {id: 2, value: true},
+  { id: 1, value: false },
+  { id: 2, value: true },
 ]
 
 
@@ -77,7 +77,7 @@ const Speciality = ({view=false}) =>{
       </div>
         <BackArrow link='/doctor' />
     </section>
-    )
+  )
 }
 
 export { Speciality }

@@ -9,10 +9,6 @@
   outline: none;
   cursor: pointer;
 
-  & svg {
-    margin-left: 0.5rem;
-  }
-
   &--edit {
     background-color: #a8a8ff;
     border-color: blue;
@@ -29,6 +25,13 @@
   &--create {
     color: #005400;
     background-color: #c3ffc3;
-    border-color:#00ff00;
+    border-color: #00ff00;
+  }
+
+  &--view {
+    margin-left: 1.5rem;
+    color: #535400;
+    background-color: #faffc3;
+    border-color: #ffc400;
   }
 }
