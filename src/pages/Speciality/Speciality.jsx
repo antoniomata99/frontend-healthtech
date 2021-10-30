@@ -40,22 +40,22 @@ const Speciality = ({view=false}) =>{
         </Form>
         <div className='Schedule-Table'>
         <div className='Table'>
-          <div className='Tableheader'>
-            <h2 className='TableTitle'>ID</h2>
-            <h2 className='TableTitle'>Nombre</h2>
-            <h2 className='TableTitle'>Descripción</h2>
-            <h2 className='TableTitle'>Estado</h2>
-            <h2 className='TableTitle'>Actions</h2>
+          <div className='Table__header'>
+            <h2 className='Table__Title'>ID</h2>
+            <h2 className='Table__Title'>Nombre</h2>
+            <h2 className='Table__Title'>Descripción</h2>
+            <h2 className='Table__Title'>Estado</h2>
+            <h2 className='Table__Title'>Actions</h2>
           </div>
-          <div className='TableContent'>
+          <div className='Table__Content'>
             {specialities.map((item) => (
-              <div className='TableItem'>
-                <div className='TableData'>{item.id_especialidad}</div>
-                <div className='TableData'>{item.nombre}</div>
-                <div className='TableData'>{item.descripcion}</div>
-                <div className='TableData'>{item.estado}</div>
-                <div className='TableData'>
-                  <div className='DataItemButtons'>
+              <div className='Table__Item'>
+                <div className='Table__Data'>{item.id_especialidad}</div>
+                <div className='Table__Data'>{item.nombre}</div>
+                <div className='Table__Data'>{item.descripcion}</div>
+                <div className='Table__Data'>{item.estado}</div>
+                <div className='Table__Data'>
+                  <div className='DataItem__Buttons'>
                     <Button modifier='edit'>
                       <RiEdit2Line />
                     </Button>
