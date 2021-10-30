@@ -11,8 +11,6 @@ const activeElements = [
   { id: 2, value: true },
 ]
 
-
-
 const Speciality = ({view=false}) =>{
 
     const [specialities, setSpecialities] = React.useState([])

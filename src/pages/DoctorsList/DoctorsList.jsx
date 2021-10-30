@@ -1,16 +1,18 @@
 import React from 'react'
+
 import { Form, DataTable, DataItem, Message, DropDown, BackArrow, Button } from '../../components'
 import { RiEdit2Line, RiDeleteBin6Line, RiEyeFill } from 'react-icons/ri'
+
 // * Style
 import './DoctorsList.scss'
 
 const titles = ['ID', 'Name', 'Mail', 'Phone', 'RH']
 
-
 const activeElements = [
   { id: 1, value: false },
   { id: 2, value: true },
 ]
+
 
 const DoctorsList = ({view=true}) => {
 
