@@ -31,10 +31,10 @@ const Speciality = ({view=false}) =>{
     }
     return(
     <section className="Speciality">
-        <Form title='Agregar Especialidad' buttonText='Crear Especialidad'>
+        <Form title='Add Speciality' buttonText='Add'>
             <div className='Speciality-Form__Container'>
-                <input className='Speciality-Form__Input Schedule-Form__Input--name' type="text" id="name-speciality" placeholder='Nombre' required/>
-                <input className='Speciality-Form__Input Schedule-Form__Input--name' type="text" id="description" placeholder='Descripción' required/>
+                <input className='Speciality-Form__Input Schedule-Form__Input--start' type="text" id="name-speciality" placeholder='Name' required/>
+                <input className='Speciality-Form__Input Schedule-Form__Input--name' type="text" id="description" placeholder='Description' required/>
                 <DropDown name='active' options={activeElements}/>
             </div>
         </Form>
@@ -42,9 +42,9 @@ const Speciality = ({view=false}) =>{
         <div className='Table'>
           <div className='Table__header'>
             <h2 className='Table__Title'>ID</h2>
-            <h2 className='Table__Title'>Nombre</h2>
-            <h2 className='Table__Title'>Descripción</h2>
-            <h2 className='Table__Title'>Estado</h2>
+            <h2 className='Table__Title'>Name</h2>
+            <h2 className='Table__Title'>Description</h2>
+            <h2 className='Table__Title'>State</h2>
             <h2 className='Table__Title'>Actions</h2>
           </div>
           <div className='Table__Content'>
