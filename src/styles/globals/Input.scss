@@ -1,0 +1,24 @@
+.Input {
+  margin: 0 1rem;
+  padding: 0.5rem 1.5rem;
+  border: 0.1rem solid black;
+  border-radius: 0.6rem;
+  outline: none;
+  font-size: 1.4rem;
+
+  &:first-child {
+    margin-left: 0;
+  }
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &--start {
+    margin-right: 2rem;
+  }
+
+  &--dropDown {
+    margin-right: 2rem;
+    text-transform: capitalize;
+  }
+}
