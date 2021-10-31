@@ -1,10 +1,17 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-// * Components
-import { Layout } from './components'
-import { ConsultingRooms, Doctors, Schedule, Speciality, Login, DoctorsList } from './pages'
 // * Styles
-import './globals.scss'
+import './styles/styles.scss'
+// * Components and pages
+import { Layout } from './components'
+import {
+  ConsultingRooms,
+  Doctor,
+  Schedule,
+  Specialty,
+  Login,
+  DoctorsList,
+} from './pages'
 
 const Home = () => <div>Home</div>
 
@@ -13,27 +20,13 @@ function App() {
     <Router>
       <Layout>
         <Switch>
-          <Route path='/login'>
-            <Login />
-          </Route>
-          <Route path='/doctor/schedule'>
-            <Schedule />
-          </Route>
-          <Route path='/doctor/speciality'>
-            <Speciality />
-          </Route>
-          <Route path='/doctor/list'>
-            <DoctorsList />
-          </Route>
-          <Route path='/doctor'>
-            <Doctors />
-          </Route>
-          <Route path='/consulting-rooms'>
-            <ConsultingRooms />
-          </Route>
-          <Route path='/'>
-            <Home />
-          </Route>
+          <Route exact path='/' component={Home} />
+          <Route exact path='/login' component={Login} />
+          <Route exact path='/doctor' component={Doctor} />
+          <Route exact path='/doctor/schedule' component={Schedule} />
+          <Route exact path='/doctor/specialty' component={Specialty} />
+          <Route exact path='/doctor/list' component={DoctorsList} />
+          <Route exact path='/consulting-rooms' component={ConsultingRooms} />
         </Switch>
       </Layout>
     </Router>

@@ -8,11 +8,12 @@
   font-size: 1.4rem;
   outline: none;
   cursor: pointer;
+  transition: 0.3s;
 
   &--edit {
+    color: #0000a1;
     background-color: #a8a8ff;
     border-color: blue;
-    color: #0000a1;
   }
 
   &--delete {
@@ -33,5 +34,23 @@
     color: #535400;
     background-color: #faffc3;
     border-color: #ffc400;
+  }
+
+  &--arrow-back {
+    position: absolute;
+    top: 3rem;
+    left: 0;
+    justify-content: center;
+    color: black;
+    background-color: transparent;
+    border-color: transparent;
+    border-style: dashed;
+    &:hover {
+      background-color: #fbfbfb;
+      border-color: black;
+    }
+    & span {
+      margin-left: 1rem;
+    }
   }
 }

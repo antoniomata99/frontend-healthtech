@@ -1,0 +1,47 @@
+.BannerLink {
+  position: relative;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  padding: 20rem 1rem 1rem 0;
+  width: 49%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 0.6rem;
+  box-shadow: 1px -1px 7px 0px rgba(0, 0, 0, 0.28);
+  &--1 {
+    margin-bottom: 1rem;
+    width: 100%;
+    background-image: url(https://img.freepik.com/free-photo/elevated-view-stethoscope-blue-background_23-2148050517.jpg?size=626&ext=jpg);
+    background-position-y: -3rem;
+  }
+  &--2 {
+    background-image: url(https://qmue4.files.wordpress.com/2019/12/projectschedulemanagement.jpg);
+  }
+  &--3 {
+    background-image: url(https://3dlancer.net/upload/galleries/943/4943/mri-machine-83478-xxl.jpg);
+  }
+
+  &:hover &__Text {
+    opacity: 1;
+  }
+
+  &__Text {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: end;
+    align-items: flex-end;
+    padding: 3rem 1rem 1rem 0;
+    color: white;
+    background: linear-gradient(to top, black -123%, transparent 84%);
+    font-size: 1.6rem;
+    border-radius: inherit;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    opacity: 0;
+    transition: 0.3s;
+  }
+}

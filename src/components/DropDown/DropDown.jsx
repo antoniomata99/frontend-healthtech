@@ -1,14 +1,20 @@
 import React from 'react'
-import './DropDown.scss'
+// * Styles
+import '../../styles/globals/Button.scss'
 
-const DropDown = ({ name = '', options = [] }) => {
+const DropDown = ({ defaultOption, options }) => {
   return (
-    <select className='DropDown' name={name} id={name} onChange={() => console.log('a')} required>
-      <option className='DropDown__value' value='' selected disabled>
-        {name}
+    <select
+      className='Input Input--dropDown'
+      name={defaultOption}
+      onChange={() => console.log('a')}
+      required
+    >
+      <option value='' selected disabled>
+        {defaultOption}
       </option>
       {options.map((item) => (
-        <option className='DropDown__value' value={item.value} key={item.id}>
+        <option value={item.value} key={item.id}>
           {`${item.value}`}
         </option>
       ))}

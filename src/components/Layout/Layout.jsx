@@ -1,6 +1,6 @@
 import React from 'react'
 // * Styles
-import './Layout.scss'
+import '../../styles/components/Layout.scss'
 // * Components
 import { Header, Menu } from '../'
 
