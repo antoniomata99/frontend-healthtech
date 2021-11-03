@@ -8,13 +8,24 @@
   max-height: 10rem;
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.28);
 
-  &__Logo {
+  &__Container {
+    display: flex;
+    align-items: center;
     & svg {
       font-size: 3rem;
     }
   }
 
-  &__text {
-    font-size: 1.4rem;
+  &__Text {
+    margin-left: 2rem;
+    font-size: 1.7rem;
+  }
+
+  &__Logo {
+    cursor: not-allowed;
+    svg {
+      color: gray;
+      font-size: 3rem;
+    }
   }
 }

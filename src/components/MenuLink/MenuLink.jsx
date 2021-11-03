@@ -1,15 +1,20 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 // * Styles
-import './MenuLink.scss'
+import '../../styles/components/MenuLink.scss'
 
 const MenuLink = ({ link, Icon, text }) => {
   return (
     <li className='MenuLink'>
-      <Link className='MenuLink__link' to={link}>
+      <NavLink
+        exact
+        className='MenuLink__Link'
+        activeClassName='MenuLink__Link--active'
+        to={link}
+      >
         <Icon />
-        <h4 className='MenuLink__text'>{text}</h4>
-      </Link>
+        <h4 className='MenuLink__Text'>{text}</h4>
+      </NavLink>
     </li>
   )
 }

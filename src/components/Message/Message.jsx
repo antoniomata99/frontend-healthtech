@@ -1,8 +1,7 @@
 import React from 'react'
-import './Message.scss'
+// * Style
+import '../../styles/components/Message.scss'
 
-const Message = ({ text }) => {
-  return <h1 className='Message'>{text}</h1>
-}
+const Message = ({ text }) => <h1 className='Message'>{text}</h1>
 
 export { Message }

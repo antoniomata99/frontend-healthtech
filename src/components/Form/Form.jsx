@@ -1,15 +1,16 @@
 import React from 'react'
-import './Form.scss'
+// * Style
+import '../../styles/globals/Form.scss'
 // * Components
 import { Button } from '../'
 
-const Form = ({ title = 'Add', buttonText = 'Create', children }) => {
+const Form = ({ title, children }) => {
   return (
-    <div className='Form-Container'>
-      <h4 className='Form-Container__Text'>{title}</h4>
-      <form action='' className='Form-Section'>
-        {children}
-        <Button name={buttonText} modifier='create' />
+    <div className='Form'>
+      <h4 className='Form__Text'>{title}</h4>
+      <form action='' className='Form__Section'>
+        <div className='Form__Container'>{children}</div>
+        <Button name='Add' modifier='create' />
       </form>
     </div>
   )
