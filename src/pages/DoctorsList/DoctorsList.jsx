@@ -25,7 +25,11 @@ const DoctorsList = () => {
         <TableHeader titles={titles} />
         <TableContent>
           {doctors.map((item) => (
-            <TableItem key={`doctor--${item.id_usuario}`}>
+            <TableItem
+              key={`doctor--${item.id_usuario}`}
+              edit={false}
+              view={true}
+            >
               <TableData data={item.id_usuario} />
               <TableData data={item.nombre_usuario} />
               <TableData data={item.correo} />
