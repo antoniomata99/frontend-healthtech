@@ -1,0 +1,17 @@
+.Modal {
+  position: fixed;
+  background: #00000040;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__Container {
+    position: relative;
+    padding: 0 5rem;
+    min-width: 10rem;
+    min-height: 10rem;
+    background-color: white;
+    border-radius: 0.6rem;
+  }
+}

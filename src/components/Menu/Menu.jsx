@@ -4,10 +4,10 @@ import '../../styles/components/Menu.scss'
 // * Icons
 import {
   BsFillPieChartFill,
-  BsFillFilePersonFill,
-  BsFillPersonFill,
-  BsFillPersonCheckFill,
-  BsFillGearFill,
+  // BsFillFilePersonFill,
+  // BsFillPersonFill,
+  // BsFillPersonCheckFill,
+  // BsFillGearFill,
 } from 'react-icons/bs'
 import { MdLocalHospital, MdMeetingRoom } from 'react-icons/md'
 // * Components

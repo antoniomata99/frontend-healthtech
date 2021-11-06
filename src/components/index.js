@@ -8,6 +8,7 @@ export { Message } from './Message/Message.jsx'
 export { DropDown } from './DropDown/DropDown.jsx'
 export { BackArrow } from './BackArrow/BackArrow.jsx'
 export { BannerLink } from './BannerLink/BannerLink.jsx'
+export { Modal } from './Modal/Modal.jsx'
 
 export { Table } from './Table/Table.jsx'
 export { TableHeader } from './TableHeader/TableHeader.jsx'

@@ -22,6 +22,15 @@
     background-color: #ffaaaa;
     border-color: red;
   }
+  
+  &--close {
+    position: absolute;
+    right: 0;
+    margin: 1rem 1rem 0 0;
+    color: #d10000;
+    background-color: #ffaaaa;
+    border-color: red;
+  }
 
   &--create {
     color: #005400;
