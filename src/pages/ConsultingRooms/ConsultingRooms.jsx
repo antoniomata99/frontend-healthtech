@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAxios } from '../../hooks/useAxios'
+import { useModal } from '../../hooks/useModal'
 // * Icons
 import { AiOutlineClose } from 'react-icons/ai'
 // * Components
@@ -16,7 +17,6 @@ import {
   Modal,
   Button,
 } from '../../components'
-import { useState } from 'react'
 
 const titles = ['ID', 'Name', 'Code', 'Floor', 'State']
 
@@ -31,28 +31,13 @@ const floorElements = [
   { id: 2, value: 4 },
 ]
 
-const ConsultingRoomsForm = () => {
-  return (
-    <Form title='Add consulting room'>
-      <InputText placeholder={'Name: Room 001'} />
-      <InputText placeholder={'Code: Room--001'} />
-      <DropDown defaultOption='active' options={activeElements} />
-      <DropDown defaultOption='floor' options={floorElements} />
-    </Form>
-  )
-}
-
 const ConsultingRooms = () => {
   const { data: rooms, getData } = useAxios('consultorio/')
+  const { openModal, handleModal } = useModal()
 
   useEffect(() => {
     getData()
   }, [])
-
-  const [openModal, setOpenModal] = useState(false)
-  const handleModal = () => {
-    setOpenModal(!openModal)
-  }
 
   return (
     <>
@@ -62,10 +47,7 @@ const ConsultingRooms = () => {
           <TableHeader titles={titles} />
           <TableContent>
             {rooms.map((item) => (
-              <TableItem
-                key={`room--${item.id_consultorio}`}
-                handleModal={handleModal}
-              >
+              <TableItem key={`room--${item.id_consultorio}`} handleModal={handleModal}>
                 <TableData data={item.id_consultorio} />
                 <TableData data={item.nombre} />
                 <TableData data={item.codigo} />
@@ -78,17 +60,24 @@ const ConsultingRooms = () => {
       </Container>
       {openModal && (
         <Modal>
-          <Button
-            modifier='close'
-            className='Modal__Button'
-            handle={handleModal}
-          >
+          <Button modifier='close' className='Modal__Button' handle={handleModal}>
             <AiOutlineClose />
           </Button>
           <ConsultingRoomsForm />
         </Modal>
       )}
     </>
+  )
+}
+
+const ConsultingRoomsForm = () => {
+  return (
+    <Form title='Add consulting room'>
+      <InputText placeholder={'Name: Room 001'} />
+      <InputText placeholder={'Code: Room--001'} />
+      <DropDown defaultOption='active' options={activeElements} />
+      <DropDown defaultOption='floor' options={floorElements} />
+    </Form>
   )
 }
 

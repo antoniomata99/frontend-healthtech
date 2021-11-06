@@ -1,28 +1,41 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useAxios } from './useAxios'
+import { useModal } from './useModal'
 
-const useSchedule = (url, {}) => {
-  const { data: doctors, getData, postData } = useAxios(url, {})
+const useSchedule = (url) => {
+  const { data, getData, postData } = useAxios(url)
+  const { handleModal, openModal } = useModal()
 
-  const [doctorsdata, setDoctorsdata] = useState([])
+  const [schedules, setSchedules] = useState([])
+  const [scheduleItem, setScheduleItem] = useState({})
 
-  // Datos
-  const [mensaje, setMensaje] = useState('')
-  // Cargando
-  const [mensaje, setMensaje] = useState('')
-  // ERROR
-  const [mensaje, setMensaje] = useState('')
+  useEffect(() => {
+    getData()
+  }, [])
 
-  setDoctorsdata(doctors)
-
-  if (postData == 200) {
-    doctorsdata.push({})
-    setDoctorsdata(doctorsdata)
-  } else if (postData == 201) {
-    setMensaje('nasaisnias')
+  // * Falta por probar
+  const handleNewSchedule = async () => {
+    if (scheduleItem) {
+      try {
+        const response = await postData(scheduleItem)
+        if (response.statusCode === 200) {
+          setSchedules([...schedules, scheduleItem])
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
   }
 
-  return { doctors, mensaje }
+  return {
+    handleNewSchedule,
+    scheduleItem,
+    setScheduleItem,
+    handleModal,
+    openModal,
+    data,
+    getData,
+  }
 }
 
 export { useSchedule }

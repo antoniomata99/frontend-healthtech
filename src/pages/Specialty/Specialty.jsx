@@ -17,34 +17,18 @@ import {
   Button,
 } from '../../components'
 import { useState } from 'react'
+import { useModal } from '../../hooks/useModal'
 
+// TODO: Need info from the API
 const titles = ['ID', 'Name', 'Description', 'State']
 const activeElements = [
   { id: 1, value: false },
   { id: 2, value: true },
 ]
 
-const SpecialtyForm = () => {
-  return (
-    <Form title='Add Speciality'>
-      <InputText placeholder='Name: Urology' />
-      <InputText placeholder='Description...' />
-      <DropDown defaultOption='active' options={activeElements} />
-    </Form>
-  )
-}
-
 const Specialty = () => {
   const { data: specialties, getData } = useAxios('especialidad/')
-
-  useEffect(() => {
-    getData()
-  }, [])
-
-  const [openModal, setOpenModal] = useState(false)
-  const handleModal = () => {
-    setOpenModal(!openModal)
-  }
+  const { openModal, handleModal } = useModal()
 
   return (
     <>
@@ -54,10 +38,7 @@ const Specialty = () => {
           <TableHeader titles={titles} />
           <TableContent>
             {specialties.map((item) => (
-              <TableItem
-                key={`specialty--${item.id_especialidad}`}
-                handleModal={handleModal}
-              >
+              <TableItem key={`specialty--${item.id_especialidad}`} handleModal={handleModal}>
                 <TableData data={item.id_especialidad} />
                 <TableData data={item.nombre} />
                 <TableData data={item.descripcion} />
@@ -69,17 +50,23 @@ const Specialty = () => {
       </Container>
       {openModal && (
         <Modal>
-          <Button
-            modifier='close'
-            className='Modal__Button'
-            handle={handleModal}
-          >
+          <Button modifier='close' className='Modal__Button' handle={handleModal}>
             <AiOutlineClose />
           </Button>
           <SpecialtyForm />
         </Modal>
       )}
     </>
+  )
+}
+
+const SpecialtyForm = () => {
+  return (
+    <Form title='Add Speciality'>
+      <InputText placeholder='Name: Urology' />
+      <InputText placeholder='Description...' />
+      <DropDown defaultOption='active' options={activeElements} />
+    </Form>
   )
 }
 
