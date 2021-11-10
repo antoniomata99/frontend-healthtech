@@ -2,12 +2,12 @@ import React from 'react'
 // * Styles
 import '../../styles/globals/Button.scss'
 
-const DropDown = ({ defaultOption, options }) => {
+const DropDown = ({ defaultOption, options, setData }) => {
   return (
     <select
       className='Input Input--dropDown'
       name={defaultOption}
-      onChange={() => console.log('a')}
+      onChange={(e) => setData(e.target.value)}
       required
     >
       <option value='' selected disabled>
