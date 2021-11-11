@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 // * Components
 import { DropDown, Form, InputText } from '..'
 
@@ -24,9 +23,5 @@ const ConsultingRoomsForm = () => {
     </Form>
   )
 }
-
-ConsultingRoomsForm.defaultProps = {}
-
-ConsultingRoomsForm.propTypes = {}
 
 export { ConsultingRoomsForm }

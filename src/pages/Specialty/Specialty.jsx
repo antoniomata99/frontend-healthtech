@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { useSpecialty } from '../../hooks/useSpecialty'
-import PropTypes from 'prop-types'
+import { useAxios } from '../../hooks/useAxios'
 // * Icons
 import { AiOutlineClose } from 'react-icons/ai'
 // * Components
@@ -20,13 +19,13 @@ import {
 const titles = ['ID', 'Name', 'Description', 'State']
 
 const Specialty = () => {
-  const { openModal, handleModal, data: specialties } = useSpecialty('especialidad/')
+  const { openModal, handleModal, data: specialties, postData } = useAxios('especialidad/')
   const [specialty, setSpecialty] = useState('')
 
   return (
     <>
       <Container button='true' linkText='/doctor'>
-        <SpecialtyForm />
+        <SpecialtyForm postData={postData} />
         <Table>
           <TableHeader titles={titles} />
           <TableContent>
@@ -56,9 +55,5 @@ const Specialty = () => {
     </>
   )
 }
-
-Specialty.defaultProps = {}
-
-Specialty.propTypes = {}
 
 export { Specialty }

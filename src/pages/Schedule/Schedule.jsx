@@ -1,6 +1,5 @@
-import React from 'react'
-import { useSchedule } from '../../hooks/useSchedule'
-import PropTypes from 'prop-types'
+import React, { useState } from 'react'
+import { useAxios } from '../../hooks/useAxios'
 // * Icons
 import { AiOutlineClose } from 'react-icons/ai'
 // * Components
@@ -20,17 +19,43 @@ import {
 const titles = ['ID', 'Start time', 'End time']
 
 const Schedule = () => {
-  const { openModal, handleModal, data: schedules } = useSchedule('horarioMedico/')
+  const {
+    openModal,
+    handleModal,
+    data: schedules,
+    postData,
+    updateData,
+    deleteData,
+  } = useAxios('horarioMedico/')
+  const [schedule, setSchedule] = useState({
+    id_horario_medico: 0,
+    hora_inicio: '',
+    hora_fin: '',
+  })
+
+  const toggleModal = (data) => {
+    handleModal()
+    setSchedule({
+      id_horario_medico: data.id_horario_medico,
+      hora_inicio: data.hora_inicio,
+      hora_fin: data.hora_fin,
+    })
+  }
 
   return (
     <>
-      <Container button='true' linkText='/doctor'>
-        <ScheduleForm />
+      <Container button={true} linkText='/doctor'>
+        <ScheduleForm postData={postData} update={false} />
         <Table>
           <TableHeader titles={titles} />
           <TableContent>
             {schedules.map((item) => (
-              <TableItem key={`schedule--${item.id_horario_medico}`} handleModal={handleModal}>
+              <TableItem
+                key={`schedule--${item.id_horario_medico}`}
+                handleEdit={toggleModal}
+                handleDelete={deleteData}
+                data={item}
+              >
                 <TableData data={item.id_horario_medico} />
                 <TableData data={item.hora_inicio} />
                 <TableData data={item.hora_fin} />
@@ -44,15 +69,18 @@ const Schedule = () => {
           <Button modifier='close' className='Modal__Button' handle={handleModal}>
             <AiOutlineClose />
           </Button>
-          <ScheduleForm />
+          <ScheduleForm
+            updateData={updateData}
+            id={schedule.id_horario_medico}
+            initialTime={schedule.hora_inicio}
+            finishTime={schedule.hora_fin}
+            handleModal={handleModal}
+            update={true}
+          />
         </Modal>
       )}
     </>
   )
 }
-
-Schedule.defaultProps = {}
-
-Schedule.propTypes = {}
 
 export { Schedule }

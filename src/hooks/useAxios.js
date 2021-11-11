@@ -1,16 +1,18 @@
 import { useState, useEffect } from 'react'
+import { useModal } from './useModal'
 import axios from 'axios'
 
 const URL_BASE = 'https://healt-tech-back.herokuapp.com/api/'
 
 const useAxios = (url) => {
+  const { handleModal, openModal } = useModal()
   const [data, setData] = useState([]) // * Data state
   const [loading, setLoading] = useState(false) // * Loading state
   const [error, setError] = useState(false) // * Error state
 
   useEffect(() => {
     getData() // * Reload data when component is mounted or data state changes
-  }, [data])
+  }, [])
 
   // ? Function for get the data
   const getData = async () => {
@@ -76,7 +78,7 @@ const useAxios = (url) => {
     }
   }
 
-  return { data, getData, postData, updateData, deleteData, loading, error }
+  return { data, getData, postData, updateData, deleteData, loading, error, handleModal, openModal }
 }
 
 export { useAxios }

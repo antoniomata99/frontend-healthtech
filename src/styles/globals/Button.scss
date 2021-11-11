@@ -9,6 +9,9 @@
   outline: none;
   cursor: pointer;
   transition: 0.3s;
+  min-width: 3.5rem;
+  max-height: 3.5rem;
+  min-height: 3.5rem;
 
   &--edit {
     color: #0000a1;
@@ -22,7 +25,7 @@
     background-color: #ffaaaa;
     border-color: red;
   }
-  
+
   &--close {
     position: absolute;
     right: 0;
@@ -43,6 +46,12 @@
     color: #535400;
     background-color: #faffc3;
     border-color: #ffc400;
+  }
+
+  &--update {
+    color: rgb(87, 56, 0);
+    background-color: rgb(255, 227, 174);
+    border-color: orange;
   }
 
   &--arrow-back {

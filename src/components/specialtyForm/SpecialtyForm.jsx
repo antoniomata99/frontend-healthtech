@@ -8,26 +8,26 @@ const activeElements = [
   { id: 2, value: 'inactivo' },
 ]
 
-const SpecialtyForm = () => {
-  const [specialty, setSpecialty] = useState('')
+const SpecialtyForm = ({ postData }) => {
+  const [name, setName] = useState('')
   const [description, setDescription] = useState('')
   const [state, setState] = useState('')
 
-  const { postData } = useAxios('especialidad/')
-
-  const handlePostData = () => {
-    const data = {
+  const handlePostData = (e) => {
+    e.preventDefault()
+    postData({
       descripcion: description,
-      nombre: specialty,
+      nombre: name,
       estado: state,
-    }
-    postData(data)
+    })
+    setName('')
+    setDescription('')
   }
 
   return (
     <Form title='Add Specialty' handleData={handlePostData}>
-      <InputText placeholder='Name: Urology' setData={setSpecialty} />
-      <InputText placeholder='Description...' setData={setDescription} />
+      <InputText placeholder='Name: Urology' setData={setName} defaultValue={name} />
+      <InputText placeholder='Description...' setData={setDescription} defaultValue={description} />
       <DropDown defaultOption='Select' options={activeElements} setData={setState} />
     </Form>
   )

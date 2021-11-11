@@ -24,7 +24,7 @@ MenuLink.defaultProps = {
 MenuLink.propTypes = {
   text: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
-  Icon: PropTypes.element,
+  Icon: PropTypes.elementType,
 }
 
 export { MenuLink }

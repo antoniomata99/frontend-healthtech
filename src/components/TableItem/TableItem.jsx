@@ -3,15 +3,15 @@ import PropTypes from 'prop-types'
 // * Icons
 import { RiEdit2Line, RiDeleteBin6Line, RiEyeFill } from 'react-icons/ri'
 // * Components
-import { Button, TableData } from '../'
+import { Button } from '../'
 
-const TableItem = ({ children, view, handleModal, edit, remove }) => {
+const TableItem = ({ children, view, handleEdit, handleDelete, edit, remove, data }) => {
   return (
     <div className='Table__Item'>
       {children}
       <div className='Table__Data'>
         {!!edit && (
-          <Button modifier='edit' handle={handleModal}>
+          <Button modifier='edit' handle={() => handleEdit(data)}>
             <RiEdit2Line />
           </Button>
         )}
@@ -21,7 +21,7 @@ const TableItem = ({ children, view, handleModal, edit, remove }) => {
           </Button>
         )}
         {!!remove && (
-          <Button modifier='delete'>
+          <Button modifier='delete' handle={() => handleDelete(data.id)}>
             <RiDeleteBin6Line />
           </Button>
         )}
@@ -35,7 +35,7 @@ TableItem.defaultProps = {
   edit: true,
   remove: true,
   handleModal: null,
-  children: <TableData />,
+  children: null,
 }
 
 TableItem.propTypes = {
