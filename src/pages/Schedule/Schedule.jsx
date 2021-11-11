@@ -1,19 +1,19 @@
 import React from 'react'
 import { useSchedule } from '../../hooks/useSchedule'
+import PropTypes from 'prop-types'
 // * Icons
 import { AiOutlineClose } from 'react-icons/ai'
 // * Components
 import {
-  Form,
   Container,
   Table,
   TableHeader,
   TableContent,
   TableItem,
   TableData,
-  InputTime,
   Modal,
   Button,
+  ScheduleForm,
 } from '../../components'
 
 // TODO: Need info from the API
@@ -51,13 +51,8 @@ const Schedule = () => {
   )
 }
 
-const ScheduleForm = () => {
-  return (
-    <Form title='Add Schedule'>
-      <InputTime />
-      <InputTime />
-    </Form>
-  )
-}
+Schedule.defaultProps = {}
+
+Schedule.propTypes = {}
 
 export { Schedule }

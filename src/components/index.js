@@ -1,4 +1,3 @@
-// export {name} from './'
 export { Layout } from './Layout/Layout.jsx'
 export { Header } from './Header/Header.jsx'
 export { Menu } from './Menu/Menu.jsx'
@@ -20,3 +19,7 @@ export { Form } from './Form/Form.jsx'
 export { InputText } from './InputText/InputText.jsx'
 export { InputTime } from './InputTime/InputTime.jsx'
 export { Button } from './Button/Button.jsx'
+
+export { SpecialtyForm } from './specialtyForm/SpecialtyForm.jsx'
+export { ConsultingRoomsForm } from './consultingRoomsForm/ConsultingRoomsForm.jsx'
+export { ScheduleForm } from './scheduleForm/ScheduleForm.jsx'

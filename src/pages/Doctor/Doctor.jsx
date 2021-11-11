@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 // * Style
 import '../../styles/components/Doctor.scss'
 // * Components
@@ -13,5 +14,9 @@ const Doctor = () => {
     </div>
   )
 }
+
+Doctor.defaultProps = {}
+
+Doctor.propTypes = {}
 
 export { Doctor }

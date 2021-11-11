@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 // * Style
 import '../../styles/globals/Button.scss'
 // * Icons
@@ -12,6 +13,14 @@ const BackArrow = ({ link }) => {
       <span>Back</span>
     </Link>
   )
+}
+
+BackArrow.defaultProps = {
+  link: '/',
+}
+
+BackArrow.propTypes = {
+  link: PropTypes.string.isRequired,
 }
 
 export { BackArrow }

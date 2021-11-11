@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const TableHeader = ({ titles }) => {
   return (
@@ -11,6 +12,14 @@ const TableHeader = ({ titles }) => {
       <h2 className='Table__Title'>Actions</h2>
     </div>
   )
+}
+
+TableHeader.defaultProps = {
+  titles: ['Title 1 test', 'Title 2 test', 'Title 3 test'],
+}
+
+TableHeader.propTypes = {
+  titles: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
 }
 
 export { TableHeader }

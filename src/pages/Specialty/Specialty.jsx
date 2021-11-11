@@ -1,13 +1,11 @@
-import React, { useEffect } from 'react'
-import { useAxios } from '../../hooks/useAxios'
+import React, { useState } from 'react'
+import { useSpecialty } from '../../hooks/useSpecialty'
+import PropTypes from 'prop-types'
 // * Icons
 import { AiOutlineClose } from 'react-icons/ai'
 // * Components
 import {
-  Form,
-  DropDown,
   Container,
-  InputText,
   Table,
   TableHeader,
   TableContent,
@@ -15,20 +13,15 @@ import {
   TableData,
   Modal,
   Button,
+  SpecialtyForm,
 } from '../../components'
-import { useState } from 'react'
-import { useModal } from '../../hooks/useModal'
 
 // TODO: Need info from the API
 const titles = ['ID', 'Name', 'Description', 'State']
-const activeElements = [
-  { id: 1, value: false },
-  { id: 2, value: true },
-]
 
 const Specialty = () => {
-  const { data: specialties, getData } = useAxios('especialidad/')
-  const { openModal, handleModal } = useModal()
+  const { openModal, handleModal, data: specialties } = useSpecialty('especialidad/')
+  const [specialty, setSpecialty] = useState('')
 
   return (
     <>
@@ -38,7 +31,11 @@ const Specialty = () => {
           <TableHeader titles={titles} />
           <TableContent>
             {specialties.map((item) => (
-              <TableItem key={`specialty--${item.id_especialidad}`} handleModal={handleModal}>
+              <TableItem
+                key={`specialty--${item.id_especialidad}`}
+                handleModal={handleModal}
+                remove={false}
+              >
                 <TableData data={item.id_especialidad} />
                 <TableData data={item.nombre} />
                 <TableData data={item.descripcion} />
@@ -60,14 +57,8 @@ const Specialty = () => {
   )
 }
 
-const SpecialtyForm = () => {
-  return (
-    <Form title='Add Speciality'>
-      <InputText placeholder='Name: Urology' />
-      <InputText placeholder='Description...' />
-      <DropDown defaultOption='active' options={activeElements} />
-    </Form>
-  )
-}
+Specialty.defaultProps = {}
+
+Specialty.propTypes = {}
 
 export { Specialty }

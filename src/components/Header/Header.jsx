@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 // * Styles
 import '../../styles/components/Header.scss'
 // * Icons
@@ -17,5 +18,9 @@ const Header = () => {
     </header>
   )
 }
+
+Header.defaultProps = {}
+
+Header.propTypes = {}
 
 export { Header }

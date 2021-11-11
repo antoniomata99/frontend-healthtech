@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 // * Styles
 import '../../styles/components/Menu.scss'
 // * Icons
@@ -36,5 +37,9 @@ const Menu = () => {
     </div>
   )
 }
+
+Menu.defaultProps = {}
+
+Menu.propTypes = {}
 
 export { Menu }
