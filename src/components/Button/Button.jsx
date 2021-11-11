@@ -4,10 +4,7 @@ import '../../styles/globals/Button.scss'
 
 const Button = ({ name, modifier, children, handle }) => {
   return (
-    <button
-      className={`Button Button--${modifier}`}
-      onClick={handle ? () => handle() : null}
-    >
+    <button className={`Button Button--${modifier}`} onClick={handle ? () => handle() : null}>
       {name && <span>{name}</span>}
       {children}
     </button>
