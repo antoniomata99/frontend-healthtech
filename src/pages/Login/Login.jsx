@@ -23,12 +23,7 @@ const Login = () => {
             placeholder='Número de Documento'
             required
           />
-          <input
-            className='Login-Form__Input'
-            type='password'
-            placeholder='Contraseña'
-            required
-          />
+          <input className='Login-Form__Input' type='password' placeholder='Contraseña' required />
         </div>
       </Form>
     </section>
