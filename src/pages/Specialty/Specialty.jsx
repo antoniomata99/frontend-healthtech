@@ -13,17 +13,42 @@ import {
   Modal,
   Button,
   SpecialtyForm,
+  Message,
 } from '../../components'
 
 // TODO: Need info from the API
 const titles = ['ID', 'Name', 'Description', 'State']
 
 const Specialty = () => {
-  const { openModal, handleModal, data: specialties, postData } = useAxios('especialidad/')
-  const [specialty, setSpecialty] = useState('')
+  const {
+    openModal,
+    handleModal,
+    data: specialties,
+    postData,
+    updateData,
+    error,
+    message,
+  } = useAxios('especialidad/')
+  const [specialty, setSpecialty] = useState({
+    id_especialidad: 0,
+    nombre: '',
+    descripcion: '',
+    estado: '',
+  })
+
+  const toggleModal = (data) => {
+    handleModal()
+    setSpecialty({
+      id_especialidad: data.id_especialidad,
+      nombre: data.nombre,
+      descripcion: data.descripcion,
+      estado: data.estado,
+    })
+  }
 
   return (
     <>
+      {error && <Message modifier='error' text={`Error: ${message}`} />}
       <Container button='true' linkText='/doctor'>
         <SpecialtyForm postData={postData} />
         <Table>
@@ -32,8 +57,9 @@ const Specialty = () => {
             {specialties.map((item) => (
               <TableItem
                 key={`specialty--${item.id_especialidad}`}
-                handleModal={handleModal}
+                handleEdit={toggleModal}
                 remove={false}
+                data={item}
               >
                 <TableData data={item.id_especialidad} />
                 <TableData data={item.nombre} />
@@ -49,7 +75,14 @@ const Specialty = () => {
           <Button modifier='close' className='Modal__Button' handle={handleModal}>
             <AiOutlineClose />
           </Button>
-          <SpecialtyForm />
+          <SpecialtyForm
+            id={specialty.id_especialidad}
+            itemName={specialty.nombre}
+            itemDescription={specialty.descripcion}
+            itemState={specialty.estado}
+            update={true}
+            updateData={updateData}
+          />
         </Modal>
       )}
     </>

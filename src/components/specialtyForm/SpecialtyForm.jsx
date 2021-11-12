@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { useAxios } from '../../hooks/useAxios'
 // * Components
 import { DropDown, Form, InputText } from '..'
 
@@ -8,10 +7,19 @@ const activeElements = [
   { id: 2, value: 'inactivo' },
 ]
 
-const SpecialtyForm = ({ postData }) => {
-  const [name, setName] = useState('')
-  const [description, setDescription] = useState('')
-  const [state, setState] = useState('')
+const SpecialtyForm = ({
+  postData,
+  itemName,
+  itemDescription,
+  itemState,
+  id,
+  update,
+  handleModal,
+  updateData,
+}) => {
+  const [name, setName] = useState(itemName)
+  const [description, setDescription] = useState(itemDescription)
+  const [state, setState] = useState(itemState)
 
   const handlePostData = (e) => {
     e.preventDefault()
@@ -24,8 +32,21 @@ const SpecialtyForm = ({ postData }) => {
     setDescription('')
   }
 
+  const handleUpdate = (e) => {
+    e.preventDefault()
+    updateData({
+      id_especialidad: id,
+    })
+    handleModal()
+  }
+
   return (
-    <Form title='Add Specialty' handleData={handlePostData}>
+    <Form
+      title={update ? '' : 'Add Specialty'}
+      handleData={update ? handleUpdate : handlePostData}
+      isUpdate={update ? true : false}
+    >
+      {id && <h1 className='Identifier'>{id}</h1>}
       <InputText placeholder='Name: Urology' setData={setName} defaultValue={name} />
       <InputText placeholder='Description...' setData={setDescription} defaultValue={description} />
       <DropDown defaultOption='Select' options={activeElements} setData={setState} />

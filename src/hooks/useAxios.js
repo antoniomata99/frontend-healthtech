@@ -9,6 +9,7 @@ const useAxios = (url) => {
   const [data, setData] = useState([]) // * Data state
   const [loading, setLoading] = useState(false) // * Loading state
   const [error, setError] = useState(false) // * Error state
+  const [message, setMessage] = useState('') // * Message to show
 
   useEffect(() => {
     getData() // * Reload data when component is mounted or data state changes
@@ -27,6 +28,7 @@ const useAxios = (url) => {
         })
     } catch (error) {
       setError(true)
+      setMessage(error.message)
     }
   }
 
@@ -39,10 +41,12 @@ const useAxios = (url) => {
         setData([...data, response.data])
         setLoading(false)
       } else {
-        setError(true) // * If the status is not 201
+        setError(true)
+        setMessage('Data not added')
       }
     } catch (error) {
       setError(true)
+      setMessage(error.message)
     }
   }
 
@@ -55,10 +59,12 @@ const useAxios = (url) => {
         setData([...data, response.data])
         setLoading(false)
       } else {
-        setError(true) // * If the status is not 201
+        setError(true)
+        setMessage('Data not updated')
       }
     } catch (error) {
       setError(true)
+      setMessage(error.message)
     }
   }
 
@@ -71,14 +77,27 @@ const useAxios = (url) => {
         setData([...data, response.data])
         setLoading(false)
       } else {
-        setError(true) // * If the status is not 201
+        setError(true)
+        setMessage('Data not deleted')
       }
     } catch (error) {
       setError(true)
+      setMessage(error.message)
     }
   }
 
-  return { data, getData, postData, updateData, deleteData, loading, error, handleModal, openModal }
+  return {
+    data,
+    getData,
+    postData,
+    updateData,
+    deleteData,
+    loading,
+    error,
+    handleModal,
+    openModal,
+    message,
+  }
 }
 
 export { useAxios }

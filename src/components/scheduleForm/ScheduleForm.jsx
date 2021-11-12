@@ -28,10 +28,11 @@ const ScheduleForm = ({
 
   return (
     <Form
-      title='Add Schedule'
+      title={update ? '' : 'Add Schedule'}
       handleData={!!update ? handleUpdate : handlePost}
       isUpdate={!!update ? true : false}
     >
+      {id && <h1 className='Identifier'>{id}</h1>}
       <InputTime setData={setStartTime} defaultValue={startTime} />
       <InputTime setData={setEndTime} defaultValue={endTime} />
     </Form>
