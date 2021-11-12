@@ -34,8 +34,11 @@ const SpecialtyForm = ({
 
   const handleUpdate = (e) => {
     e.preventDefault()
-    updateData({
+    updateData(id, {
       id_especialidad: id,
+      descripcion: description,
+      nombre: name,
+      estado: state,
     })
     handleModal()
   }

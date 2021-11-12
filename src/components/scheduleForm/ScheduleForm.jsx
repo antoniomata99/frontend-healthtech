@@ -22,7 +22,7 @@ const ScheduleForm = ({
 
   const handleUpdate = (e) => {
     e.preventDefault()
-    updateData({ id_horario_medico: id, hora_inicio: startTime, hora_fin: endTime })
+    updateData(id, { id_horario_medico: id, hora_inicio: startTime, hora_fin: endTime })
     handleModal()
   }
 

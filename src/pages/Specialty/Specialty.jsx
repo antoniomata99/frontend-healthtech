@@ -82,6 +82,7 @@ const Specialty = () => {
             itemState={specialty.estado}
             update={true}
             updateData={updateData}
+            handleModal={handleModal}
           />
         </Modal>
       )}
