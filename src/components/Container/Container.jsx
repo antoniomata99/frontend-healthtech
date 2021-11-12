@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 // * Style
 import '../../styles/globals/Container.scss'
 // * Components
@@ -11,6 +12,18 @@ const Container = ({ children, button, linkText }) => {
       {!!button && <BackArrow link={linkText} />}
     </section>
   )
+}
+
+Container.defaultProps = {
+  button: false,
+  linkText: '/',
+  children: null,
+}
+
+Container.propTypes = {
+  button: PropTypes.bool,
+  linkText: PropTypes.string,
+  children: PropTypes.node,
 }
 
 export { Container }

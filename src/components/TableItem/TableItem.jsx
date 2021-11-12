@@ -1,16 +1,17 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 // * Icons
 import { RiEdit2Line, RiDeleteBin6Line, RiEyeFill } from 'react-icons/ri'
 // * Components
 import { Button } from '../'
 
-const TableItem = ({ children, view = false, handleModal, edit = true, remove = true }) => {
+const TableItem = ({ children, view, handleEdit, handleDelete, edit, remove, data }) => {
   return (
     <div className='Table__Item'>
       {children}
       <div className='Table__Data'>
         {!!edit && (
-          <Button modifier='edit' handle={handleModal}>
+          <Button modifier='edit' handle={() => handleEdit(data)}>
             <RiEdit2Line />
           </Button>
         )}
@@ -18,15 +19,31 @@ const TableItem = ({ children, view = false, handleModal, edit = true, remove = 
           <Button modifier='view'>
             <RiEyeFill />
           </Button>
-        )} 
+        )}
         {!!remove && (
-          <Button modifier='delete'>
+          <Button modifier='delete' handle={() => handleDelete(data.id)}>
             <RiDeleteBin6Line />
           </Button>
         )}
       </div>
     </div>
   )
+}
+
+TableItem.defaultProps = {
+  view: false,
+  edit: true,
+  remove: true,
+  handleModal: null,
+  children: null,
+}
+
+TableItem.propTypes = {
+  view: PropTypes.bool,
+  edit: PropTypes.bool,
+  remove: PropTypes.bool,
+  handleModal: PropTypes.func,
+  children: PropTypes.element.isRequired,
 }
 
 export { TableItem }

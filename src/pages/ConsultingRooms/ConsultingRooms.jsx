@@ -1,35 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import { useAxios } from '../../hooks/useAxios'
 import { useModal } from '../../hooks/useModal'
+import PropTypes from 'prop-types'
 // * Icons
 import { AiOutlineClose } from 'react-icons/ai'
 // * Components
 import {
-  Form,
-  DropDown,
   Table,
   TableHeader,
   TableContent,
   TableItem,
   TableData,
   Container,
-  InputText,
   Modal,
   Button,
+  ConsultingRoomsForm,
 } from '../../components'
 
 const titles = ['ID', 'Name', 'Code', 'Floor', 'State']
-
-const activeElements = [
-  { id: 1, value: 'Activo' },
-  { id: 2, value: 'Inactivo' },
-]
-const floorElements = [
-  { id: 1, value: 1 },
-  { id: 2, value: 2 },
-  { id: 2, value: 3 },
-  { id: 2, value: 4 },
-]
 
 const ConsultingRooms = () => {
   const { data: rooms, getData } = useAxios('consultorio/')
@@ -70,15 +58,8 @@ const ConsultingRooms = () => {
   )
 }
 
-const ConsultingRoomsForm = () => {
-  return (
-    <Form title='Add consulting room'>
-      <InputText placeholder={'Name: Room 001'} />
-      <InputText placeholder={'Code: Room--001'} />
-      <DropDown defaultOption='active' options={activeElements} />
-      <DropDown defaultOption='floor' options={floorElements} />
-    </Form>
-  )
-}
+ConsultingRooms.defaultProps = {}
+
+ConsultingRooms.propTypes = {}
 
 export { ConsultingRooms }

@@ -1,6 +1,18 @@
 .Message {
+  position: fixed;
+  top: 12rem;
+  right: 3rem;
+  text-align: center;
   padding: 1rem;
   color: gray;
   font-size: 1.6rem;
-  text-align: center;
+  border-radius: 0.6rem;
+  border: 1px solid black;
+  z-index: 100;
+
+  &--error {
+    color: #d10000;
+    background-color: #ffaaaa;
+    border-color: red;
+  }
 }

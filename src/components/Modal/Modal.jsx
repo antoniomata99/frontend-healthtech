@@ -1,5 +1,6 @@
 import React from 'react'
 import reactDom from 'react-dom'
+import PropTypes from 'prop-types'
 // * Styles
 import '../../styles/globals/Modal.scss'
 
@@ -10,6 +11,14 @@ const Modal = ({ children }) => {
     </div>,
     document.getElementById('modal')
   )
+}
+
+Modal.defaultProps = {
+  children: <h1>Modal test</h1>,
+}
+
+Modal.propTypes = {
+  children: PropTypes.node.isRequired,
 }
 
 export { Modal }
