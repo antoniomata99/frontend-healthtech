@@ -54,7 +54,7 @@ const useAxios = (url) => {
   const updateData = async (id, item) => {
     try {
       setLoading(true)
-      const response = await axios.put(`${URL_BASE}${url}${id}`, item)
+      const response = await axios.put(`${URL_BASE}${url}${id}/`, item)
       if (response.status === 201) {
         setData([...data, response.data])
         setLoading(false)
@@ -72,7 +72,7 @@ const useAxios = (url) => {
   const deleteData = async (id, item) => {
     try {
       setLoading(true)
-      const response = axios.delete(`${URL_BASE}${url}${id}`, item)
+      const response = axios.delete(`${URL_BASE}${url}${id}/`, item)
       if (response.status === 201) {
         setData([...data, response.data])
         setLoading(false)
