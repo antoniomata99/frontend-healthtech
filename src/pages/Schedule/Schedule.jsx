@@ -55,6 +55,7 @@ const Schedule = () => {
                 handleEdit={toggleModal}
                 handleDelete={deleteData}
                 data={item}
+                id={item.id_horario_medico}
               >
                 <TableData data={item.id_horario_medico} />
                 <TableData data={item.hora_inicio} />
