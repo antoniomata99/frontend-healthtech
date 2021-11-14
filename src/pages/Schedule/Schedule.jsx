@@ -13,6 +13,7 @@ import {
   Modal,
   Button,
   ScheduleForm,
+  Message,
 } from '../../components'
 
 // TODO: Need info from the API
@@ -26,6 +27,8 @@ const Schedule = () => {
     postData,
     updateData,
     deleteData,
+    error,
+    message,
   } = useAxios('horarioMedico/')
   const [schedule, setSchedule] = useState({
     id_horario_medico: 0,
@@ -42,8 +45,14 @@ const Schedule = () => {
     })
   }
 
+  // TODO: Add loading state render
+
   return (
     <>
+      {error && <Message modifier='error' text={`Error: ${message}`} state={true} />}
+      {!error && message.length > 3 && (
+        <Message modifier='good' text={`Success: ${message}`} state={true} />
+      )}
       <Container button={true} linkText='/doctor'>
         <ScheduleForm postData={postData} update={false} />
         <Table>

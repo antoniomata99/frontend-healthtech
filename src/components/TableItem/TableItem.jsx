@@ -35,7 +35,7 @@ TableItem.defaultProps = {
   edit: true,
   remove: true,
   handleModal: null,
-  children: null,
+  children: [],
 }
 
 TableItem.propTypes = {
@@ -43,7 +43,7 @@ TableItem.propTypes = {
   edit: PropTypes.bool,
   remove: PropTypes.bool,
   handleModal: PropTypes.func,
-  children: PropTypes.element.isRequired,
+  children: PropTypes.array.isRequired,
 }
 
 export { TableItem }

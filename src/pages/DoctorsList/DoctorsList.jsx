@@ -1,25 +1,20 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useAxios } from '../../hooks/useAxios'
-import PropTypes from 'prop-types'
 // * Components
 import { Container, Table, TableHeader, TableContent, TableItem, TableData } from '../../components'
 
 const titles = ['ID', 'Name', 'Mail', 'Phone', 'RH']
 
 const DoctorsList = () => {
-  const { data: doctors, getData } = useAxios('medico/')
-
-  useEffect(() => {
-    getData()
-  }, [])
+  const { data: doctors } = useAxios('medico/')
 
   return (
-    <Container button='true' linkText='/doctor'>
+    <Container button={true} linkText='/doctor'>
       <Table>
         <TableHeader titles={titles} />
         <TableContent>
           {doctors.map((item) => (
-            <TableItem key={`doctor--${item.id_usuario}`} edit={false} view={true}>
+            <TableItem key={`doctor--${item.id_usuario}`} edit={false} view={true} remove={false}>
               <TableData data={item.id_usuario} />
               <TableData data={item.nombre_usuario} />
               <TableData data={item.correo} />
@@ -32,9 +27,5 @@ const DoctorsList = () => {
     </Container>
   )
 }
-
-DoctorsList.defaultProps = {}
-
-DoctorsList.propTypes = {}
 
 export { DoctorsList }

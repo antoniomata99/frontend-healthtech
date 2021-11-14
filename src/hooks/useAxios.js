@@ -40,9 +40,11 @@ const useAxios = (url) => {
       if (response.status === 201) {
         setData([...data, response.data])
         setLoading(false)
+        setMessage('Data added 🤗')
+        setError(false)
       } else {
         setError(true)
-        setMessage('Data not added')
+        setMessage('Data not added 😔')
       }
     } catch (error) {
       setError(true)
@@ -55,12 +57,14 @@ const useAxios = (url) => {
     try {
       setLoading(true)
       const response = await axios.put(`${URL_BASE}${url}${id}/`, item)
-      if (response.status === 201) {
+      if (response.status === 200) {
         setData([...data, response.data])
         setLoading(false)
+        setMessage('Data updated 💪')
+        setError(false)
       } else {
         setError(true)
-        setMessage('Data not updated')
+        setMessage('Data not updated 🥲')
       }
     } catch (error) {
       setError(true)
@@ -73,12 +77,14 @@ const useAxios = (url) => {
     try {
       setLoading(true)
       const response = axios.delete(`${URL_BASE}${url}${id}/`, item)
-      if (response.status === 201) {
+      if (response.status === 204) {
         setData([...data, response.data])
         setLoading(false)
+        setMessage('Data deleted 😱')
+        setError(false)
       } else {
         setError(true)
-        setMessage('Data not deleted')
+        setMessage('Data not deleted 😏')
       }
     } catch (error) {
       setError(true)
@@ -88,7 +94,6 @@ const useAxios = (url) => {
 
   return {
     data,
-    getData,
     postData,
     updateData,
     deleteData,

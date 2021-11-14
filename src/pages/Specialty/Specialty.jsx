@@ -46,9 +46,15 @@ const Specialty = () => {
     })
   }
 
+  // TODO: Add loading state render
+
   return (
     <>
-      {error && <Message modifier='error' text={`Error: ${message}`} />}
+      {error && <Message modifier='error' text={`Error: ${message}`} state={true} />}
+      {!error && message.length > 3 && (
+        <Message modifier='good' text={`Success: ${message}`} state={true} />
+      )}
+      {<Message modifier='error' text={`Error: ${message}`} />}
       <Container button='true' linkText='/doctor'>
         <SpecialtyForm postData={postData} />
         <Table>

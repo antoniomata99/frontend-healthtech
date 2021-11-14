@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useAxios } from '../../hooks/useAxios'
-import { useModal } from '../../hooks/useModal'
-import PropTypes from 'prop-types'
 // * Icons
 import { AiOutlineClose } from 'react-icons/ai'
 // * Components
@@ -15,6 +13,7 @@ import {
   Modal,
   Button,
   ConsultingRoomsForm,
+  Message,
 } from '../../components'
 
 const titles = ['ID', 'Name', 'Code', 'Floor', 'State']
@@ -27,6 +26,8 @@ const ConsultingRooms = () => {
     postData,
     updateData,
     deleteData,
+    error,
+    message,
   } = useAxios('consultorio/')
   const [consultingRooms, setConsultingRooms] = useState({
     id_consultorio: 0,
@@ -47,20 +48,26 @@ const ConsultingRooms = () => {
     })
   }
 
+  // TODO: Add loading state render
+
   return (
     <>
+      {error && <Message modifier='error' text={`Error: ${message}`} state={true} />}
+      {!error && message.length > 3 && (
+        <Message modifier='good' text={`Success: ${message}`} state={true} />
+      )}
       <Container>
-        <ConsultingRoomsForm postData={postData}/>
+        <ConsultingRoomsForm postData={postData} />
         <Table>
           <TableHeader titles={titles} />
           <TableContent>
             {rooms.map((item) => (
               <TableItem
-              key={`room--${item.id_consultorio}`}
-              handleEdit={toggleModal}
-              handleDelete={deleteData}
-              data={item}
-              id={item.id_consultorio}
+                key={`room--${item.id_consultorio}`}
+                handleEdit={toggleModal}
+                handleDelete={deleteData}
+                data={item}
+                id={item.id_consultorio}
               >
                 <TableData data={item.id_consultorio} />
                 <TableData data={item.nombre} />
@@ -77,12 +84,12 @@ const ConsultingRooms = () => {
           <Button modifier='close' className='Modal__Button' handle={handleModal}>
             <AiOutlineClose />
           </Button>
-          <ConsultingRoomsForm 
+          <ConsultingRoomsForm
             id={consultingRooms.id_consultorio}
-            name={consultingRooms.nombre}
-            code={consultingRooms.codigo}
-            floor={consultingRooms.piso}
-            state={consultingRooms.estado}
+            itemName={consultingRooms.nombre}
+            itemCode={consultingRooms.codigo}
+            itemFloor={consultingRooms.piso}
+            itemState={consultingRooms.estado}
             update={true}
             updateData={updateData}
             handleModal={handleModal}
@@ -92,9 +99,5 @@ const ConsultingRooms = () => {
     </>
   )
 }
-
-ConsultingRooms.defaultProps = {}
-
-ConsultingRooms.propTypes = {}
 
 export { ConsultingRooms }
