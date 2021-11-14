@@ -1,45 +1,95 @@
-import React, { useEffect } from 'react'
+import React, { useState } from 'react'
 import { useAxios } from '../../hooks/useAxios'
+// * Icons
+import { AiOutlineClose } from 'react-icons/ai'
 // * Components
 import {
-  Form,
   Container,
   Table,
   TableHeader,
   TableContent,
   TableItem,
   TableData,
-  InputTime,
+  Modal,
+  Button,
+  ScheduleForm,
+  Message,
 } from '../../components'
 
+// TODO: Need info from the API
 const titles = ['ID', 'Start time', 'End time']
 
 const Schedule = () => {
-  const { data: schedules, getData } = useAxios('horarioMedico/')
+  const {
+    openModal,
+    handleModal,
+    data: schedules,
+    postData,
+    updateData,
+    deleteData,
+    error,
+    message,
+  } = useAxios('horarioMedico/')
+  const [schedule, setSchedule] = useState({
+    id_horario_medico: 0,
+    hora_inicio: '',
+    hora_fin: '',
+  })
 
-  useEffect(() => {
-    getData()
-  }, [])
+  const toggleModal = (data) => {
+    handleModal()
+    setSchedule({
+      id_horario_medico: data.id_horario_medico,
+      hora_inicio: data.hora_inicio,
+      hora_fin: data.hora_fin,
+    })
+  }
+
+  // TODO: Add loading state render
 
   return (
-    <Container button='true' linkText='/doctor'>
-      <Form title='Add Schedule'>
-        <InputTime />
-        <InputTime />
-      </Form>
-      <Table>
-        <TableHeader titles={titles} />
-        <TableContent>
-          {schedules.map((item) => (
-            <TableItem key={`schedule--${item.id_horario_medico}`}>
-              <TableData data={item.id_horario_medico} />
-              <TableData data={item.hora_inicio} />
-              <TableData data={item.hora_fin} />
-            </TableItem>
-          ))}
-        </TableContent>
-      </Table>
-    </Container>
+    <>
+      {error && <Message modifier='error' text={`Error: ${message}`} state={true} />}
+      {!error && message.length > 3 && (
+        <Message modifier='good' text={`Success: ${message}`} state={true} />
+      )}
+      <Container button={true} linkText='/doctor'>
+        <ScheduleForm postData={postData} update={false} />
+        <Table>
+          <TableHeader titles={titles} />
+          <TableContent>
+            {schedules.map((item) => (
+              <TableItem
+                key={`schedule--${item.id_horario_medico}`}
+                handleEdit={toggleModal}
+                handleDelete={deleteData}
+                data={item}
+                id={item.id_horario_medico}
+              >
+                <TableData data={item.id_horario_medico} />
+                <TableData data={item.hora_inicio} />
+                <TableData data={item.hora_fin} />
+              </TableItem>
+            ))}
+          </TableContent>
+        </Table>
+      </Container>
+      {openModal && (
+        <Modal>
+          <Button modifier='close' className='Modal__Button' handle={handleModal}>
+            <AiOutlineClose />
+          </Button>
+          <ScheduleForm
+            updateData={updateData}
+            id={schedule.id_horario_medico}
+            initialTime={schedule.hora_inicio}
+            finishTime={schedule.hora_fin}
+            handleModal={handleModal}
+            update={true}
+          />
+        </Modal>
+      )}
+    </>
   )
 }
 

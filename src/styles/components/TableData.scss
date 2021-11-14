@@ -1,0 +1,16 @@
+.Table__Data {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  &:first-child {
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  &:last-child {
+    justify-content: flex-end;
+    text-align: right;
+  }
+}

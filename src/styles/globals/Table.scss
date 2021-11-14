@@ -1,10 +1,14 @@
 .Table {
   margin-top: 5rem;
   width: 100%;
+  max-height: 60vh;
   border-radius: 0.6rem;
   box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.28);
+  overflow-y: auto;
 
   &__Header {
+    position: sticky;
+    top: 0;
     display: flex;
     justify-content: space-between;
     padding: 1rem;
@@ -31,6 +35,10 @@
   &__Title {
     width: 33%;
     font-weight: bold;
+    text-align: center;
+    &:first-child {
+      text-align: left;
+    }
     &:last-child {
       text-align: end;
     }
@@ -40,7 +48,7 @@
     width: 33%;
     &:last-child {
       display: flex;
-      justify-content: end;
+      justify-content: flex-end;
     }
   }
 }

@@ -1,52 +1,98 @@
-import React, { useEffect } from 'react'
+import React, { useState } from 'react'
 import { useAxios } from '../../hooks/useAxios'
+// * Icons
+import { AiOutlineClose } from 'react-icons/ai'
 // * Components
 import {
-  Form,
-  DropDown,
   Container,
-  InputText,
   Table,
   TableHeader,
   TableContent,
   TableItem,
   TableData,
+  Modal,
+  Button,
+  SpecialtyForm,
+  Message,
 } from '../../components'
 
+// TODO: Need info from the API
 const titles = ['ID', 'Name', 'Description', 'State']
 
-const activeElements = [
-  { id: 1, value: false },
-  { id: 2, value: true },
-]
-
 const Specialty = () => {
-  const { data: specialties, getData } = useAxios('especialidad/')
+  const {
+    openModal,
+    handleModal,
+    data: specialties,
+    postData,
+    updateData,
+    error,
+    message,
+  } = useAxios('especialidad/')
+  const [specialty, setSpecialty] = useState({
+    id_especialidad: 0,
+    nombre: '',
+    descripcion: '',
+    estado: '',
+  })
 
-  useEffect(() => {
-    getData()
-  }, [])
+  const toggleModal = (data) => {
+    handleModal()
+    setSpecialty({
+      id_especialidad: data.id_especialidad,
+      nombre: data.nombre,
+      descripcion: data.descripcion,
+      estado: data.estado,
+    })
+  }
+
+  // TODO: Add loading state render
 
   return (
-    <Container button='true' linkText='/doctor'>
-      <Form title='Add Speciality'>
-        <InputText placeholder='Name: Urology' />
-        <InputText placeholder='Description...' />
-        <DropDown defaultOption='active' options={activeElements} />
-      </Form>
-      <Table>
-        <TableHeader titles={titles} />
-        <TableContent>
-          {specialties.map((item) => (
-            <TableItem key={`specialty--${item.id_especialidad}`}>
-              <TableData data={item.id_especialidad} />
-              <TableData data={item.descripcion} />
-              <TableData data={item.estado} />
-            </TableItem>
-          ))}
-        </TableContent>
-      </Table>
-    </Container>
+    <>
+      {error && <Message modifier='error' text={`Error: ${message}`} state={true} />}
+      {!error && message.length > 3 && (
+        <Message modifier='good' text={`Success: ${message}`} state={true} />
+      )}
+      {<Message modifier='error' text={`Error: ${message}`} />}
+      <Container button='true' linkText='/doctor'>
+        <SpecialtyForm postData={postData} />
+        <Table>
+          <TableHeader titles={titles} />
+          <TableContent>
+            {specialties.map((item) => (
+              <TableItem
+                key={`specialty--${item.id_especialidad}`}
+                handleEdit={toggleModal}
+                remove={false}
+                data={item}
+              >
+                <TableData data={item.id_especialidad} />
+                <TableData data={item.nombre} />
+                <TableData data={item.descripcion} />
+                <TableData data={item.estado} />
+              </TableItem>
+            ))}
+          </TableContent>
+        </Table>
+      </Container>
+      {openModal && (
+        <Modal>
+          <Button modifier='close' className='Modal__Button' handle={handleModal}>
+            <AiOutlineClose />
+          </Button>
+          <SpecialtyForm
+            id={specialty.id_especialidad}
+            itemName={specialty.nombre}
+            itemDescription={specialty.descripcion}
+            itemState={specialty.estado}
+            update={true}
+            updateData={updateData}
+            handleModal={handleModal}
+          />
+        </Modal>
+      )}
+    </>
   )
 }
 
