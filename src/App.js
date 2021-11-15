@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import './styles/styles.scss'
 // * Components and pages
 import { Layout } from './components'
-import { ConsultingRooms, Doctor, Schedule, Specialty, Login, DoctorsList } from './pages'
+import { ConsultingRooms, Doctor, Schedule, Specialty, Login, DoctorsList, UserAdd } from './pages'
 
 const Home = () => <div>Home</div>
 
@@ -20,6 +20,7 @@ function App() {
           <Route exact path='/doctor/specialty' component={Specialty} />
           <Route exact path='/doctor/list' component={DoctorsList} />
           <Route exact path='/consulting-rooms' component={ConsultingRooms} />
+          <Route exact path='/users/add' component={UserAdd} />
         </Layout>
       </Switch>
     </Router>
