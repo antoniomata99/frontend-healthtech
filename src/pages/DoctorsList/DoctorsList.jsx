@@ -1,17 +1,17 @@
 import React from 'react'
 import { useAxios } from '../../hooks/useAxios'
+import { doctorListTitles } from '../../utils/tableHeaders'
+import { URL_ALL_DOCTORS } from '../../utils/constants'
 // * Components
 import { Container, Table, TableHeader, TableContent, TableItem, TableData } from '../../components'
 
-const titles = ['ID', 'Name', 'Mail', 'Phone', 'RH']
-
 const DoctorsList = () => {
-  const { data: doctors } = useAxios('medico/')
+  const { data: doctors } = useAxios(URL_ALL_DOCTORS)
 
   return (
     <Container button={true} linkText='/doctor'>
       <Table>
-        <TableHeader titles={titles} />
+        <TableHeader titles={doctorListTitles} />
         <TableContent>
           {doctors.map((item) => (
             <TableItem key={`doctor--${item.id_usuario}`} edit={false} view={true} remove={false}>

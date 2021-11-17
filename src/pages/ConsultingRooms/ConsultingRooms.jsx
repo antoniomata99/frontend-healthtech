@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 import { useAxios } from '../../hooks/useAxios'
+import { useModal } from '../../hooks/useModal'
+import { roomsTitles } from '../../utils/tableHeaders'
+import { URL_ROOMS } from '../../utils/constants'
 // * Icons
 import { AiOutlineClose } from 'react-icons/ai'
 // * Components
@@ -16,19 +19,9 @@ import {
   Message,
 } from '../../components'
 
-const titles = ['ID', 'Name', 'Code', 'Floor', 'State']
-
 const ConsultingRooms = () => {
-  const {
-    openModal,
-    handleModal,
-    data: rooms,
-    postData,
-    updateData,
-    deleteData,
-    error,
-    message,
-  } = useAxios('consultorio/')
+  const { handleModal, openModal } = useModal()
+  const { data: rooms, postData, updateData, deleteData, error, message } = useAxios(URL_ROOMS)
   const [consultingRooms, setConsultingRooms] = useState({
     id_consultorio: 0,
     nombre: '',
@@ -59,7 +52,7 @@ const ConsultingRooms = () => {
       <Container>
         <ConsultingRoomsForm postData={postData} />
         <Table>
-          <TableHeader titles={titles} />
+          <TableHeader titles={roomsTitles} />
           <TableContent>
             {rooms.map((item) => (
               <TableItem

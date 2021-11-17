@@ -1,17 +1,7 @@
 import React, { useState } from 'react'
+import { activeElements, floorElements } from '../../utils/dropDownInfo'
 // * Components
 import { DropDown, Form, InputText } from '..'
-
-const activeElements = [
-  { id: 1, value: 'Activo' },
-  { id: 2, value: 'Inactivo' },
-]
-const floorElements = [
-  { id: 1, value: 1 },
-  { id: 2, value: 2 },
-  { id: 3, value: 3 },
-  { id: 4, value: 4 },
-]
 
 const ConsultingRoomsForm = ({
   id,

@@ -10,8 +10,8 @@ const InputText = ({ placeholder, setData, defaultValue, type }) => {
       type={type}
       placeholder={placeholder}
       required
-      // onChange={setData ? (e) => setData(e.target.value) : ''}
-      // value={defaultValue && defaultValue}
+      onChange={setData ? (e) => setData(e.target.value) : ''}
+      value={defaultValue && defaultValue}
     />
   )
 }

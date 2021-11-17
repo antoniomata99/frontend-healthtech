@@ -1,11 +1,7 @@
 import React, { useState } from 'react'
+import { activeElements } from '../../utils/dropDownInfo'
 // * Components
 import { DropDown, Form, InputText } from '..'
-
-const activeElements = [
-  { id: 1, value: 'activo' },
-  { id: 2, value: 'inactivo' },
-]
 
 const SpecialtyForm = ({
   postData,

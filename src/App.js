@@ -20,7 +20,8 @@ function App() {
           <Route exact path='/doctor/specialty' component={Specialty} />
           <Route exact path='/doctor/list' component={DoctorsList} />
           <Route exact path='/consulting-rooms' component={ConsultingRooms} />
-          <Route exact path='/users/add' component={UserAdd} />
+          <Route exact path='/users/add/' component={UserAdd} />
+          {/* <Route exact path='/users/add/:type' component={UserAdd} /> */}
         </Layout>
       </Switch>
     </Router>

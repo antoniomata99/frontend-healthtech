@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 import { useAxios } from '../../hooks/useAxios'
+import { useModal } from '../../hooks/useModal'
+import { scheduleTitles } from '../../utils/tableHeaders'
+import { URL_DOCTOR_SCHEDULE } from '../../utils/constants'
 // * Icons
 import { AiOutlineClose } from 'react-icons/ai'
 // * Components
@@ -16,20 +19,16 @@ import {
   Message,
 } from '../../components'
 
-// TODO: Need info from the API
-const titles = ['ID', 'Start time', 'End time']
-
 const Schedule = () => {
+  const { handleModal, openModal } = useModal()
   const {
-    openModal,
-    handleModal,
     data: schedules,
     postData,
     updateData,
     deleteData,
     error,
     message,
-  } = useAxios('horarioMedico/')
+  } = useAxios(URL_DOCTOR_SCHEDULE)
   const [schedule, setSchedule] = useState({
     id_horario_medico: 0,
     hora_inicio: '',
@@ -56,7 +55,7 @@ const Schedule = () => {
       <Container button={true} linkText='/doctor'>
         <ScheduleForm postData={postData} update={false} />
         <Table>
-          <TableHeader titles={titles} />
+          <TableHeader titles={scheduleTitles} />
           <TableContent>
             {schedules.map((item) => (
               <TableItem

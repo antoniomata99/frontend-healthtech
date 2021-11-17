@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 import { useAxios } from '../../hooks/useAxios'
+import { useModal } from '../../hooks/useModal'
+import { specialtyTitles } from '../../utils/tableHeaders'
+import { URL_SPECIALTY } from '../../utils/constants'
 // * Icons
 import { AiOutlineClose } from 'react-icons/ai'
 // * Components
@@ -16,19 +19,9 @@ import {
   Message,
 } from '../../components'
 
-// TODO: Need info from the API
-const titles = ['ID', 'Name', 'Description', 'State']
-
 const Specialty = () => {
-  const {
-    openModal,
-    handleModal,
-    data: specialties,
-    postData,
-    updateData,
-    error,
-    message,
-  } = useAxios('especialidad/')
+  const { handleModal, openModal } = useModal()
+  const { data: specialties, postData, updateData, error, message } = useAxios(URL_SPECIALTY)
   const [specialty, setSpecialty] = useState({
     id_especialidad: 0,
     nombre: '',
@@ -58,7 +51,7 @@ const Specialty = () => {
       <Container button='true' linkText='/doctor'>
         <SpecialtyForm postData={postData} />
         <Table>
-          <TableHeader titles={titles} />
+          <TableHeader titles={specialtyTitles} />
           <TableContent>
             {specialties.map((item) => (
               <TableItem

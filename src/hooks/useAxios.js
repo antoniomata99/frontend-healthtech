@@ -1,11 +1,7 @@
 import { useState, useEffect } from 'react'
-import { useModal } from './useModal'
 import axios from 'axios'
 
-const URL_BASE = 'https://healt-tech-back.herokuapp.com/api/'
-
 const useAxios = (url) => {
-  const { handleModal, openModal } = useModal()
   const [data, setData] = useState([]) // * Data state
   const [loading, setLoading] = useState(false) // * Loading state
   const [error, setError] = useState(false) // * Error state
@@ -20,7 +16,7 @@ const useAxios = (url) => {
     try {
       setLoading(true)
       await axios
-        .get(`${URL_BASE}${url}`)
+        .get(url)
         .then((res) => res.data)
         .then((response) => {
           setData(response)
@@ -36,7 +32,7 @@ const useAxios = (url) => {
   const postData = async (item) => {
     try {
       setLoading(true)
-      const response = await axios.post(`${URL_BASE}${url}`, item)
+      const response = await axios.post(url, item)
       if (response.status === 201) {
         setData([...data, response.data])
         setLoading(false)
@@ -56,7 +52,7 @@ const useAxios = (url) => {
   const updateData = async (id, item) => {
     try {
       setLoading(true)
-      const response = await axios.put(`${URL_BASE}${url}${id}/`, item)
+      const response = await axios.put(`${url}${id}/`, item)
       if (response.status === 200) {
         setData([...data, response.data])
         setLoading(false)
@@ -76,7 +72,7 @@ const useAxios = (url) => {
   const deleteData = async (id, item) => {
     try {
       setLoading(true)
-      const response = axios.delete(`${URL_BASE}${url}${id}/`, item)
+      const response = axios.delete(`${url}${id}/`, item)
       if (response.status === 204) {
         setData([...data, response.data])
         setLoading(false)
@@ -99,8 +95,6 @@ const useAxios = (url) => {
     deleteData,
     loading,
     error,
-    handleModal,
-    openModal,
     message,
   }
 }
