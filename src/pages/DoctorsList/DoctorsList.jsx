@@ -1,12 +1,12 @@
 import React from 'react'
 import { useAxios } from '../../hooks/useAxios'
 import { doctorListTitles } from '../../utils/tableHeaders'
-import { URL_ALL_DOCTORS } from '../../utils/constants'
+import { URL_DOCTORS } from '../../utils/constants'
 // * Components
 import { Container, Table, TableHeader, TableContent, TableItem, TableData } from '../../components'
 
 const DoctorsList = () => {
-  const { data: doctors } = useAxios(URL_ALL_DOCTORS)
+  const { data: doctors } = useAxios(URL_DOCTORS)
 
   return (
     <Container button={true} linkText='/doctor'>

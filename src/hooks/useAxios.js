@@ -96,6 +96,7 @@ const useAxios = (url) => {
     loading,
     error,
     message,
+    setMessage,
   }
 }
 
