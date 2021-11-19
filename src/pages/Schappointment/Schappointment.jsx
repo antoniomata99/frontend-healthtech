@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAxios } from '../../hooks/useAxios'
-// * Icons
+import { useModal } from '../../hooks/useModal'
+import { URL_APPOINTMENT_SCHEDULE } from '../../utils/constants'
+import { scheduleTitles } from '../../utils/tableHeaders'
 import { AiOutlineClose } from 'react-icons/ai'
-// * Components
 import {
   Container,
   Table,
@@ -15,27 +16,26 @@ import {
   ScheduleForm,
 } from '../../components'
 
-// TODO: Need info from the API
-const titles = ['ID', 'Start time', 'End time']
-
 const Schappointment = () => {
-  const {
-    openModal,
-    handleModal,
-    data: Schappointments,
-    postData,
-    updateData,
-    deleteData,
-  } = useAxios('horario/')
-  const [Schappointment, setSchappointment] = useState({
+  const { openModal, handleModal } = useModal()
+  const { getData, postData, updateData, deleteData } = useAxios()
+  const [scheduleAppointments, setScheduleAppointments] = useState([])
+  const [scheduleAppointment, setScheduleAppointment] = useState({
     id_horario: 0,
     hora_inicio: '',
     hora_fin: '',
   })
 
+  useEffect(() => {
+    ;(async () => {
+      const data = await getData(URL_APPOINTMENT_SCHEDULE)
+      setScheduleAppointments(data)
+    })()
+  }, [])
+
   const toggleModal = (data) => {
     handleModal()
-    setSchappointment({
+    setScheduleAppointment({
       id_horario: data.id_horario,
       hora_inicio: data.hora_inicio,
       hora_fin: data.hora_fin,
@@ -47,9 +47,9 @@ const Schappointment = () => {
       <Container button={true} linkText='/doctor'>
         <ScheduleForm postData={postData} update={false} />
         <Table>
-          <TableHeader titles={titles} />
+          <TableHeader titles={scheduleTitles} />
           <TableContent>
-            {Schappointments.map((item) => (
+            {scheduleAppointments?.map((item) => (
               <TableItem
                 key={`Schappointment--${item.id_horario}`}
                 handleEdit={toggleModal}
@@ -72,9 +72,9 @@ const Schappointment = () => {
           </Button>
           <ScheduleForm
             updateData={updateData}
-            id={Schappointment.id_horario}
-            initialTime={Schappointment.hora_inicio}
-            finishTime={Schappointment.hora_fin}
+            id={scheduleAppointment.id_horario}
+            initialTime={scheduleAppointment.hora_inicio}
+            finishTime={scheduleAppointment.hora_fin}
             handleModal={handleModal}
             update={true}
           />

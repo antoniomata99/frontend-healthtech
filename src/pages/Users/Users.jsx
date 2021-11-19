@@ -1,11 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useHistory } from 'react-router'
 import { useAxios } from '../../hooks/useAxios'
-import { useHistory } from 'react-router-dom'
-
-import PropTypes from 'prop-types'
-// * Icons
-import { AiOutlineClose } from 'react-icons/ai'
-// * Components
+import { URL_USERS } from '../../utils/constants'
+import { usersTitles } from '../../utils/tableHeaders'
 import {
   Table,
   TableHeader,
@@ -13,67 +10,57 @@ import {
   TableItem,
   TableData,
   Container,
-  Modal,
   Button,
 } from '../../components'
 
-const titles = ['ID', 'Document','Rol', 'User', 'email', 'Phone', 'Gender']
-
 const Users = () => {
-  const {
-    openModal,
-    handleModal,
-    data: users,
-    deleteData,
-  } = useAxios('usuarios/')
-  
-  
-const toggleModal = (data) => {
-  handleModal()
-  setUser({
-    id_horario_medico: data.id_horario_medico,
-    hora_inicio: data.hora_inicio,
-    hora_fin: data.hora_fin,
-  })
-}
-
-  
+  const { getData, deleteData } = useAxios()
+  const history = useHistory()
+  const [users, setUsers] = useState()
   const [user, setUser] = useState({
     id_usuario: 0,
-
   })
 
-  let history = useHistory()
+  useEffect(() => {
+    ;(async () => {
+      const data = await getData(URL_USERS)
+      setUsers(data)
+    })()
+  }, [])
 
-  function addAdmin() {
-    history.push('/users/add/admin')
+  const handleUserNavigation = (userType) => {
+    history.push(`/users/add/${userType}`)
+    console.log(userType)
   }
 
-  function addDoctor() {
-    history.push('/users/add/doctor')
+  const handleUserType = (id) => {
+    switch (id) {
+      case 1:
+        return 'Admin'
+      case 2:
+        return 'Doctor'
+      case 3:
+        return 'Patient'
+      default:
+        return 'N/A'
+    }
   }
-
-  function addpatient() {
-    history.push('/users/add/patient')
-  }
-
 
   return (
     <>
       <Container>
         <section className='Container_menu-users'>
           <div className='Container_menu-dowload'>
-            <Button modifier='dowload' name='Dowload'></Button>
+            <Button modifier='download' name='Download'></Button>
           </div>
-          <Button modifier='rol' name='Admin' handle={addAdmin}></Button>
-          <Button modifier='rol' name='Doctor' handle={addDoctor}></Button>
-          <Button modifier='rol' name='Patient' handle={addpatient}></Button>
+          <Button modifier='rol' name='Admin' handle={() => handleUserNavigation('admin')} />
+          <Button modifier='rol' name='Doctor' handle={() => handleUserNavigation('doctor')} />
+          <Button modifier='rol' name='Patient' handle={() => handleUserNavigation('patient')} />
         </section>
-
         <Table>
-          <TableHeader titles={titles} />
+          <TableHeader titles={usersTitles} />
           <TableContent>
-            {users.map((item) => (
+            {users?.map((item) => (
               <TableItem
                 key={`room--${item.id_usuario}`}
                 // handleEdit={toggleModal}
@@ -83,24 +70,16 @@ const toggleModal = (data) => {
               >
                 <TableData data={item.id_usuario} />
                 <TableData data={item.numero_documento} />
-                <TableData data={item.id_perfil} />
+                <TableData data={handleUserType(item.id_perfil)} />
                 <TableData data={item.nombre_usuario} />
                 <TableData data={item.correo} />
                 <TableData data={item.telefono} />
                 <TableData data={item.sexo} />
-
               </TableItem>
             ))}
           </TableContent>
         </Table>
       </Container>
-      {openModal && (
-        <Modal>
-          <Button modifier='close' className='Modal__Button' handle={handleModal}>
-            <AiOutlineClose />
-          </Button>
-        </Modal>
-      )}
     </>
   )
 }
