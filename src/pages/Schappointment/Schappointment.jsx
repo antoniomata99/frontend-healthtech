@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useAxios } from '../../hooks/useAxios'
 // * Icons
 import { AiOutlineClose } from 'react-icons/ai'
@@ -13,60 +13,51 @@ import {
   Modal,
   Button,
   ScheduleForm,
-  Message,
 } from '../../components'
 
 // TODO: Need info from the API
 const titles = ['ID', 'Start time', 'End time']
 
-const Schedule = () => {
+const Schappointment = () => {
   const {
     openModal,
     handleModal,
-    data: schedules,
+    data: Schappointments,
     postData,
     updateData,
     deleteData,
-    error,
-    message,
-  } = useAxios('horarioMedico/')
-  const [schedule, setSchedule] = useState({
-    id_horario_medico: 0,
+  } = useAxios('horario/')
+  const [Schappointment, setSchappointment] = useState({
+    id_horario: 0,
     hora_inicio: '',
     hora_fin: '',
   })
 
   const toggleModal = (data) => {
     handleModal()
-    setSchedule({
-      id_horario_medico: data.id_horario_medico,
+    setSchappointment({
+      id_horario: data.id_horario,
       hora_inicio: data.hora_inicio,
       hora_fin: data.hora_fin,
     })
   }
 
-  // TODO: Add loading state render
-
   return (
     <>
-      {error && <Message modifier='error' text={`Error: ${message}`} state={true} />}
-      {!error && message.length > 3 && (
-        <Message modifier='good' text={`Success: ${message}`} state={true} />
-      )}
       <Container button={true} linkText='/doctor'>
         <ScheduleForm postData={postData} update={false} />
         <Table>
           <TableHeader titles={titles} />
           <TableContent>
-            {schedules.map((item) => (
+            {Schappointments.map((item) => (
               <TableItem
-                key={`schedule--${item.id_horario_medico}`}
+                key={`Schappointment--${item.id_horario}`}
                 handleEdit={toggleModal}
                 handleDelete={deleteData}
                 data={item}
-                id={item.id_horario_medico}
+                id={item.id_horario}
               >
-                <TableData data={item.id_horario_medico} />
+                <TableData data={item.id_horario} />
                 <TableData data={item.hora_inicio} />
                 <TableData data={item.hora_fin} />
               </TableItem>
@@ -81,9 +72,9 @@ const Schedule = () => {
           </Button>
           <ScheduleForm
             updateData={updateData}
-            id={schedule.id_horario_medico}
-            initialTime={schedule.hora_inicio}
-            finishTime={schedule.hora_fin}
+            id={Schappointment.id_horario}
+            initialTime={Schappointment.hora_inicio}
+            finishTime={Schappointment.hora_fin}
             handleModal={handleModal}
             update={true}
           />
@@ -93,4 +84,4 @@ const Schedule = () => {
   )
 }
 
-export { Schedule }
+export { Schappointment }
