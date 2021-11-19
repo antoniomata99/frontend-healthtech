@@ -9,17 +9,36 @@
   background-size: cover;
   border-radius: 0.6rem;
   box-shadow: 1px -1px 7px 0px rgba(0, 0, 0, 0.28);
+  margin-top: 1rem;
+
   &--1 {
-    margin-bottom: 1rem;
     width: 100%;
     background-image: url(https://img.freepik.com/free-photo/elevated-view-stethoscope-blue-background_23-2148050517.jpg?size=626&ext=jpg);
-    background-position-y: -3rem;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
   }
   &--2 {
     background-image: url(https://qmue4.files.wordpress.com/2019/12/projectschedulemanagement.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
   }
   &--3 {
     background-image: url(https://3dlancer.net/upload/galleries/943/4943/mri-machine-83478-xxl.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+  }
+
+  &--4 {
+    background-image: url(https://thumbs.dreamstime.com/b/stethoscope-calendar-page-date-wood-table-background-doctor-appointment-medical-concept-191876526.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 
   &:hover &__Text {

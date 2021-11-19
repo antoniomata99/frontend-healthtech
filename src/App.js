@@ -2,7 +2,16 @@ import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import './styles/styles.scss'
 import { Layout, UserForm } from './components'
-import { ConsultingRooms, Doctor, Schedule, Specialty, Login, DoctorsList } from './pages'
+import {
+  ConsultingRooms,
+  Doctor,
+  Schedule,
+  Specialty,
+  Login,
+  DoctorsList,
+  Users,
+  Schappointment,
+} from './pages'
 
 const Home = () => <div>Home</div>
 
@@ -16,10 +25,12 @@ function App() {
           <Route exact path='/doctor' component={Doctor} />
           <Route exact path='/doctor/schedule' component={Schedule} />
           <Route exact path='/doctor/specialty' component={Specialty} />
+          <Route exact path='/doctor/Schappointment' component={Schappointment} />
           <Route exact path='/doctor/list' component={DoctorsList} />
           <Route exact path='/consulting-rooms' component={ConsultingRooms} />
           <Route exact path='/users/add/' component={UserForm} />
           {/* <Route exact path='/users/add/:type' component={UserAdd} /> */}
+          <Route exact path='/users' component={Users} />
         </Layout>
       </Switch>
     </Router>
