@@ -6,7 +6,7 @@ import {
   BsFillPieChartFill,
   // BsFillFilePersonFill,
   // BsFillPersonFill,
-  // BsFillPersonCheckFill,
+  BsFillPersonCheckFill,
   // BsFillGearFill,
 } from 'react-icons/bs'
 import { MdLocalHospital, MdMeetingRoom } from 'react-icons/md'
@@ -19,7 +19,7 @@ const menu = [
   // { link: '#', Icon: BsFillPersonFill, text: 'Patient' },
   { link: '/doctor', Icon: MdLocalHospital, text: 'Doctor' },
   { link: '/consulting-rooms', Icon: MdMeetingRoom, text: 'Consulting rooms' },
-  // { link: '#', Icon: BsFillPersonCheckFill, text: 'Users' },
+  { link: '/users', Icon: BsFillPersonCheckFill, text: 'Users' },
   // { link: '#', Icon: BsFillGearFill, text: 'Settings' },
 ]
 
