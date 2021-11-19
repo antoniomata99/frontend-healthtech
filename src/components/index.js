@@ -21,14 +21,26 @@ export { InputTime } from './InputTime/InputTime.jsx'
 export { Button } from './Button/Button.jsx'
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 export { SpecialtyForm } from './SpecialtyForm/SpecialtyForm.jsx'
 export { ConsultingRoomsForm } from './ConsultingRoomsForm/ConsultingRoomsForm.jsx'
 export { ScheduleForm } from './ScheduleForm/ScheduleForm.jsx'
 export { UserForm } from './UserForm/UserForm.jsx'
 =======
+=======
+>>>>>>> Jorge
 export { SpecialtyForm } from './specialtyForm/SpecialtyForm.jsx'
 export { ConsultingRoomsForm } from './consultingRoomsForm/ConsultingRoomsForm.jsx'
 export { ScheduleForm } from './scheduleForm/ScheduleForm.jsx'
 export { UsersForm } from './UsersForm/UsersForm.jsx'
 
+<<<<<<< HEAD
 >>>>>>> jorge
+=======
+=======
+export { SpecialtyForm } from './SpecialtyForm/SpecialtyForm.jsx'
+export { ConsultingRoomsForm } from './ConsultingRoomsForm/ConsultingRoomsForm.jsx'
+export { ScheduleForm } from './ScheduleForm/ScheduleForm.jsx'
+export { UserForm } from './UserForm/UserForm.jsx'
+>>>>>>> 05f0cffd6e7d126d698e02f2bffc4044acc225a0
+>>>>>>> Jorge
