@@ -18,25 +18,25 @@ import {
 // TODO: Need info from the API
 const titles = ['ID', 'Start time', 'End time']
 
-const Schedule = () => {
+const Schappointment = () => {
   const {
     openModal,
     handleModal,
-    data: schedules,
+    data: Schappointments,
     postData,
     updateData,
     deleteData,
-  } = useAxios('horarioMedico/')
-  const [schedule, setSchedule] = useState({
-    id_horario_medico: 0,
+  } = useAxios('horario/')
+  const [Schappointment, setSchappointment] = useState({
+    id_horario: 0,
     hora_inicio: '',
     hora_fin: '',
   })
 
   const toggleModal = (data) => {
     handleModal()
-    setSchedule({
-      id_horario_medico: data.id_horario_medico,
+    setSchappointment({
+      id_horario: data.id_horario,
       hora_inicio: data.hora_inicio,
       hora_fin: data.hora_fin,
     })
@@ -49,14 +49,14 @@ const Schedule = () => {
         <Table>
           <TableHeader titles={titles} />
           <TableContent>
-            {schedules.map((item) => (
+            {Schappointments.map((item) => (
               <TableItem
-                key={`schedule--${item.id_horario_medico}`}
+                key={`Schappointment--${item.id_horario}`}
                 handleEdit={toggleModal}
                 handleDelete={deleteData}
                 data={item}
               >
-                <TableData data={item.id_horario_medico} />
+                <TableData data={item.id_horario} />
                 <TableData data={item.hora_inicio} />
                 <TableData data={item.hora_fin} />
               </TableItem>
@@ -71,9 +71,9 @@ const Schedule = () => {
           </Button>
           <ScheduleForm
             updateData={updateData}
-            id={schedule.id_horario_medico}
-            initialTime={schedule.hora_inicio}
-            finishTime={schedule.hora_fin}
+            id={Schappointment.id_horario}
+            initialTime={Schappointment.hora_inicio}
+            finishTime={Schappointment.hora_fin}
             handleModal={handleModal}
             update={true}
           />
@@ -83,4 +83,4 @@ const Schedule = () => {
   )
 }
 
-export { Schedule }
+export { Schappointment }
