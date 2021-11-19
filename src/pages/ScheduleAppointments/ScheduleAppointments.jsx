@@ -16,7 +16,7 @@ import {
   ScheduleForm,
 } from '../../components'
 
-const Schappointment = () => {
+const ScheduleAppointments = () => {
   const { openModal, handleModal } = useModal()
   const { getData, postData, updateData, deleteData } = useAxios()
   const [scheduleAppointments, setScheduleAppointments] = useState([])
@@ -84,4 +84,4 @@ const Schappointment = () => {
   )
 }
 
-export { Schappointment }
+export { ScheduleAppointments }

@@ -1,17 +1,6 @@
 import React from 'react'
-// * Components
+import { floorElements, activeElements } from '../../utils/dropDownInfo'
 import { DropDown, Form, InputText } from '..'
-
-const activeElements = [
-  { id: 1, value: 'Activo' },
-  { id: 2, value: 'Inactivo' },
-]
-const floorElements = [
-  { id: 1, value: 1 },
-  { id: 2, value: 2 },
-  { id: 2, value: 3 },
-  { id: 2, value: 4 },
-]
 
 const ConsultingRoomsForm = () => {
   return (
