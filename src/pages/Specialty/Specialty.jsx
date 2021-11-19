@@ -55,7 +55,7 @@ const Specialty = () => {
         <Message modifier='good' text={`Success: ${message}`} state={true} />
       )}
       {<Message modifier='error' text={`Error: ${message}`} />}
-      <Container button='true' linkText='/doctor'>
+      <Container button='true' linkText='/admin/doctor'>
         <SpecialtyForm postData={postData} />
         <Table>
           <TableHeader titles={titles} />

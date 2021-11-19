@@ -9,7 +9,7 @@ const DoctorsList = () => {
   const { data: doctors } = useAxios('medico/')
 
   return (
-    <Container button={true} linkText='/doctor'>
+    <Container button={true} linkText='/admin/doctor'>
       <Table>
         <TableHeader titles={titles} />
         <TableContent>

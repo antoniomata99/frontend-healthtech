@@ -53,7 +53,7 @@ const Schedule = () => {
       {!error && message.length > 3 && (
         <Message modifier='good' text={`Success: ${message}`} state={true} />
       )}
-      <Container button={true} linkText='/doctor'>
+      <Container button={true} linkText='/admin/doctor'>
         <ScheduleForm postData={postData} update={false} />
         <Table>
           <TableHeader titles={titles} />

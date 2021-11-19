@@ -14,11 +14,11 @@ import { MdLocalHospital, MdMeetingRoom } from 'react-icons/md'
 import { MenuLink } from '../'
 
 const menu = [
-  { link: '/', Icon: BsFillPieChartFill, text: 'Dashboard' },
+  { link: '/admin', Icon: BsFillPieChartFill, text: 'Dashboard' },
   // { link: '#', Icon: BsFillFilePersonFill, text: 'Profile' },
   // { link: '#', Icon: BsFillPersonFill, text: 'Patient' },
-  { link: '/doctor', Icon: MdLocalHospital, text: 'Doctor' },
-  { link: '/consulting-rooms', Icon: MdMeetingRoom, text: 'Consulting rooms' },
+  { link: '/admin/doctor', Icon: MdLocalHospital, text: 'Doctor' },
+  { link: '/admin/consulting-rooms', Icon: MdMeetingRoom, text: 'Consulting rooms' },
   // { link: '#', Icon: BsFillPersonCheckFill, text: 'Users' },
   // { link: '#', Icon: BsFillGearFill, text: 'Settings' },
 ]
