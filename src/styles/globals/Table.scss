@@ -35,6 +35,10 @@
   &__Title {
     width: 33%;
     font-weight: bold;
+    text-align: center;
+    &:first-child {
+      text-align: left;
+    }
     &:last-child {
       text-align: center;
     }
@@ -44,7 +48,7 @@
     width: 33%;
     &:last-child {
       display: flex;
-      justify-content: end;
+      justify-content: flex-end;
     }
   }
 }

@@ -20,8 +20,15 @@ export { InputText } from './InputText/InputText.jsx'
 export { InputTime } from './InputTime/InputTime.jsx'
 export { Button } from './Button/Button.jsx'
 
+<<<<<<< HEAD
 export { SpecialtyForm } from './specialtyForm/SpecialtyForm.jsx'
 export { ConsultingRoomsForm } from './consultingRoomsForm/ConsultingRoomsForm.jsx'
 export { ScheduleForm } from './scheduleForm/ScheduleForm.jsx'
 export { UsersForm } from './UsersForm/UsersForm.jsx'
 
+=======
+export { SpecialtyForm } from './SpecialtyForm/SpecialtyForm.jsx'
+export { ConsultingRoomsForm } from './ConsultingRoomsForm/ConsultingRoomsForm.jsx'
+export { ScheduleForm } from './ScheduleForm/ScheduleForm.jsx'
+export { UserForm } from './UserForm/UserForm.jsx'
+>>>>>>> 05f0cffd6e7d126d698e02f2bffc4044acc225a0

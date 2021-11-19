@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-// * Styles
 import './styles/styles.scss'
+<<<<<<< HEAD
 // * Components and pages
 import { Layout } from './components'
 import {
@@ -14,6 +14,10 @@ import {
   Schappointment,
   Users,
 } from './pages'
+=======
+import { Layout, UserForm } from './components'
+import { ConsultingRooms, Doctor, Schedule, Specialty, Login, DoctorsList } from './pages'
+>>>>>>> 05f0cffd6e7d126d698e02f2bffc4044acc225a0
 
 const Home = () => <div>Home</div>
 
@@ -30,7 +34,12 @@ function App() {
           <Route exact path='/doctor/Schappointment' component={Schappointment} />
           <Route exact path='/doctor/list' component={DoctorsList} />
           <Route exact path='/consulting-rooms' component={ConsultingRooms} />
+<<<<<<< HEAD
           <Route exact path='/users' component={Users} />
+=======
+          <Route exact path='/users/add/' component={UserForm} />
+          {/* <Route exact path='/users/add/:type' component={UserAdd} /> */}
+>>>>>>> 05f0cffd6e7d126d698e02f2bffc4044acc225a0
         </Layout>
       </Switch>
     </Router>

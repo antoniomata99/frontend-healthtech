@@ -44,6 +44,8 @@ ScheduleForm.defaultProps = {
   initialTime: '',
   finishTime: '',
   update: true,
+  handleModal: null,
+  id: null,
 }
 
 ScheduleForm.propTypes = {
@@ -51,6 +53,8 @@ ScheduleForm.propTypes = {
   initialTime: PropTypes.string,
   finishTime: PropTypes.string,
   update: PropTypes.bool,
+  handleModal: PropTypes.func,
+  id: PropTypes.string,
 }
 
 export { ScheduleForm }

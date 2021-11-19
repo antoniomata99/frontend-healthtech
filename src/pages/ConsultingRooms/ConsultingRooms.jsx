@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useAxios } from '../../hooks/useAxios'
 import { useModal } from '../../hooks/useModal'
-import PropTypes from 'prop-types'
+import { roomsTitles } from '../../utils/tableHeaders'
+import { URL_ROOMS } from '../../utils/constants'
 // * Icons
 import { AiOutlineClose } from 'react-icons/ai'
 // * Components
@@ -15,27 +16,52 @@ import {
   Modal,
   Button,
   ConsultingRoomsForm,
+  Message,
 } from '../../components'
 
-const titles = ['ID', 'Name', 'Code', 'Floor', 'State']
-
 const ConsultingRooms = () => {
-  const { data: rooms, getData } = useAxios('consultorio/')
-  const { openModal, handleModal } = useModal()
+  const { handleModal, openModal } = useModal()
+  const { data: rooms, postData, updateData, deleteData, error, message } = useAxios(URL_ROOMS)
+  const [consultingRooms, setConsultingRooms] = useState({
+    id_consultorio: 0,
+    nombre: '',
+    codigo: '',
+    piso: '',
+    estado: '',
+  })
 
-  useEffect(() => {
-    getData()
-  }, [])
+  const toggleModal = (data) => {
+    handleModal()
+    setConsultingRooms({
+      id_consultorio: data.id_consultorio,
+      nombre: data.nombre,
+      codigo: data.codigo,
+      piso: data.piso,
+      estado: data.estado,
+    })
+  }
+
+  // TODO: Add loading state render
 
   return (
     <>
+      {error && <Message modifier='error' text={`Error: ${message}`} state={true} />}
+      {!error && message.length > 3 && (
+        <Message modifier='good' text={`Success: ${message}`} state={true} />
+      )}
       <Container>
-        <ConsultingRoomsForm />
+        <ConsultingRoomsForm postData={postData} />
         <Table>
-          <TableHeader titles={titles} />
+          <TableHeader titles={roomsTitles} />
           <TableContent>
             {rooms.map((item) => (
-              <TableItem key={`room--${item.id_consultorio}`} handleModal={handleModal}>
+              <TableItem
+                key={`room--${item.id_consultorio}`}
+                handleEdit={toggleModal}
+                handleDelete={deleteData}
+                data={item}
+                id={item.id_consultorio}
+              >
                 <TableData data={item.id_consultorio} />
                 <TableData data={item.nombre} />
                 <TableData data={item.codigo} />
@@ -51,15 +77,20 @@ const ConsultingRooms = () => {
           <Button modifier='close' className='Modal__Button' handle={handleModal}>
             <AiOutlineClose />
           </Button>
-          <ConsultingRoomsForm />
+          <ConsultingRoomsForm
+            id={consultingRooms.id_consultorio}
+            itemName={consultingRooms.nombre}
+            itemCode={consultingRooms.codigo}
+            itemFloor={consultingRooms.piso}
+            itemState={consultingRooms.estado}
+            update={true}
+            updateData={updateData}
+            handleModal={handleModal}
+          />
         </Modal>
       )}
     </>
   )
 }
-
-ConsultingRooms.defaultProps = {}
-
-ConsultingRooms.propTypes = {}
 
 export { ConsultingRooms }

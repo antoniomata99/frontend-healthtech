@@ -5,7 +5,7 @@ import { RiEdit2Line, RiDeleteBin6Line, RiEyeFill } from 'react-icons/ri'
 // * Components
 import { Button } from '../'
 
-const TableItem = ({ children, view, handleEdit, handleDelete, edit, remove, data }) => {
+const TableItem = ({ children, view, handleEdit, handleDelete, edit, remove, data, id }) => {
   return (
     <div className='Table__Item'>
       {children}
@@ -21,7 +21,7 @@ const TableItem = ({ children, view, handleEdit, handleDelete, edit, remove, dat
           </Button>
         )}
         {!!remove && (
-          <Button modifier='delete' handle={() => handleDelete(data.id)}>
+          <Button modifier='delete' handle={() => handleDelete(id)}>
             <RiDeleteBin6Line />
           </Button>
         )}
@@ -35,7 +35,7 @@ TableItem.defaultProps = {
   edit: true,
   remove: true,
   handleModal: null,
-  children: null,
+  children: [],
 }
 
 TableItem.propTypes = {
@@ -43,7 +43,7 @@ TableItem.propTypes = {
   edit: PropTypes.bool,
   remove: PropTypes.bool,
   handleModal: PropTypes.func,
-  children: PropTypes.element.isRequired,
+  children: PropTypes.array.isRequired,
 }
 
 export { TableItem }

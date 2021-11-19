@@ -1,5 +1,5 @@
 .Input {
-  margin: 0 1rem;
+  margin: 1rem;
   padding: 0.5rem 1.5rem;
   border: 0.1rem solid black;
   border-radius: 0.6rem;
@@ -7,10 +7,10 @@
   font-size: 1.4rem;
 
   &:first-child {
-    margin-left: 0;
+    // margin-left: 0;
   }
   &:last-child {
-    margin-right: 2rem;
+    // margin-right: 2rem;
   }
 
   &--start {
