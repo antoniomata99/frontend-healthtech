@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useAxios } from '../../hooks/useAxios'
-import { URL_ADMIN } from '../../utils/constants'
+import { URL_ADMIN, URL_SPECIALTY } from '../../utils/constants'
 import {
   rhElements,
   documentTypeElements,
@@ -15,6 +15,8 @@ import '../../styles/components/UserAdd.scss'
 import { Container, Form, InputText, DropDown, Message } from '..'
 
 const UserForm = () => {
+  const { type } = useParams()
+  const { getData, postData, message, setMessage, error } = useAxios(URL_ADMIN)
   // ! Basic info
   const [documentType, setDocumentType] = useState()
   const [document, setDocument] = useState()
@@ -31,17 +33,27 @@ const UserForm = () => {
   // ! Patient info
   const [contract, setContract] = useState()
   // ! Doctor info
-
-  const { type } = useParams()
-  const { postData, message, setMessage, error } = useAxios(URL_ADMIN)
+  const [specialties, setSpecialties] = useState({ id_especialidad: '', nombre: '' })
 
   useEffect(() => {
     // TODO: Get doctor dropDown data
+    ;(async () => {
+      const specialtiesData = await getData(URL_SPECIALTY)
+      // * Set specialties
+      await specialtiesData.map((specialty) => {
+        setSpecialties({
+          ...specialties,
+          id_especialidad: specialty.id_especialidad,
+          nombre: specialty.nombre,
+        })
+      })
+      console.log(specialtiesData)
+    })()
   }, [])
 
   const handlePost = (e) => {
     e.preventDefault()
-    const data = {
+    let data = {
       tipo_documento: documentType,
       numero_documento: document,
       nombre_usuario: name,

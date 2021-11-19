@@ -1,11 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAxios } from '../../hooks/useAxios'
 import { useModal } from '../../hooks/useModal'
 import { scheduleTitles } from '../../utils/tableHeaders'
 import { URL_DOCTOR_SCHEDULE } from '../../utils/constants'
-// * Icons
 import { AiOutlineClose } from 'react-icons/ai'
-// * Components
 import {
   Container,
   Table,
@@ -21,19 +19,21 @@ import {
 
 const Schedule = () => {
   const { handleModal, openModal } = useModal()
-  const {
-    data: schedules,
-    postData,
-    updateData,
-    deleteData,
-    error,
-    message,
-  } = useAxios(URL_DOCTOR_SCHEDULE)
+  const { getData, postData, updateData, deleteData, error, message } = useAxios()
+  const [schedules, setSchedules] = useState([])
   const [schedule, setSchedule] = useState({
     id_horario_medico: 0,
     hora_inicio: '',
     hora_fin: '',
   })
+
+  useEffect(() => {
+    console.log('Schedule')
+    ;(async () => {
+      const data = await getData(URL_DOCTOR_SCHEDULE)
+      setSchedules(data)
+    })()
+  }, [])
 
   const toggleModal = (data) => {
     handleModal()
@@ -57,7 +57,7 @@ const Schedule = () => {
         <Table>
           <TableHeader titles={scheduleTitles} />
           <TableContent>
-            {schedules.map((item) => (
+            {schedules?.map((item) => (
               <TableItem
                 key={`schedule--${item.id_horario_medico}`}
                 handleEdit={toggleModal}

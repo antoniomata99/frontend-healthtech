@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { activeElements, floorElements } from '../../utils/dropDownInfo'
-// * Components
+import { URL_ROOMS } from '../../utils/constants'
 import { DropDown, Form, InputText } from '..'
 
 const ConsultingRoomsForm = ({
@@ -21,25 +21,32 @@ const ConsultingRoomsForm = ({
 
   const handlePostData = (e) => {
     e.preventDefault()
-    postData({
-      nombre: name,
-      codigo: code,
-      piso: floor,
-      estado: state,
-    })
+    postData(
+      {
+        nombre: name,
+        codigo: code,
+        piso: floor,
+        estado: state,
+      },
+      URL_ROOMS
+    )
     setName('')
     setCode('')
   }
 
   const handleUpdate = (e) => {
     e.preventDefault()
-    updateData(id, {
-      id_consultorio: id,
-      nombre: name,
-      codigo: code,
-      piso: floor,
-      estado: state,
-    })
+    updateData(
+      id,
+      {
+        id_consultorio: id,
+        nombre: name,
+        codigo: code,
+        piso: floor,
+        estado: state,
+      },
+      URL_ROOMS
+    )
     handleModal()
   }
 

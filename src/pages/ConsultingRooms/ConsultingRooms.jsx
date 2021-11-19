@@ -1,11 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAxios } from '../../hooks/useAxios'
 import { useModal } from '../../hooks/useModal'
 import { roomsTitles } from '../../utils/tableHeaders'
 import { URL_ROOMS } from '../../utils/constants'
-// * Icons
 import { AiOutlineClose } from 'react-icons/ai'
-// * Components
 import {
   Table,
   TableHeader,
@@ -21,8 +19,9 @@ import {
 
 const ConsultingRooms = () => {
   const { handleModal, openModal } = useModal()
-  const { data: rooms, postData, updateData, deleteData, error, message } = useAxios(URL_ROOMS)
-  const [consultingRooms, setConsultingRooms] = useState({
+  const { getData, postData, updateData, deleteData, error, message } = useAxios()
+  const [consultingRooms, setConsultingRooms] = useState([])
+  const [consultingRoom, setConsultingRoom] = useState({
     id_consultorio: 0,
     nombre: '',
     codigo: '',
@@ -30,9 +29,16 @@ const ConsultingRooms = () => {
     estado: '',
   })
 
+  useEffect(() => {
+    ;(async () => {
+      const data = await getData(URL_ROOMS)
+      setConsultingRooms(data)
+    })()
+  }, [])
+
   const toggleModal = (data) => {
     handleModal()
-    setConsultingRooms({
+    setConsultingRoom({
       id_consultorio: data.id_consultorio,
       nombre: data.nombre,
       codigo: data.codigo,
@@ -54,7 +60,7 @@ const ConsultingRooms = () => {
         <Table>
           <TableHeader titles={roomsTitles} />
           <TableContent>
-            {rooms.map((item) => (
+            {consultingRooms?.map((item) => (
               <TableItem
                 key={`room--${item.id_consultorio}`}
                 handleEdit={toggleModal}
@@ -78,11 +84,11 @@ const ConsultingRooms = () => {
             <AiOutlineClose />
           </Button>
           <ConsultingRoomsForm
-            id={consultingRooms.id_consultorio}
-            itemName={consultingRooms.nombre}
-            itemCode={consultingRooms.codigo}
-            itemFloor={consultingRooms.piso}
-            itemState={consultingRooms.estado}
+            id={consultingRoom.id_consultorio}
+            itemName={consultingRoom.nombre}
+            itemCode={consultingRoom.codigo}
+            itemFloor={consultingRoom.piso}
+            itemState={consultingRoom.estado}
             update={true}
             updateData={updateData}
             handleModal={handleModal}

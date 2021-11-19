@@ -1,27 +1,20 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import axios from 'axios'
 
-const useAxios = (url) => {
-  const [data, setData] = useState([]) // * Data state
+const useAxios = () => {
+  // const [isUpdate, setIsUpdate] = useState(false) // * Data state
   const [loading, setLoading] = useState(false) // * Loading state
   const [error, setError] = useState(false) // * Error state
   const [message, setMessage] = useState('') // * Message to show
 
-  useEffect(() => {
-    getData() // * Reload data when component is mounted or data state changes
-  }, [])
-
   // ? Function for get the data
-  const getData = async () => {
+  const getData = async (url) => {
+    console.log(url)
     try {
       setLoading(true)
-      await axios
-        .get(url)
-        .then((res) => res.data)
-        .then((response) => {
-          setData(response)
-          setLoading(false)
-        })
+      const response = await axios.get(url)
+      setLoading(false)
+      return response.data
     } catch (error) {
       setError(true)
       setMessage(error.message)
@@ -29,15 +22,15 @@ const useAxios = (url) => {
   }
 
   // ? Function for create a register
-  const postData = async (item) => {
+  const postData = async (item, url) => {
     try {
       setLoading(true)
       const response = await axios.post(url, item)
       if (response.status === 201) {
-        setData([...data, response.data])
-        setLoading(false)
         setMessage('Data added 🤗')
+        setLoading(false)
         setError(false)
+        return response.data
       } else {
         setError(true)
         setMessage('Data not added 😔')
@@ -49,15 +42,15 @@ const useAxios = (url) => {
   }
 
   // ? Function for update a register
-  const updateData = async (id, item) => {
+  const updateData = async (id, item, url) => {
     try {
       setLoading(true)
       const response = await axios.put(`${url}${id}/`, item)
       if (response.status === 200) {
-        setData([...data, response.data])
-        setLoading(false)
         setMessage('Data updated 💪')
+        setLoading(false)
         setError(false)
+        return response.data
       } else {
         setError(true)
         setMessage('Data not updated 🥲')
@@ -69,15 +62,15 @@ const useAxios = (url) => {
   }
 
   // ? Function for delete a register
-  const deleteData = async (id, item) => {
+  const deleteData = async (id, item, url) => {
     try {
       setLoading(true)
       const response = axios.delete(`${url}${id}/`, item)
       if (response.status === 204) {
-        setData([...data, response.data])
-        setLoading(false)
         setMessage('Data deleted 😱')
+        setLoading(false)
         setError(false)
+        return response.data
       } else {
         setError(true)
         setMessage('Data not deleted 😏')
@@ -89,7 +82,7 @@ const useAxios = (url) => {
   }
 
   return {
-    data,
+    getData,
     postData,
     updateData,
     deleteData,

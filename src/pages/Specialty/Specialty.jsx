@@ -1,11 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAxios } from '../../hooks/useAxios'
 import { useModal } from '../../hooks/useModal'
 import { specialtyTitles } from '../../utils/tableHeaders'
 import { URL_SPECIALTY } from '../../utils/constants'
-// * Icons
 import { AiOutlineClose } from 'react-icons/ai'
-// * Components
 import {
   Container,
   Table,
@@ -21,13 +19,21 @@ import {
 
 const Specialty = () => {
   const { handleModal, openModal } = useModal()
-  const { data: specialties, postData, updateData, error, message } = useAxios(URL_SPECIALTY)
+  const { getData, postData, updateData, error, message } = useAxios()
+  const [specialties, setSpecialties] = useState([])
   const [specialty, setSpecialty] = useState({
     id_especialidad: 0,
     nombre: '',
     descripcion: '',
     estado: '',
   })
+
+  useEffect(() => {
+    ;(async () => {
+      const data = await getData(URL_SPECIALTY)
+      setSpecialties(data)
+    })()
+  }, [])
 
   const toggleModal = (data) => {
     handleModal()
@@ -53,7 +59,7 @@ const Specialty = () => {
         <Table>
           <TableHeader titles={specialtyTitles} />
           <TableContent>
-            {specialties.map((item) => (
+            {specialties?.map((item) => (
               <TableItem
                 key={`specialty--${item.id_especialidad}`}
                 handleEdit={toggleModal}
