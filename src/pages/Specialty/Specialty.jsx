@@ -19,7 +19,7 @@ import {
 
 const Specialty = () => {
   const { handleModal, openModal } = useModal()
-  const { getData, postData, updateData, error, message } = useAxios()
+  const { getData, postData, updateData, error, message, isUpdate } = useAxios()
   const [specialties, setSpecialties] = useState([])
   const [specialty, setSpecialty] = useState({
     id_especialidad: 0,
@@ -33,7 +33,7 @@ const Specialty = () => {
       const data = await getData(URL_SPECIALTY)
       setSpecialties(data)
     })()
-  }, [])
+  }, [isUpdate])
 
   const toggleModal = (data) => {
     handleModal()

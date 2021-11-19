@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useAxios } from '../../hooks/useAxios'
-import { URL_ADMIN, URL_SPECIALTY } from '../../utils/constants'
+import {
+  URL_ADMIN,
+  URL_DOCTORS,
+  URL_PATIENT,
+  URL_SPECIALTY,
+  URL_AGENDAS,
+} from '../../utils/constants'
+import '../../styles/components/UserForm.scss'
 import {
   rhElements,
   documentTypeElements,
@@ -9,9 +16,6 @@ import {
   sexElements,
   socialStatusElements,
 } from '../../utils/dropDownInfo'
-// * Styles
-import '../../styles/components/UserAdd.scss'
-// * Components
 import { Container, Form, InputText, DropDown, Message } from '..'
 
 const UserForm = () => {
@@ -33,25 +37,38 @@ const UserForm = () => {
   // ! Patient info
   const [contract, setContract] = useState()
   // ! Doctor info
-  const [specialties, setSpecialties] = useState({ id_especialidad: '', nombre: '' })
+  const [specialties, setSpecialties] = useState([])
+  const [agendas, setAgendas] = useState([])
+  const [specialty, setSpecialty] = useState([])
+  const [agenda, setAgenda] = useState([])
 
   useEffect(() => {
-    // TODO: Get doctor dropDown data
     ;(async () => {
-      const specialtiesData = await getData(URL_SPECIALTY)
-      // * Set specialties
-      await specialtiesData.map((specialty) => {
-        setSpecialties({
-          ...specialties,
-          id_especialidad: specialty.id_especialidad,
-          nombre: specialty.nombre,
+      if (type === 'doctor') {
+        const specialtiesData = await getData(URL_SPECIALTY)
+        const agendaData = await getData(URL_AGENDAS)
+        const specialtiesElements = []
+        const agendaElements = []
+        // * Set specialties
+        specialtiesData.map(async (specialty) => {
+          await specialtiesElements.push({
+            id: specialty.id_especialidad,
+            value: specialty.id_especialidad,
+          })
         })
-      })
-      console.log(specialtiesData)
+        agendaData.map(async (agenda) => {
+          await agendaElements.push({
+            id: agenda.id_agenda,
+            value: agenda.id_agenda,
+          })
+        })
+        setSpecialties(specialtiesElements)
+        setAgendas(agendaElements)
+      }
     })()
-  }, [])
+  }, [type])
 
-  const handlePost = (e) => {
+  const handlePost = async (e) => {
     e.preventDefault()
     let data = {
       tipo_documento: documentType,
@@ -66,22 +83,27 @@ const UserForm = () => {
       estrato: socialStatus,
       estado_civil: civilState,
     }
+    let url = ''
     if (password === password2) {
       if (type === 'patient') {
-        data = { ...data, contrato: contract }
+        data = { ...data, contrato: contract, id_perfil: '2' }
+        url = URL_PATIENT
       } else if (type === 'doctor') {
-        data = { ...data } // TODO: Add schedule
+        data = { ...data, id_agenda: agenda, id_especialidad: specialty, id_perfil: '3' }
+        url = URL_DOCTORS
+      } else {
+        data = { ...data, id_perfil: '1' }
+        url = URL_ADMIN
       }
-      postData(data)
+      await postData(data, url)
     } else {
       setMessage("Password's are not equal 🙄")
     }
   }
 
-  // TODO: Change execution message form
-
   return (
     <>
+      {/* // TODO: Change execution message form */}
       {(error || message.length > 0) && (
         <Message modifier='error' text={`Error: ${message}`} state={true} />
       )}
@@ -129,8 +151,12 @@ const UserForm = () => {
               <h4 className='UserAdd__Section-Title'>Additional Information</h4>
               {type === 'doctor' && (
                 <>
-                  <DropDown defaultOption='Specialty' />
-                  <DropDown defaultOption='Schedule' />
+                  <DropDown
+                    defaultOption='Id Specialty'
+                    options={specialties}
+                    setData={setSpecialty}
+                  />
+                  <DropDown defaultOption='Id Agenda' options={agendas} setData={setAgenda} />
                 </>
               )}
               {type === 'patient' && (

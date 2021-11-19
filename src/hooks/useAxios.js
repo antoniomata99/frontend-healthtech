@@ -2,14 +2,13 @@ import { useState } from 'react'
 import axios from 'axios'
 
 const useAxios = () => {
-  // const [isUpdate, setIsUpdate] = useState(false) // * Data state
+  const [isUpdate, setIsUpdate] = useState(false) // * Data state
   const [loading, setLoading] = useState(false) // * Loading state
   const [error, setError] = useState(false) // * Error state
   const [message, setMessage] = useState('') // * Message to show
 
   // ? Function for get the data
   const getData = async (url) => {
-    console.log(url)
     try {
       setLoading(true)
       const response = await axios.get(url)
@@ -48,6 +47,7 @@ const useAxios = () => {
       const response = await axios.put(`${url}${id}/`, item)
       if (response.status === 200) {
         setMessage('Data updated 💪')
+        // setIsUpdate(true)
         setLoading(false)
         setError(false)
         return response.data
@@ -90,6 +90,7 @@ const useAxios = () => {
     error,
     message,
     setMessage,
+    isUpdate,
   }
 }
 

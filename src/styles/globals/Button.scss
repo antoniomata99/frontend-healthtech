@@ -9,9 +9,15 @@
   outline: none;
   cursor: pointer;
   transition: 0.3s;
+  transition: border-color 0.3s, box-shadow 0.3s;
   min-width: 3.5rem;
   max-height: 3.5rem;
   min-height: 3.5rem;
+
+  &:focus {
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.28);
+    border-color: #03e2ff;
+  }
 
   &--edit {
     color: #0000a1;
@@ -40,16 +46,22 @@
     background-color: #c3ffc3;
     border-color: #00ff00;
   }
-  &--rol {
-    margin-left: 1.5rem;
-    color: #ffffff;
-    background-color: #9ed1e9;
-    border-color: #7392a1;
+
+  &--add {
+    margin-left: 0.5rem;
+    color: #005400;
+    background-color: #c3ffc3;
+    border-color: #00ff00;
   }
-  &--dowload {
-    color: #ffffff;
-    background-color: #62cf79fc;
-    border-color: #25a740fc;
+
+  &--download {
+    color: #600060;
+    background-color: #ffbbff;
+    border-color: magenta;
+
+    & span {
+      margin-right: 0.5rem;
+    }
   }
 
   &--view {
@@ -57,18 +69,6 @@
     color: #535400;
     background-color: #faffc3;
     border-color: #ffc400;
-  }
-
-  &--rol{
-    margin-left: 1.5rem;
-    color: #ffffff;
-    background-color: #9ED1E9;
-    border-color: #7392a1;
-  }
-  &--dowload{
-    color: #ffffff;
-    background-color: #62cf79fc;
-    border-color: #25a740fc;
   }
 
   &--update {

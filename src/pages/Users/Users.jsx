@@ -3,6 +3,8 @@ import { useHistory } from 'react-router'
 import { useAxios } from '../../hooks/useAxios'
 import { URL_USERS } from '../../utils/constants'
 import { usersTitles } from '../../utils/tableHeaders'
+import { AiOutlineCloudDownload } from 'react-icons/ai'
+import '../../styles/globals/Users.scss'
 import {
   Table,
   TableHeader,
@@ -30,7 +32,6 @@ const Users = () => {
 
   const handleUserNavigation = (userType) => {
     history.push(`/users/add/${userType}`)
-    console.log(userType)
   }
 
   const handleUserType = (id) => {
@@ -38,9 +39,9 @@ const Users = () => {
       case 1:
         return 'Admin'
       case 2:
-        return 'Doctor'
-      case 3:
         return 'Patient'
+      case 3:
+        return 'Doctor'
       default:
         return 'N/A'
     }
@@ -49,13 +50,17 @@ const Users = () => {
   return (
     <>
       <Container>
-        <section className='Container_menu-users'>
-          <div className='Container_menu-dowload'>
-            <Button modifier='download' name='Download'></Button>
+        <section className='Users_Menu'>
+          <div className='Users_Button Users_Button--download'>
+            <Button modifier='download' name='Download'>
+              <AiOutlineCloudDownload />
+            </Button>
           </div>
-          <Button modifier='rol' name='Admin' handle={() => handleUserNavigation('admin')} />
-          <Button modifier='rol' name='Doctor' handle={() => handleUserNavigation('doctor')} />
-          <Button modifier='rol' name='Patient' handle={() => handleUserNavigation('patient')} />
+          <div className='Users_Buttons-container '>
+            <Button modifier='add' name='Admin' handle={() => handleUserNavigation('admin')} />
+            <Button modifier='add' name='Doctor' handle={() => handleUserNavigation('doctor')} />
+            <Button modifier='add' name='Patient' handle={() => handleUserNavigation('patient')} />
+          </div>
         </section>
         <Table>
           <TableHeader titles={usersTitles} />

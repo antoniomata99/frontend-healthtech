@@ -5,12 +5,9 @@
   border-radius: 0.6rem;
   outline: none;
   font-size: 1.4rem;
-
-  &:first-child {
-    // margin-left: 0;
-  }
-  &:last-child {
-    // margin-right: 2rem;
+  &:focus {
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.28);
+    border-color: #00bcd4;
   }
 
   &--start {
