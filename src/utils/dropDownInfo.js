@@ -15,8 +15,8 @@ const documentTypeElements = [
   { id: 3, value: 'CE' },
 ]
 const activeElements = [
-  { id: 1, value: 'activo' },
-  { id: 2, value: 'inactivo' },
+  { id: 1, value: 'Activo' },
+  { id: 2, value: 'Inactivo' },
 ]
 const floorElements = [
   { id: 1, value: '1' },
@@ -39,7 +39,7 @@ const socialStatusElements = [
   { id: 3, value: '3' },
   { id: 4, value: '4' },
   { id: 5, value: '5' },
-  { id: 6, value: '6+' },
+  { id: 6, value: '6' },
 ]
 
 export {

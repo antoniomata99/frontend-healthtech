@@ -19,7 +19,7 @@ import {
 
 const Specialty = () => {
   const { handleModal, openModal } = useModal()
-  const { getData, postData, updateData, error, message, isUpdate } = useAxios()
+  const { getData, postData, updateData, error, message, isUpdate, setIsUpdate } = useAxios()
   const [specialties, setSpecialties] = useState([])
   const [specialty, setSpecialty] = useState({
     id_especialidad: 0,
@@ -32,6 +32,7 @@ const Specialty = () => {
     ;(async () => {
       const data = await getData(URL_SPECIALTY)
       setSpecialties(data)
+      setIsUpdate(false)
     })()
   }, [isUpdate])
 
@@ -63,8 +64,8 @@ const Specialty = () => {
               <TableItem
                 key={`specialty--${item.id_especialidad}`}
                 handleEdit={toggleModal}
-                remove={false}
                 data={item}
+                remove={false}
               >
                 <TableData data={item.id_especialidad} />
                 <TableData data={item.nombre} />

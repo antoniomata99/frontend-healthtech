@@ -19,7 +19,17 @@ import {
 
 const ConsultingRooms = () => {
   const { handleModal, openModal } = useModal()
-  const { getData, postData, updateData, deleteData, error, message } = useAxios()
+  const {
+    getData,
+    postData,
+    updateData,
+    deleteData,
+    error,
+    message,
+    setMessage,
+    isUpdate,
+    setIsUpdate,
+  } = useAxios()
   const [consultingRooms, setConsultingRooms] = useState([])
   const [consultingRoom, setConsultingRoom] = useState({
     id_consultorio: 0,
@@ -33,8 +43,9 @@ const ConsultingRooms = () => {
     ;(async () => {
       const data = await getData(URL_ROOMS)
       setConsultingRooms(data)
+      setIsUpdate(false)
     })()
-  }, [])
+  }, [isUpdate])
 
   const toggleModal = (data) => {
     handleModal()
@@ -45,6 +56,17 @@ const ConsultingRooms = () => {
       piso: data.piso,
       estado: data.estado,
     })
+  }
+
+  const handleDelete = (data) => {
+    setConsultingRoom({
+      id_consultorio: data.id_consultorio,
+      nombre: data.nombre,
+      codigo: data.codigo,
+      piso: data.piso,
+      estado: data.estado,
+    })
+    deleteData(data.id_consultorio, consultingRoom, URL_ROOMS)
   }
 
   // TODO: Add loading state render
@@ -64,9 +86,8 @@ const ConsultingRooms = () => {
               <TableItem
                 key={`room--${item.id_consultorio}`}
                 handleEdit={toggleModal}
-                handleDelete={deleteData}
                 data={item}
-                id={item.id_consultorio}
+                remove={false}
               >
                 <TableData data={item.id_consultorio} />
                 <TableData data={item.nombre} />

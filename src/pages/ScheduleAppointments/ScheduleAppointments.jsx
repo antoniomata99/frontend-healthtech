@@ -18,7 +18,7 @@ import {
 
 const ScheduleAppointments = () => {
   const { openModal, handleModal } = useModal()
-  const { getData, postData, updateData, deleteData } = useAxios()
+  const { getData, postData, updateData, deleteData, isUpdate, setIsUpdate } = useAxios()
   const [scheduleAppointments, setScheduleAppointments] = useState([])
   const [scheduleAppointment, setScheduleAppointment] = useState({
     id_horario: 0,
@@ -30,8 +30,9 @@ const ScheduleAppointments = () => {
     ;(async () => {
       const data = await getData(URL_APPOINTMENT_SCHEDULE)
       setScheduleAppointments(data)
+      setIsUpdate(false)
     })()
-  }, [])
+  }, [isUpdate])
 
   const toggleModal = (data) => {
     handleModal()
@@ -40,6 +41,10 @@ const ScheduleAppointments = () => {
       hora_inicio: data.hora_inicio,
       hora_fin: data.hora_fin,
     })
+  }
+
+  const handleDelete = (id) => {
+    deleteData(id, URL_APPOINTMENT_SCHEDULE)
   }
 
   return (
@@ -51,9 +56,9 @@ const ScheduleAppointments = () => {
           <TableContent>
             {scheduleAppointments?.map((item) => (
               <TableItem
-                key={`Schappointment--${item.id_horario}`}
+                key={`ScheduleAppointment--${item.id_horario}`}
                 handleEdit={toggleModal}
-                handleDelete={deleteData}
+                handleDelete={handleDelete}
                 data={item}
                 id={item.id_horario}
               >

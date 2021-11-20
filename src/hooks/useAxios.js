@@ -27,6 +27,7 @@ const useAxios = () => {
       const response = await axios.post(url, item)
       if (response.status === 201) {
         setMessage('Data added 🤗')
+        setIsUpdate(true)
         setLoading(false)
         setError(false)
         return response.data
@@ -47,7 +48,7 @@ const useAxios = () => {
       const response = await axios.put(`${url}${id}/`, item)
       if (response.status === 200) {
         setMessage('Data updated 💪')
-        // setIsUpdate(true)
+        setIsUpdate(true)
         setLoading(false)
         setError(false)
         return response.data
@@ -62,19 +63,15 @@ const useAxios = () => {
   }
 
   // ? Function for delete a register
-  const deleteData = async (id, item, url) => {
+  const deleteData = async (id, url) => {
     try {
       setLoading(true)
-      const response = axios.delete(`${url}${id}/`, item)
-      if (response.status === 204) {
-        setMessage('Data deleted 😱')
-        setLoading(false)
-        setError(false)
-        return response.data
-      } else {
-        setError(true)
-        setMessage('Data not deleted 😏')
-      }
+      const response = await axios.delete(`${url}${id}/`)
+      setMessage('Data deleted 😱')
+      setIsUpdate(true)
+      setError(false)
+      setLoading(false)
+      return response.data
     } catch (error) {
       setError(true)
       setMessage(error.message)
@@ -91,6 +88,7 @@ const useAxios = () => {
     message,
     setMessage,
     isUpdate,
+    setIsUpdate,
   }
 }
 

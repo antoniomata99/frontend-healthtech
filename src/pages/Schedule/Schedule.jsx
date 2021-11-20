@@ -61,9 +61,8 @@ const Schedule = () => {
               <TableItem
                 key={`schedule--${item.id_horario_medico}`}
                 handleEdit={toggleModal}
-                handleDelete={deleteData}
                 data={item}
-                id={item.id_horario_medico}
+                remove={false}
               >
                 <TableData data={item.id_horario_medico} />
                 <TableData data={item.hora_inicio} />
