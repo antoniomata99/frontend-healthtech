@@ -19,8 +19,8 @@ import {
 import { Container, Form, InputText, DropDown, Message } from '..'
 
 const UserForm = () => {
-  const { type } = useParams()
-  const { getData, postData, message, setMessage, error } = useAxios(URL_ADMIN)
+  const { type, idUserEdit } = useParams()
+  const { getData, postData, updateData, message, setMessage, error } = useAxios(URL_ADMIN)
   // ! Basic info
   const [documentType, setDocumentType] = useState()
   const [document, setDocument] = useState()
@@ -65,11 +65,30 @@ const UserForm = () => {
         setSpecialties(specialtiesElements)
         setAgendas(agendaElements)
       }
+      if (idUserEdit) {
+        const data = await getData(`${getUrlByType()}${idUserEdit}/`)
+        addUserInfo(data)
+      }
     })()
   }, [type])
 
-  const handlePost = async (e) => {
-    e.preventDefault()
+  const getUrlByType = () =>
+    type === 'admin' ? URL_ADMIN : type === 'doctor' ? URL_DOCTORS : URL_PATIENT
+
+  const addUserInfo = (data) => {
+    setDocument(data.numero_documento)
+    setDocument(data.numero_documento)
+    setName(data.nombre_usuario)
+    setPassword(data.contrasena)
+    setEmail(data.correo)
+    setPhone(data.telefono)
+    setBirthday(data.fecha_nacimiento)
+    if (type === 'patient') {
+      setContract(data.contrato)
+    }
+  }
+
+  const fillData = () => {
     let data = {
       tipo_documento: documentType,
       numero_documento: document,
@@ -83,19 +102,22 @@ const UserForm = () => {
       estrato: socialStatus,
       estado_civil: civilState,
     }
-    let url = ''
+    if (type === 'patient') {
+      data = { ...data, contrato: contract, id_perfil: '2' }
+    } else if (type === 'doctor') {
+      data = { ...data, id_agenda: agenda, id_especialidad: specialty, id_perfil: '3' }
+    } else {
+      data = { ...data, id_perfil: '1' }
+    }
+    return data
+  }
+
+  const handleData = async (e) => {
+    e.preventDefault()
     if (password === password2) {
-      if (type === 'patient') {
-        data = { ...data, contrato: contract, id_perfil: '2' }
-        url = URL_PATIENT
-      } else if (type === 'doctor') {
-        data = { ...data, id_agenda: agenda, id_especialidad: specialty, id_perfil: '3' }
-        url = URL_DOCTORS
-      } else {
-        data = { ...data, id_perfil: '1' }
-        url = URL_ADMIN
-      }
-      await postData(data, url)
+      idUserEdit
+        ? await updateData(idUserEdit, fillData(), getUrlByType())
+        : await postData(fillData(), getUrlByType())
     } else {
       setMessage("Password's are not equal 🙄")
     }
@@ -108,7 +130,11 @@ const UserForm = () => {
         <Message modifier='error' text={`Error: ${message}`} state={true} />
       )}
       <Container button={true} linkText={'/users'}>
-        <Form title={`Add ${type ? type : ''}`} handleData={handlePost}>
+        <Form
+          title={`Add ${type ? type : ''}`}
+          handleData={handleData}
+          isUpdate={idUserEdit ? true : false}
+        >
           <InputText placeholder='Full Name' defaultValue={name} setData={setName} />
           <InputText placeholder='Mail' type='email' defaultValue={email} setData={setEmail} />
           <InputText

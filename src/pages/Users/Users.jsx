@@ -55,6 +55,12 @@ const Users = () => {
     deleteData(id, userTypeUrl)
   }
 
+  const handleEdit = (data) => {
+    history.push(
+      `/users/edit/${handleUserType(data.id_perfil).toLocaleLowerCase()}/${data.id_usuario}`
+    )
+  }
+
   return (
     <>
       <Container>
@@ -76,7 +82,7 @@ const Users = () => {
             {users?.map((item) => (
               <TableItem
                 key={`Users--${item.id_usuario}--${item.id_perfil}`}
-                // handleEdit={toggleModal}
+                handleEdit={handleEdit}
                 handleDelete={handleDelete}
                 data={item}
                 id={item.id_perfil}

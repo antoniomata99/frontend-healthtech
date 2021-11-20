@@ -30,6 +30,7 @@ function App() {
           <Route exact path='/consulting-rooms' component={ConsultingRooms} />
           <Route exact path='/users' component={Users} />
           <Route exact path='/users/add/:type' component={UserForm} />
+          <Route exact path='/users/edit/:type/:idUserEdit' component={UserForm} />
         </Layout>
       </Switch>
     </Router>
