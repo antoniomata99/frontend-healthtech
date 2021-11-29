@@ -4,6 +4,7 @@ import { useModal } from '../../hooks/useModal'
 import { specialtyTitles } from '../../utils/tableHeaders'
 import { URL_SPECIALTY } from '../../utils/constants'
 import { AiOutlineClose } from 'react-icons/ai'
+import { SpecialtyForm } from '../../forms'
 import {
   Container,
   Table,
@@ -13,7 +14,6 @@ import {
   TableData,
   Modal,
   Button,
-  SpecialtyForm,
   Message,
 } from '../../components'
 

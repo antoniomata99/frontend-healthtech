@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 // * Styles
 import '../../styles/components/Layout.scss'
 // * Components
-import { Header, Menu } from '../'
+import { Header, Menu } from '../../components'
 
-const Layout = ({ children }) => {
+const AdminLayout = ({ children }) => {
   return (
     <div className='Layout'>
       <Header />
@@ -17,12 +17,12 @@ const Layout = ({ children }) => {
   )
 }
 
-Layout.defaultProps = {
+AdminLayout.defaultProps = {
   children: null,
 }
 
-Layout.propTypes = {
+AdminLayout.propTypes = {
   children: PropTypes.node.isRequired,
 }
 
-export { Layout }
+export { AdminLayout }

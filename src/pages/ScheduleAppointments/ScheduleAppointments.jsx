@@ -4,6 +4,7 @@ import { useModal } from '../../hooks/useModal'
 import { URL_APPOINTMENT_SCHEDULE } from '../../utils/constants'
 import { scheduleTitles } from '../../utils/tableHeaders'
 import { AiOutlineClose } from 'react-icons/ai'
+import { ScheduleForm } from '../../forms'
 import {
   Container,
   Table,
@@ -13,7 +14,6 @@ import {
   TableData,
   Modal,
   Button,
-  ScheduleForm,
 } from '../../components'
 
 const ScheduleAppointments = () => {

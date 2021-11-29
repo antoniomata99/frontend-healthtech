@@ -4,6 +4,7 @@ import { useModal } from '../../hooks/useModal'
 import { scheduleTitles } from '../../utils/tableHeaders'
 import { URL_DOCTOR_SCHEDULE } from '../../utils/constants'
 import { AiOutlineClose } from 'react-icons/ai'
+import { ScheduleForm } from '../../forms'
 import {
   Container,
   Table,
@@ -13,7 +14,6 @@ import {
   TableData,
   Modal,
   Button,
-  ScheduleForm,
   Message,
 } from '../../components'
 

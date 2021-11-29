@@ -4,6 +4,7 @@ import { useModal } from '../../hooks/useModal'
 import { roomsTitles } from '../../utils/tableHeaders'
 import { URL_ROOMS } from '../../utils/constants'
 import { AiOutlineClose } from 'react-icons/ai'
+import { ConsultingRoomsForm } from '../../forms'
 import {
   Table,
   TableHeader,
@@ -13,7 +14,6 @@ import {
   Container,
   Modal,
   Button,
-  ConsultingRoomsForm,
   Message,
 } from '../../components'
 

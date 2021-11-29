@@ -16,7 +16,7 @@ import {
   sexElements,
   socialStatusElements,
 } from '../../utils/dropDownInfo'
-import { Container, Form, InputText, DropDown, Message } from '..'
+import { Container, Form, InputText, DropDown, Message } from '../../components'
 
 const UserForm = () => {
   const { type, idUserEdit } = useParams()

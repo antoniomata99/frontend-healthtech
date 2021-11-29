@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { activeElements, floorElements } from '../../utils/dropDownInfo'
 import { URL_ROOMS } from '../../utils/constants'
-import { DropDown, Form, InputText } from '..'
+import { DropDown, Form, InputText } from '../../components'
 
 const ConsultingRoomsForm = ({
   id,
