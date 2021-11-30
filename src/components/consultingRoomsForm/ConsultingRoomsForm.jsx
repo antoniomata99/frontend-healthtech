@@ -1,17 +1,7 @@
 import React, { useState } from 'react'
-// * Components
+import { activeElements, floorElements } from '../../utils/dropDownInfo'
+import { URL_ROOMS } from '../../utils/constants'
 import { DropDown, Form, InputText } from '..'
-
-const activeElements = [
-  { id: 1, value: 'Activo' },
-  { id: 2, value: 'Inactivo' },
-]
-const floorElements = [
-  { id: 1, value: 1 },
-  { id: 2, value: 2 },
-  { id: 3, value: 3 },
-  { id: 4, value: 4 },
-]
 
 const ConsultingRoomsForm = ({
   id,
@@ -31,25 +21,32 @@ const ConsultingRoomsForm = ({
 
   const handlePostData = (e) => {
     e.preventDefault()
-    postData({
-      nombre: name,
-      codigo: code,
-      piso: floor,
-      estado: state,
-    })
+    postData(
+      {
+        nombre: name,
+        codigo: code,
+        piso: floor,
+        estado: state,
+      },
+      URL_ROOMS
+    )
     setName('')
     setCode('')
   }
 
   const handleUpdate = (e) => {
     e.preventDefault()
-    updateData(id, {
-      id_consultorio: id,
-      nombre: name,
-      codigo: code,
-      piso: floor,
-      estado: state,
-    })
+    updateData(
+      id,
+      {
+        id_consultorio: id,
+        nombre: name,
+        codigo: code,
+        piso: floor,
+        estado: state,
+      },
+      URL_ROOMS
+    )
     handleModal()
   }
 
@@ -62,8 +59,8 @@ const ConsultingRoomsForm = ({
       {id && <h1 className='Identifier'>{id}</h1>}
       <InputText placeholder='Name: Room 001' setData={setName} defaultValue={name} />
       <InputText placeholder='Code: Room--001' setData={setCode} defaultValue={code} />
-      <DropDown defaultOption='active' options={activeElements} setData={setState} />
-      <DropDown defaultOption='floor' options={floorElements} setData={setFloor} />
+      <DropDown defaultOption='Status' options={activeElements} setData={setState} />
+      <DropDown defaultOption='Floor' options={floorElements} setData={setFloor} />
     </Form>
   )
 }

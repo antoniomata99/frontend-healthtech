@@ -6,7 +6,7 @@ import {
   BsFillPieChartFill,
   // BsFillFilePersonFill,
   // BsFillPersonFill,
-  // BsFillPersonCheckFill,
+  BsFillPersonCheckFill,
   // BsFillGearFill,
 } from 'react-icons/bs'
 import { MdLocalHospital, MdMeetingRoom } from 'react-icons/md'

@@ -38,6 +38,7 @@
     text-align: center;
     &:first-child {
       text-align: left;
+      width: auto;
     }
     &:last-child {
       text-align: end;

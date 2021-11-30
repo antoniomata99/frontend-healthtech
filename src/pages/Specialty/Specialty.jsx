@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAxios } from '../../hooks/useAxios'
-// * Icons
+import { useModal } from '../../hooks/useModal'
+import { specialtyTitles } from '../../utils/tableHeaders'
+import { URL_SPECIALTY } from '../../utils/constants'
 import { AiOutlineClose } from 'react-icons/ai'
-// * Components
 import {
   Container,
   Table,
@@ -16,25 +17,24 @@ import {
   Message,
 } from '../../components'
 
-// TODO: Need info from the API
-const titles = ['ID', 'Name', 'Description', 'State']
-
 const Specialty = () => {
-  const {
-    openModal,
-    handleModal,
-    data: specialties,
-    postData,
-    updateData,
-    error,
-    message,
-  } = useAxios('especialidad/')
+  const { handleModal, openModal } = useModal()
+  const { getData, postData, updateData, error, message, isUpdate, setIsUpdate } = useAxios()
+  const [specialties, setSpecialties] = useState([])
   const [specialty, setSpecialty] = useState({
     id_especialidad: 0,
     nombre: '',
     descripcion: '',
     estado: '',
   })
+
+  useEffect(() => {
+    ;(async () => {
+      const data = await getData(URL_SPECIALTY)
+      setSpecialties(data)
+      setIsUpdate(false)
+    })()
+  }, [isUpdate])
 
   const toggleModal = (data) => {
     handleModal()
@@ -58,14 +58,14 @@ const Specialty = () => {
       <Container button='true' linkText='/admin/doctor'>
         <SpecialtyForm postData={postData} />
         <Table>
-          <TableHeader titles={titles} />
+          <TableHeader titles={specialtyTitles} />
           <TableContent>
-            {specialties.map((item) => (
+            {specialties?.map((item) => (
               <TableItem
                 key={`specialty--${item.id_especialidad}`}
                 handleEdit={toggleModal}
-                remove={false}
                 data={item}
+                remove={false}
               >
                 <TableData data={item.id_especialidad} />
                 <TableData data={item.nombre} />

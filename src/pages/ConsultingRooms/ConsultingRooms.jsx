@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAxios } from '../../hooks/useAxios'
-// * Icons
+import { useModal } from '../../hooks/useModal'
+import { roomsTitles } from '../../utils/tableHeaders'
+import { URL_ROOMS } from '../../utils/constants'
 import { AiOutlineClose } from 'react-icons/ai'
-// * Components
 import {
   Table,
   TableHeader,
@@ -16,20 +17,21 @@ import {
   Message,
 } from '../../components'
 
-const titles = ['ID', 'Name', 'Code', 'Floor', 'State']
-
 const ConsultingRooms = () => {
+  const { handleModal, openModal } = useModal()
   const {
-    openModal,
-    handleModal,
-    data: rooms,
+    getData,
     postData,
     updateData,
     deleteData,
     error,
     message,
-  } = useAxios('consultorio/')
-  const [consultingRooms, setConsultingRooms] = useState({
+    setMessage,
+    isUpdate,
+    setIsUpdate,
+  } = useAxios()
+  const [consultingRooms, setConsultingRooms] = useState([])
+  const [consultingRoom, setConsultingRoom] = useState({
     id_consultorio: 0,
     nombre: '',
     codigo: '',
@@ -37,15 +39,34 @@ const ConsultingRooms = () => {
     estado: '',
   })
 
+  useEffect(() => {
+    ;(async () => {
+      const data = await getData(URL_ROOMS)
+      setConsultingRooms(data)
+      setIsUpdate(false)
+    })()
+  }, [isUpdate])
+
   const toggleModal = (data) => {
     handleModal()
-    setConsultingRooms({
+    setConsultingRoom({
       id_consultorio: data.id_consultorio,
       nombre: data.nombre,
       codigo: data.codigo,
       piso: data.piso,
       estado: data.estado,
     })
+  }
+
+  const handleDelete = (data) => {
+    setConsultingRoom({
+      id_consultorio: data.id_consultorio,
+      nombre: data.nombre,
+      codigo: data.codigo,
+      piso: data.piso,
+      estado: data.estado,
+    })
+    deleteData(data.id_consultorio, consultingRoom, URL_ROOMS)
   }
 
   // TODO: Add loading state render
@@ -59,15 +80,14 @@ const ConsultingRooms = () => {
       <Container>
         <ConsultingRoomsForm postData={postData} />
         <Table>
-          <TableHeader titles={titles} />
+          <TableHeader titles={roomsTitles} />
           <TableContent>
-            {rooms.map((item) => (
+            {consultingRooms?.map((item) => (
               <TableItem
                 key={`room--${item.id_consultorio}`}
                 handleEdit={toggleModal}
-                handleDelete={deleteData}
                 data={item}
-                id={item.id_consultorio}
+                remove={false}
               >
                 <TableData data={item.id_consultorio} />
                 <TableData data={item.nombre} />
@@ -85,11 +105,11 @@ const ConsultingRooms = () => {
             <AiOutlineClose />
           </Button>
           <ConsultingRoomsForm
-            id={consultingRooms.id_consultorio}
-            itemName={consultingRooms.nombre}
-            itemCode={consultingRooms.codigo}
-            itemFloor={consultingRooms.piso}
-            itemState={consultingRooms.estado}
+            id={consultingRoom.id_consultorio}
+            itemName={consultingRoom.nombre}
+            itemCode={consultingRoom.codigo}
+            itemFloor={consultingRoom.piso}
+            itemState={consultingRoom.estado}
             update={true}
             updateData={updateData}
             handleModal={handleModal}

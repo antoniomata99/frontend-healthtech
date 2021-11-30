@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-// * Components
+import { URL_DOCTOR_SCHEDULE } from '../../utils/constants'
 import { Form, InputTime } from '..'
-
 const ScheduleForm = ({
   id,
   postData,
@@ -17,12 +16,16 @@ const ScheduleForm = ({
 
   const handlePost = (e) => {
     e.preventDefault()
-    postData({ hora_inicio: startTime, hora_fin: endTime })
+    postData({ hora_inicio: startTime, hora_fin: endTime }, URL_DOCTOR_SCHEDULE)
   }
 
   const handleUpdate = (e) => {
     e.preventDefault()
-    updateData(id, { id_horario_medico: id, hora_inicio: startTime, hora_fin: endTime })
+    updateData(
+      id,
+      { id_horario_medico: id, hora_inicio: startTime, hora_fin: endTime },
+      URL_DOCTOR_SCHEDULE
+    )
     handleModal()
   }
 
@@ -44,6 +47,8 @@ ScheduleForm.defaultProps = {
   initialTime: '',
   finishTime: '',
   update: true,
+  handleModal: null,
+  id: null,
 }
 
 ScheduleForm.propTypes = {
@@ -51,6 +56,8 @@ ScheduleForm.propTypes = {
   initialTime: PropTypes.string,
   finishTime: PropTypes.string,
   update: PropTypes.bool,
+  handleModal: PropTypes.func,
+  id: PropTypes.string,
 }
 
 export { ScheduleForm }

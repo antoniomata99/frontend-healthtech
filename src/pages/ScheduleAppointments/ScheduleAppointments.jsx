@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useAxios } from '../../hooks/useAxios'
 import { useModal } from '../../hooks/useModal'
+import { URL_APPOINTMENT_SCHEDULE } from '../../utils/constants'
 import { scheduleTitles } from '../../utils/tableHeaders'
-import { URL_DOCTOR_SCHEDULE } from '../../utils/constants'
 import { AiOutlineClose } from 'react-icons/ai'
 import {
   Container,
@@ -14,57 +14,55 @@ import {
   Modal,
   Button,
   ScheduleForm,
-  Message,
 } from '../../components'
 
-const Schedule = () => {
-  const { handleModal, openModal } = useModal()
-  const { getData, postData, updateData, deleteData, error, message } = useAxios()
-  const [schedules, setSchedules] = useState([])
-  const [schedule, setSchedule] = useState({
-    id_horario_medico: 0,
+const ScheduleAppointments = () => {
+  const { openModal, handleModal } = useModal()
+  const { getData, postData, updateData, deleteData, isUpdate, setIsUpdate } = useAxios()
+  const [scheduleAppointments, setScheduleAppointments] = useState([])
+  const [scheduleAppointment, setScheduleAppointment] = useState({
+    id_horario: 0,
     hora_inicio: '',
     hora_fin: '',
   })
 
   useEffect(() => {
-    console.log('Schedule')
     ;(async () => {
-      const data = await getData(URL_DOCTOR_SCHEDULE)
-      setSchedules(data)
+      const data = await getData(URL_APPOINTMENT_SCHEDULE)
+      setScheduleAppointments(data)
+      setIsUpdate(false)
     })()
-  }, [])
+  }, [isUpdate])
 
   const toggleModal = (data) => {
     handleModal()
-    setSchedule({
-      id_horario_medico: data.id_horario_medico,
+    setScheduleAppointment({
+      id_horario: data.id_horario,
       hora_inicio: data.hora_inicio,
       hora_fin: data.hora_fin,
     })
   }
 
-  // TODO: Add loading state render
+  const handleDelete = (id) => {
+    deleteData(id, URL_APPOINTMENT_SCHEDULE)
+  }
 
   return (
     <>
-      {error && <Message modifier='error' text={`Error: ${message}`} state={true} />}
-      {!error && message.length > 3 && (
-        <Message modifier='good' text={`Success: ${message}`} state={true} />
-      )}
-      <Container button={true} linkText='/admin/doctor'>
+      <Container button={true} linkText='/doctor'>
         <ScheduleForm postData={postData} update={false} />
         <Table>
           <TableHeader titles={scheduleTitles} />
           <TableContent>
-            {schedules?.map((item) => (
+            {scheduleAppointments?.map((item) => (
               <TableItem
-                key={`schedule--${item.id_horario_medico}`}
+                key={`ScheduleAppointment--${item.id_horario}`}
                 handleEdit={toggleModal}
+                handleDelete={handleDelete}
                 data={item}
-                remove={false}
+                id={item.id_horario}
               >
-                <TableData data={item.id_horario_medico} />
+                <TableData data={item.id_horario} />
                 <TableData data={item.hora_inicio} />
                 <TableData data={item.hora_fin} />
               </TableItem>
@@ -79,9 +77,9 @@ const Schedule = () => {
           </Button>
           <ScheduleForm
             updateData={updateData}
-            id={schedule.id_horario_medico}
-            initialTime={schedule.hora_inicio}
-            finishTime={schedule.hora_fin}
+            id={scheduleAppointment.id_horario}
+            initialTime={scheduleAppointment.hora_inicio}
+            finishTime={scheduleAppointment.hora_fin}
             handleModal={handleModal}
             update={true}
           />
@@ -91,4 +89,4 @@ const Schedule = () => {
   )
 }
 
-export { Schedule }
+export { ScheduleAppointments }

@@ -1,11 +1,7 @@
 import React, { useState } from 'react'
-// * Components
+import { activeElements } from '../../utils/dropDownInfo'
 import { DropDown, Form, InputText } from '..'
-
-const activeElements = [
-  { id: 1, value: 'activo' },
-  { id: 2, value: 'inactivo' },
-]
+import { URL_SPECIALTY } from '../../utils/constants'
 
 const SpecialtyForm = ({
   postData,
@@ -23,23 +19,30 @@ const SpecialtyForm = ({
 
   const handlePostData = (e) => {
     e.preventDefault()
-    postData({
-      descripcion: description,
-      nombre: name,
-      estado: state,
-    })
+    postData(
+      {
+        descripcion: description,
+        nombre: name,
+        estado: state,
+      },
+      URL_SPECIALTY
+    )
     setName('')
     setDescription('')
   }
 
   const handleUpdate = (e) => {
     e.preventDefault()
-    updateData(id, {
-      id_especialidad: id,
-      descripcion: description,
-      nombre: name,
-      estado: state,
-    })
+    updateData(
+      id,
+      {
+        id_especialidad: id,
+        descripcion: description,
+        nombre: name,
+        estado: state,
+      },
+      URL_SPECIALTY
+    )
     handleModal()
   }
 
