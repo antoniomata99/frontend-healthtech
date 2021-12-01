@@ -18,10 +18,6 @@ const Login = (setData) => {
 
   const handleData = async (e) => {
     e.preventDefault();
-    
-    console.log("Rol elegido: " + role);
-    console.log("Correo ingresado: " + email);
-    console.log("Contraseña ingresada: " + passwd)
 
     const data = await postData(
       {
@@ -31,7 +27,6 @@ const Login = (setData) => {
       },
       URL_LOGIN
     )
-    
     
     if(data.user.username !== 'undefined'){
       if(role == "1"){
