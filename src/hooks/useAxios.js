@@ -25,7 +25,7 @@ const useAxios = () => {
     try {
       setLoading(true)
       const response = await axios.post(url, item)
-      if (response.status === 201) {
+      if (response.status === 201 || response.status === 200) {
         setMessage('Data added 🤗')
         setIsUpdate(true)
         setLoading(false)
