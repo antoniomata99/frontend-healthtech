@@ -1,22 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { useAxios } from '../../hooks/useAxios'
-import {
-  URL_ADMIN,
-  URL_DOCTORS,
-  URL_PATIENT,
-  URL_SPECIALTY,
-  URL_AGENDAS,
-} from '../../utils/constants'
-import '../../styles/components/UserForm.scss'
+import { useAxios } from '@hooks/useAxios'
+import { URL_ADMIN, URL_DOCTORS, URL_PATIENT, URL_SPECIALTY, URL_AGENDAS } from '@utils/constants'
 import {
   rhElements,
   documentTypeElements,
   civilStateElements,
   sexElements,
   socialStatusElements,
-} from '../../utils/dropDownInfo'
-import { Container, Form, InputText, DropDown, Message } from '../../components'
+} from '@utils/dropDownInfo'
+import '@styles/components/UserForm.scss'
+import { AdminLayout } from '@layouts'
+import { Container, Form, InputText, DropDown, Message } from '@components'
 
 const UserForm = () => {
   const { type, idUserEdit } = useParams()
@@ -53,7 +48,7 @@ const UserForm = () => {
         specialtiesData.map(async (specialty) => {
           await specialtiesElements.push({
             id: specialty.id_especialidad,
-            value: specialty.id_especialidad,
+            value: `${specialty.nombre}`,
           })
         })
         agendaData.map(async (agenda) => {
@@ -124,12 +119,12 @@ const UserForm = () => {
   }
 
   return (
-    <>
+    <AdminLayout>
       {/* // TODO: Change execution message form */}
       {(error || message.length > 0) && (
         <Message modifier='error' text={`Error: ${message}`} state={true} />
       )}
-      <Container button={true} linkText={'/users'}>
+      <Container button={true} linkText={'/admin/users'}>
         <Form
           title={`Add ${type ? type : ''}`}
           handleData={handleData}
@@ -212,7 +207,7 @@ const UserForm = () => {
           </div>
         </Form>
       </Container>
-    </>
+    </AdminLayout>
   )
 }
 

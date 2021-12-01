@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router'
-import { useAxios } from '../../hooks/useAxios'
-import { URL_USERS, URL_ADMIN, URL_DOCTORS, URL_PATIENT } from '../../utils/constants'
-import { usersTitles } from '../../utils/tableHeaders'
+import { useAxios } from '@hooks/useAxios'
+import { URL_USERS, URL_ADMIN, URL_DOCTORS, URL_PATIENT } from '@utils/constants'
+import { usersTitles } from '@utils/tableHeaders'
 import { AiOutlineCloudDownload } from 'react-icons/ai'
-import '../../styles/globals/Users.scss'
+import { AdminLayout } from '@layouts'
+import '@styles/globals/Users.scss'
 import {
   Table,
   TableHeader,
@@ -13,7 +14,7 @@ import {
   TableData,
   Container,
   Button,
-} from '../../components'
+} from '@components'
 
 const Users = () => {
   const { getData, deleteData, isUpdate, setIsUpdate } = useAxios()
@@ -32,7 +33,7 @@ const Users = () => {
   }, [isUpdate])
 
   const handleUserNavigation = (userType) => {
-    history.push(`/users/add/${userType}`)
+    history.push(`/admin/users/add/${userType}`)
   }
 
   const handleUserType = (id) => {
@@ -57,12 +58,12 @@ const Users = () => {
 
   const handleEdit = (data) => {
     history.push(
-      `/users/edit/${handleUserType(data.id_perfil).toLocaleLowerCase()}/${data.id_usuario}`
+      `/admin/users/edit/${handleUserType(data.id_perfil).toLocaleLowerCase()}/${data.id_usuario}`
     )
   }
 
   return (
-    <>
+    <AdminLayout>
       <Container>
         <section className='Users_Menu'>
           <div className='Users_Button Users_Button--download'>
@@ -99,7 +100,7 @@ const Users = () => {
           </TableContent>
         </Table>
       </Container>
-    </>
+    </AdminLayout>
   )
 }
 

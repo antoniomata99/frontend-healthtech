@@ -1,8 +1,6 @@
 import React from 'react'
-// * Style
-import '../../styles/components/Login.scss'
-// * Components
-import { Form, DropDown } from '../../components'
+import '@styles/components/Login.scss'
+import { Form, DropDown } from '@components'
 
 const documentType = [
   { id: 1, value: 'Cédula Ciudadanía' },

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { useAxios } from '../../hooks/useAxios'
-import { useModal } from '../../hooks/useModal'
-import { specialtyTitles } from '../../utils/tableHeaders'
-import { URL_SPECIALTY } from '../../utils/constants'
+import { useAxios } from '@hooks/useAxios'
+import { useModal } from '@hooks/useModal'
+import { specialtyTitles } from '@utils/tableHeaders'
+import { URL_SPECIALTY } from '@utils/constants'
 import { AiOutlineClose } from 'react-icons/ai'
-import { SpecialtyForm } from '../../forms'
+import { SpecialtyForm } from '@forms'
+import { AdminLayout } from '@layouts'
 import {
   Container,
   Table,
@@ -15,7 +16,7 @@ import {
   Modal,
   Button,
   Message,
-} from '../../components'
+} from '@components'
 
 const Specialty = () => {
   const { handleModal, openModal } = useModal()
@@ -49,13 +50,13 @@ const Specialty = () => {
   // TODO: Add loading state render
 
   return (
-    <>
+    <AdminLayout>
       {error && <Message modifier='error' text={`Error: ${message}`} state={true} />}
       {!error && message.length > 3 && (
         <Message modifier='good' text={`Success: ${message}`} state={true} />
       )}
       {<Message modifier='error' text={`Error: ${message}`} />}
-      <Container button='true' linkText='/doctor'>
+      <Container button='true' linkText='/admin/doctor'>
         <SpecialtyForm postData={postData} />
         <Table>
           <TableHeader titles={specialtyTitles} />
@@ -92,7 +93,7 @@ const Specialty = () => {
           />
         </Modal>
       )}
-    </>
+    </AdminLayout>
   )
 }
 

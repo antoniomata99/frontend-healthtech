@@ -8,10 +8,11 @@ const useAxios = () => {
   const [message, setMessage] = useState('') // * Message to show
 
   // ? Function for get the data
-  const getData = async (url) => {
+  const getData = async (url, request) => {
     try {
       setLoading(true)
-      const response = await axios.get(url)
+      const response = await axios.get(url, request)
+      console.log(response)
       setLoading(false)
       return response.data
     } catch (error) {

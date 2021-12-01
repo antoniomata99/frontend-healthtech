@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { useAxios } from '../../hooks/useAxios'
-import { useModal } from '../../hooks/useModal'
-import { URL_APPOINTMENT_SCHEDULE } from '../../utils/constants'
-import { scheduleTitles } from '../../utils/tableHeaders'
 import { AiOutlineClose } from 'react-icons/ai'
-import { ScheduleForm } from '../../forms'
+import { useAxios } from '@hooks/useAxios'
+import { useModal } from '@hooks/useModal'
+import { URL_APPOINTMENT_SCHEDULE } from '@utils/constants'
+import { scheduleTitles } from '@utils/tableHeaders'
+import { ScheduleForm } from '@forms'
 import {
   Container,
   Table,
@@ -14,7 +14,8 @@ import {
   TableData,
   Modal,
   Button,
-} from '../../components'
+} from '@components'
+import { AdminLayout } from '@layouts'
 
 const ScheduleAppointments = () => {
   const { openModal, handleModal } = useModal()
@@ -48,8 +49,8 @@ const ScheduleAppointments = () => {
   }
 
   return (
-    <>
-      <Container button={true} linkText='/doctor'>
+    <AdminLayout>
+      <Container button={true} linkText='/admin/doctor'>
         <ScheduleForm postData={postData} update={false} />
         <Table>
           <TableHeader titles={scheduleTitles} />
@@ -85,7 +86,7 @@ const ScheduleAppointments = () => {
           />
         </Modal>
       )}
-    </>
+    </AdminLayout>
   )
 }
 

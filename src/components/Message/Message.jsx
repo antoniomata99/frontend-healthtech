@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import '../../styles/components/Message.scss'
 import { AiOutlineCheckCircle } from 'react-icons/ai'
+import '@styles/components/Message.scss'
 
 const Message = ({ text, modifier, state }) => {
   const [showMessage, setShowMessage] = useState(state)

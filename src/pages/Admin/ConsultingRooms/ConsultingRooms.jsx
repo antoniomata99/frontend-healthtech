@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { useAxios } from '../../hooks/useAxios'
-import { useModal } from '../../hooks/useModal'
-import { roomsTitles } from '../../utils/tableHeaders'
-import { URL_ROOMS } from '../../utils/constants'
 import { AiOutlineClose } from 'react-icons/ai'
-import { ConsultingRoomsForm } from '../../forms'
+import { useAxios } from '@hooks/useAxios'
+import { useModal } from '@hooks/useModal'
+import { roomsTitles } from '@utils/tableHeaders'
+import { URL_ROOMS } from '@utils/constants'
+import { ConsultingRoomsForm } from '@forms'
+import { AdminLayout } from '@layouts'
 import {
   Table,
   TableHeader,
@@ -15,7 +16,7 @@ import {
   Modal,
   Button,
   Message,
-} from '../../components'
+} from '@components'
 
 const ConsultingRooms = () => {
   const { handleModal, openModal } = useModal()
@@ -72,7 +73,7 @@ const ConsultingRooms = () => {
   // TODO: Add loading state render
 
   return (
-    <>
+    <AdminLayout>
       {error && <Message modifier='error' text={`Error: ${message}`} state={true} />}
       {!error && message.length > 3 && (
         <Message modifier='good' text={`Success: ${message}`} state={true} />
@@ -116,7 +117,7 @@ const ConsultingRooms = () => {
           />
         </Modal>
       )}
-    </>
+    </AdminLayout>
   )
 }
 

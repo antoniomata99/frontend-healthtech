@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { useAxios } from '../../hooks/useAxios'
-import { useModal } from '../../hooks/useModal'
-import { scheduleTitles } from '../../utils/tableHeaders'
-import { URL_DOCTOR_SCHEDULE } from '../../utils/constants'
+import { useAxios } from '@hooks/useAxios'
+import { useModal } from '@hooks/useModal'
+import { scheduleTitles } from '@utils/tableHeaders'
+import { URL_DOCTOR_SCHEDULE } from '@utils/constants'
 import { AiOutlineClose } from 'react-icons/ai'
-import { ScheduleForm } from '../../forms'
+import { ScheduleForm } from '@forms'
+import { AdminLayout } from '@layouts'
 import {
   Container,
   Table,
@@ -15,7 +16,7 @@ import {
   Modal,
   Button,
   Message,
-} from '../../components'
+} from '@components'
 
 const Schedule = () => {
   const { handleModal, openModal } = useModal()
@@ -28,7 +29,6 @@ const Schedule = () => {
   })
 
   useEffect(() => {
-    console.log('Schedule')
     ;(async () => {
       const data = await getData(URL_DOCTOR_SCHEDULE)
       setSchedules(data)
@@ -47,12 +47,12 @@ const Schedule = () => {
   // TODO: Add loading state render
 
   return (
-    <>
+    <AdminLayout>
       {error && <Message modifier='error' text={`Error: ${message}`} state={true} />}
       {!error && message.length > 3 && (
         <Message modifier='good' text={`Success: ${message}`} state={true} />
       )}
-      <Container button={true} linkText='/doctor'>
+      <Container button={true} linkText='/admin/doctor'>
         <ScheduleForm postData={postData} update={false} />
         <Table>
           <TableHeader titles={scheduleTitles} />
@@ -87,7 +87,7 @@ const Schedule = () => {
           />
         </Modal>
       )}
-    </>
+    </AdminLayout>
   )
 }
 
