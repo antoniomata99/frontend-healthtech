@@ -14,7 +14,7 @@ import { MdLocalHospital, MdMeetingRoom } from 'react-icons/md'
 import { MenuLink } from '../'
 
 const menu = [
-  { link: '/', Icon: BsFillPieChartFill, text: 'Dashboard' },
+  { link: '/dashboard', Icon: BsFillPieChartFill, text: 'Dashboard' },
   // { link: '#', Icon: BsFillFilePersonFill, text: 'Profile' },
   // { link: '#', Icon: BsFillPersonFill, text: 'Patient' },
   { link: '/doctor', Icon: MdLocalHospital, text: 'Doctor' },

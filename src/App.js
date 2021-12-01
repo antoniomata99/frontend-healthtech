@@ -11,6 +11,7 @@ import {
   DoctorsList,
   Users,
   ScheduleAppointments,
+  Dashboard
 } from './pages'
 
 const Home = () => <div>Home</div>
@@ -21,6 +22,7 @@ function App() {
       <Switch>
         <Layout>
           <Route exact path='/' component={Home} />
+          <Route exact path='/dashboard' component={Dashboard} />
           <Route exact path='/login' component={Login} />
           <Route exact path='/doctor' component={Doctor} />
           <Route exact path='/doctor/schedule' component={Schedule} />
@@ -31,6 +33,7 @@ function App() {
           <Route exact path='/users' component={Users} />
           <Route exact path='/users/add/:type' component={UserForm} />
           <Route exact path='/users/edit/:type/:idUserEdit' component={UserForm} />
+          
         </Layout>
       </Switch>
     </Router>

@@ -6,3 +6,5 @@ export { DoctorsList } from './DoctorsList/DoctorsList.jsx'
 export { Specialty } from './Specialty/Specialty.jsx'
 export { Login } from './Login/Login.jsx'
 export { Users } from './Users/Users.jsx'
+export { Dashboard } from './DashBoard/Dashboard.jsx'
+
