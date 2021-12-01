@@ -1,0 +1,30 @@
+.Appointment {
+  &__List {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 2rem 1rem;
+    width: 100%;
+    max-height: 500px;
+    overflow: auto;
+  }
+
+  &__Title {
+    position: relative;
+    display: flex;
+    margin: 5rem 0 3rem;
+    width: 100%;
+    font-size: 1.7rem;
+    text-align: left;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 0;
+      width: 80%;
+      border-bottom: 1px solid #00000033;
+      transform: translateY(-50%);
+    }
+  }
+}

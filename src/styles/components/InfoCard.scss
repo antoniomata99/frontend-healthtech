@@ -1,0 +1,27 @@
+.InfoCard {
+  margin-right: 3rem;
+  margin-bottom: 3rem;
+  padding: 2rem 2rem 5rem;
+  width: auto;
+  min-width: 20rem;
+  border-radius: 6px;
+  box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.28);
+
+  &--inactive {
+    opacity: 0.7;
+  }
+
+  .InfoCard__Title {
+    font-size: 1.6rem;
+  }
+
+  .InfoCard__Subtitle {
+    font-size: 1.4rem;
+    font-style: italic;
+  }
+
+  .InfoCard__Text {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+}

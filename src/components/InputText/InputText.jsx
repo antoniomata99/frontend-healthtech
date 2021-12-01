@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-// * Styles
-import '../../styles/globals/Input.scss'
+import '@styles/globals/Input.scss'
 
 const InputText = ({ placeholder, setData, defaultValue, type }) => {
   return (

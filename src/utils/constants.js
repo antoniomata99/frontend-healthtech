@@ -7,7 +7,9 @@ const URL_ROOMS = `${URL_BASE}/consultorio/`
 const URL_ADMIN = `${URL_BASE}/administrador/`
 const URL_DOCTORS = `${URL_BASE}/medico/`
 const URL_PATIENT = `${URL_BASE}/paciente/`
+const URL_PATIENT_APPOINTMENTS = `${URL_BASE}/traerCita`
 const URL_USERS = `${URL_BASE}/usuarios/`
+const URL_APPOINTMENTS = `${URL_BASE}/cita/`
 
 export {
   URL_DOCTOR_SCHEDULE,
@@ -19,4 +21,6 @@ export {
   URL_APPOINTMENT_SCHEDULE,
   URL_AGENDAS,
   URL_PATIENT,
+  URL_APPOINTMENTS,
+  URL_PATIENT_APPOINTMENTS,
 }
