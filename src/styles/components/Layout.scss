@@ -16,7 +16,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 85%;
     height: 100%;
+
+    &--Admin {
+      width: 85%;
+    }
+
+    &--Patient {
+      width: 100%;
+    }
+
+    &--Doctor {
+      width: 100%;
+    }
   }
 }

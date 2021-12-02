@@ -12,7 +12,6 @@ const useAxios = () => {
     try {
       setLoading(true)
       const response = await axios.get(url, request)
-      console.log(response)
       setLoading(false)
       return response.data
     } catch (error) {

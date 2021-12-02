@@ -8,7 +8,7 @@ const PatientLayout = ({ children }) => {
     <div className='Layout'>
       <Header userType='Patient' />
       <div className='Layout__Container'>
-        <main className='Layout__Content'>{children}</main>
+        <main className='Layout__Content Layout__Content--Patient'>{children}</main>
       </div>
     </div>
   )

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useAxios } from '@hooks/useAxios'
-import { URL_APPOINTMENTS, URL_AGENDAS, URL_APPOINTMENT_SCHEDULE } from '@utils/constants'
 import { DropDown, Form, InputText } from '@components'
+import { URL_APPOINTMENTS, URL_AGENDAS, URL_APPOINTMENT_SCHEDULE } from '@utils/constants'
 
 const PatientAppointmentForm = ({ user_id, postData }) => {
   const { getData } = useAxios()

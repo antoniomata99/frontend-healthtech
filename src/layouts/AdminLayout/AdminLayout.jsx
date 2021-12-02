@@ -9,7 +9,7 @@ const AdminLayout = ({ children }) => {
       <Header userType='Administrator' />
       <div className='Layout__Container'>
         <Menu />
-        <main className='Layout__Content'>{children}</main>
+        <main className='Layout__Content Layout__Content--Admin'>{children}</main>
       </div>
     </div>
   )

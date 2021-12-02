@@ -39,6 +39,8 @@ function App() {
         <Route exact path='/admin/users/add/:type' component={UserForm} />
         {/* Patient Pages */}
         <Route exact path='/patient' component={Patient} />
+        {/* Doctor Pages */}
+        <Route exact path='/doctor' component={Patient} />
       </Switch>
     </Router>
   )
