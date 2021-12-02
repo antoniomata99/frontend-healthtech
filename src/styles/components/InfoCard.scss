@@ -4,11 +4,12 @@
   padding: 2rem 2rem 5rem;
   width: auto;
   min-width: 20rem;
+  background-color: #0080004f;
   border-radius: 6px;
   box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.28);
 
   &--inactive {
-    opacity: 0.7;
+    background-color: #ff000026;
   }
 
   .InfoCard__Title {

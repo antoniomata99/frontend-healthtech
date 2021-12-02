@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import '@styles/globals/Table.scss'
+import '../../styles/globals/Table.scss'
 
 const Table = ({ children }) => {
   return <div className='Table'>{children}</div>

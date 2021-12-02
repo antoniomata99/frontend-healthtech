@@ -1,7 +1,7 @@
 import React from 'react'
-import '@styles/components/Doctor.scss'
-import { BannerLink } from '@components'
-import { AdminLayout } from '@layouts'
+import '../../../styles/components/Doctor.scss'
+import { BannerLink } from '../../../components'
+import { AdminLayout } from '../../../layouts'
 
 const Doctor = () => {
   return (

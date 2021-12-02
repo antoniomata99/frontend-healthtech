@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import '@styles/globals/BannerLink.scss'
+import '../../styles/globals/BannerLink.scss'
 
 const BannerLink = ({ link, modifier, text }) => {
   return (

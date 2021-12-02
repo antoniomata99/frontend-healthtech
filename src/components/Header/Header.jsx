@@ -1,6 +1,6 @@
 import React from 'react'
 import { BsPersonCircle, BsBadgeAr } from 'react-icons/bs'
-import '@styles/components/Header.scss'
+import '../../styles/components/Header.scss'
 
 const Header = ({ userType }) => {
   return (

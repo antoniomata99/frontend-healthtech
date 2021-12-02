@@ -1,7 +1,7 @@
 import React from 'react'
 import reactDom from 'react-dom'
 import PropTypes from 'prop-types'
-import '@styles/globals/Modal.scss'
+import '../../styles/globals/Modal.scss'
 
 const Modal = ({ children }) => {
   return reactDom.createPortal(

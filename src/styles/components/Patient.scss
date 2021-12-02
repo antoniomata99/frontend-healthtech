@@ -16,7 +16,6 @@
     width: 100%;
     font-size: 1.7rem;
     text-align: left;
-
     &::after {
       content: '';
       position: absolute;
@@ -25,6 +24,13 @@
       width: 80%;
       border-bottom: 1px solid #00000033;
       transform: translateY(-50%);
+    }
+
+    &--Warning {
+      width: 100%;
+      margin-top: 10px;
+      font-style: italic;
+      font-weight: 600;
     }
   }
 }

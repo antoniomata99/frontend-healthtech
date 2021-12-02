@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import '@styles/components/Layout.scss'
-import { Header } from '@components'
+import '../../styles/components/Layout.scss'
+import { Header } from '../../components'
 
 const PatientLayout = ({ children }) => {
   return (

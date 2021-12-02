@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { AiOutlineArrowLeft } from 'react-icons/ai'
-import '@styles/globals/Button.scss'
+import '../../styles/globals/Button.scss'
 
 const BackArrow = ({ link }) => {
   return (

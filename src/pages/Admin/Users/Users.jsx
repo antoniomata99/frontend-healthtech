@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router'
-import { useAxios } from '@hooks/useAxios'
-import { URL_USERS, URL_ADMIN, URL_DOCTORS, URL_PATIENT } from '@utils/constants'
-import { usersTitles } from '@utils/tableHeaders'
+import { useAxios } from '../../../hooks/useAxios'
+import { URL_USERS, URL_ADMIN, URL_DOCTORS, URL_PATIENT } from '../../../utils/constants'
+import { usersTitles } from '../../../utils/tableHeaders'
 import { AiOutlineCloudDownload } from 'react-icons/ai'
-import { AdminLayout } from '@layouts'
-import '@styles/globals/Users.scss'
+import { AdminLayout } from '../../../layouts'
+import '../../../styles/globals/Users.scss'
 import {
   Table,
   TableHeader,
@@ -14,7 +14,7 @@ import {
   TableData,
   Container,
   Button,
-} from '@components'
+} from '../../../components'
 
 const Users = () => {
   const { getData, deleteData, isUpdate, setIsUpdate } = useAxios()
@@ -67,7 +67,7 @@ const Users = () => {
       <Container>
         <section className='Users_Menu'>
           <div className='Users_Button Users_Button--download'>
-            <a href='https://healt-tech-back.herokuapp.com/api/Excel' rel="noreferrer">
+            <a href='https://healt-tech-back.herokuapp.com/api/Excel' rel='noreferrer'>
               <Button modifier='download' name='Download'>
                 <AiOutlineCloudDownload />
               </Button>

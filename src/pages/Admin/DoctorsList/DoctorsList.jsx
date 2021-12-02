@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { useAxios } from '@hooks/useAxios'
-import { doctorListTitles } from '@utils/tableHeaders'
-import { URL_DOCTORS } from '@utils/constants'
-import { AdminLayout } from '@layouts'
-import { Container, Table, TableHeader, TableContent, TableItem, TableData } from '@components'
+import { useAxios } from '../../../hooks/useAxios'
+import { doctorListTitles } from '../../../utils/tableHeaders'
+import { URL_DOCTORS } from '../../../utils/constants'
+import { AdminLayout } from '../../../layouts'
+import {
+  Container,
+  Table,
+  TableHeader,
+  TableContent,
+  TableItem,
+  TableData,
+} from '../../../components'
 
 const DoctorsList = () => {
   const { getData } = useAxios()

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
-import { useAxios } from '@hooks/useAxios'
-import { useModal } from '@hooks/useModal'
-import { URL_APPOINTMENT_SCHEDULE } from '@utils/constants'
-import { scheduleTitles } from '@utils/tableHeaders'
-import { ScheduleForm } from '@forms'
+import { useAxios } from '../../../hooks/useAxios'
+import { useModal } from '../../../hooks/useModal'
+import { URL_APPOINTMENT_SCHEDULE } from '../../../utils/constants'
+import { scheduleTitles } from '../../../utils/tableHeaders'
+import { ScheduleForm } from '../../../forms'
 import {
   Container,
   Table,
@@ -14,8 +14,8 @@ import {
   TableData,
   Modal,
   Button,
-} from '@components'
-import { AdminLayout } from '@layouts'
+} from '../../../components'
+import { AdminLayout } from '../../../layouts'
 
 const ScheduleAppointments = () => {
   const { openModal, handleModal } = useModal()

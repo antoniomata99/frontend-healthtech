@@ -1,17 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { useAxios } from '@hooks/useAxios'
-import { URL_ADMIN, URL_DOCTORS, URL_PATIENT, URL_SPECIALTY, URL_AGENDAS } from '@utils/constants'
+import { useAxios } from '../../hooks/useAxios'
+import {
+  URL_ADMIN,
+  URL_DOCTORS,
+  URL_PATIENT,
+  URL_SPECIALTY,
+  URL_AGENDAS,
+} from '../../utils/constants'
 import {
   rhElements,
   documentTypeElements,
   civilStateElements,
   sexElements,
   socialStatusElements,
-} from '@utils/dropDownInfo'
-import '@styles/components/UserForm.scss'
-import { AdminLayout } from '@layouts'
-import { Container, Form, InputText, DropDown, Message } from '@components'
+} from '../../utils/dropDownInfo'
+import '../../styles/components/UserForm.scss'
+import { AdminLayout } from '../../layouts'
+import { Container, Form, InputText, DropDown, Message } from '../../components'
 
 const UserForm = () => {
   const { type, idUserEdit } = useParams()

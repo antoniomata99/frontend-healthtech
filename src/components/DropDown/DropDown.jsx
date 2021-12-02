@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import '@styles/globals/Button.scss'
+import '../../styles/globals/Button.scss'
 
 const DropDown = ({ defaultOption, options, setData }) => {
   return (

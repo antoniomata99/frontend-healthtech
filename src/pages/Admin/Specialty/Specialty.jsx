@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { useAxios } from '@hooks/useAxios'
-import { useModal } from '@hooks/useModal'
-import { specialtyTitles } from '@utils/tableHeaders'
-import { URL_SPECIALTY } from '@utils/constants'
+import { useAxios } from '../../../hooks/useAxios'
+import { useModal } from '../../../hooks/useModal'
+import { specialtyTitles } from '../../../utils/tableHeaders'
+import { URL_SPECIALTY } from '../../../utils/constants'
 import { AiOutlineClose } from 'react-icons/ai'
-import { SpecialtyForm } from '@forms'
-import { AdminLayout } from '@layouts'
+import { SpecialtyForm } from '../../../forms'
+import { AdminLayout } from '../../../layouts'
 import {
   Container,
   Table,
@@ -16,7 +16,7 @@ import {
   Modal,
   Button,
   Message,
-} from '@components'
+} from '../../../components'
 
 const Specialty = () => {
   const { handleModal, openModal } = useModal()

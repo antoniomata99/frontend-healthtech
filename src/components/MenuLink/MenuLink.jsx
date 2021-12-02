@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import '@styles/components/MenuLink.scss'
+import '../../styles/components/MenuLink.scss'
 
 const MenuLink = ({ link, Icon, text }) => {
   return (

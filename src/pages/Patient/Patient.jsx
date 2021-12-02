@@ -1,39 +1,47 @@
 import React, { useEffect, useState } from 'react'
-import '@styles/components/Patient.scss'
-import { useAxios } from '@hooks/useAxios'
-import { URL_PATIENT_APPOINTMENTS } from '@utils/constants'
-import { PatientLayout } from '@layouts'
-import { PatientAppointmentForm } from '@forms'
-import { Container, InfoCard } from '@components'
+import '../../styles/components/Patient.scss'
+import { useAxios } from '../../hooks/useAxios'
+import { URL_PATIENT_APPOINTMENTS } from '../../utils/constants'
+import { PatientLayout } from '../../layouts'
+import { PatientAppointmentForm } from '../../forms'
+import { Container, InfoCard, Message } from '../../components'
 
 const Patient = () => {
   const [appointments, setAppointments] = useState([])
-  const { getData, postData, setIsUpdate } = useAxios()
+  const { postData, setIsUpdate, message, error } = useAxios()
 
   useEffect(() => {
     ;(async () => {
-      const data = await getData(URL_PATIENT_APPOINTMENTS, {
-        headers: {
+      const data = await postData(
+        {
           username: 'fernan@gmail.com',
         },
-      })
-      console.log(data)
+        URL_PATIENT_APPOINTMENTS
+      )
       setAppointments(data)
     })()
   }, [setIsUpdate])
 
   return (
     <PatientLayout>
+      {error && <Message modifier='error' text={`Error: ${message}`} state={true} />}
+      {!error && message.length > 3 && (
+        <Message modifier='good' text={`Success: ${message}`} state={true} />
+      )}
       <Container>
         <PatientAppointmentForm postData={postData} />
+        <h6 className='Appointment__Title--Warning'>
+          * Please select the date and the doctor, before continuing with the schedule.
+        </h6>
         <h1 className='Appointment__Title'>My Appointments</h1>
         <section className='Appointment__List'>
-          {appointments?.map((appointment) => (
+          {appointments?.map((appointment, index) => (
             <InfoCard
-              key={appointment.id_cita}
+              key={`Appointment--${index}`}
               date={appointment.fecha}
-              id_agenda={appointment.id_agenda}
-              id_horario={appointment.id_horario}
+              consultingRoom={appointment.nombre}
+              initialSchedule={appointment.hora_inicio}
+              finishedSchedule={appointment.hora_fin}
             />
           ))}
         </section>

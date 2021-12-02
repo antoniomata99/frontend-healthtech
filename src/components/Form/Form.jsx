@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import '@styles/globals/Form.scss'
-import { Button } from '@components'
+import '../../styles/globals/Form.scss'
+import { Button } from '../../components'
 
 const Form = ({ title, children, handleData, isUpdate }) => {
   return (

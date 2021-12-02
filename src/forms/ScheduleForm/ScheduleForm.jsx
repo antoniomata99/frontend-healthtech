@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { URL_DOCTOR_SCHEDULE } from '@utils/constants'
-import { Form, InputTime } from '@components'
+import { URL_DOCTOR_SCHEDULE } from '../../utils/constants'
+import { Form, InputTime } from '../../components'
 
 const ScheduleForm = ({
   id,

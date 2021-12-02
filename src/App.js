@@ -1,8 +1,8 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
-import '@styles/styles.scss'
-import { UserForm } from '@forms'
-import { AdminLayout } from '@layouts'
+import './styles/styles.scss'
+import { UserForm } from './forms'
+import { AdminLayout } from './layouts'
 import {
   ConsultingRooms,
   Doctor,
@@ -12,9 +12,8 @@ import {
   DoctorsList,
   Users,
   ScheduleAppointments,
-  Dashboard,
-  Patient
-} from '@pages'
+  Patient,
+} from './pages'
 
 const Home = () => (
   <AdminLayout>
@@ -30,7 +29,6 @@ function App() {
         <Route exact path='/login' component={Login} />
         {/* Admin Pages */}
         <Route exact path='/admin' component={Home} />
-        
         <Route exact path='/admin/doctor' component={Doctor} />
         <Route exact path='/admin/doctor/schedule' component={Schedule} />
         <Route exact path='/admin/doctor/specialty' component={Specialty} />

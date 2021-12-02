@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import '@styles/globals/Container.scss'
-import { BackArrow } from '@components'
+import '../../styles/globals/Container.scss'
+import { BackArrow } from '../../components'
 
 const Container = ({ children, button, linkText }) => {
   return (

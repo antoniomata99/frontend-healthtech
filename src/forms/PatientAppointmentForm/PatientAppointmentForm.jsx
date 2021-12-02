@@ -1,29 +1,41 @@
 import React, { useEffect, useState } from 'react'
-import { useAxios } from '@hooks/useAxios'
-import { DropDown, Form, InputText } from '@components'
-import { URL_APPOINTMENTS, URL_AGENDAS, URL_APPOINTMENT_SCHEDULE } from '@utils/constants'
+import { useAxios } from '../../hooks/useAxios'
+import { DropDown, Form, InputText } from '../../components'
+import { URL_APPOINTMENTS, URL_DOCTORS_LIST, URL_DOCTOR_SCHEDULES } from '../../utils/constants'
 
 const PatientAppointmentForm = ({ user_id, postData }) => {
   const { getData } = useAxios()
   const [date, setDate] = useState('')
-  const [agendas, setAgendas] = useState([])
-  const [agenda, setAgenda] = useState([])
+  const [doctors, setDoctors] = useState([])
+  const [doctorAgenda, setDoctorAgenda] = useState()
   const [schedules, setSchedules] = useState([])
   const [schedule, setSchedule] = useState([])
 
   useEffect(() => {
     ;(async () => {
-      const agendaData = await getData(URL_AGENDAS)
-      const scheduleData = await getData(URL_APPOINTMENT_SCHEDULE)
-      const agendaElements = []
-      const scheduleElements = []
-      // * Set Agendas
-      agendaData?.map(async (agenda) => {
-        await agendaElements.push({
-          id: agenda.id_agenda,
-          value: agenda.id_agenda,
+      const doctorsList = await getData(URL_DOCTORS_LIST)
+      console.log(doctorsList)
+      const doctorsElements = []
+      // * Set Doctors List
+      doctorsList?.map(async (doctor) => {
+        await doctorsElements.push({
+          id: doctor.id_agenda,
+          value: doctor.username,
         })
       })
+      setDoctors(doctorsElements)
+    })()
+  }, [])
+
+  const handleDoctorChange = async (id) => {
+    setSchedules([])
+    if (date) {
+      setDoctorAgenda(id)
+      const scheduleData = await postData(
+        { id_agenda: doctorAgenda, fecha: date },
+        URL_DOCTOR_SCHEDULES
+      )
+      const scheduleElements = []
       // * Set Schedules
       scheduleData?.map(async (schedule) => {
         await scheduleElements.push({
@@ -31,10 +43,11 @@ const PatientAppointmentForm = ({ user_id, postData }) => {
           value: `${schedule.hora_inicio} - ${schedule.hora_fin}`,
         })
       })
-      setAgendas(agendaElements)
       setSchedules(scheduleElements)
-    })()
-  }, [])
+    } else {
+      console.log('No se ha seleccionado una fecha')
+    }
+  }
 
   const handlePost = (e) => {
     e.preventDefault()
@@ -44,7 +57,13 @@ const PatientAppointmentForm = ({ user_id, postData }) => {
       console.error('Current date is less than selected date')
     } else {
       postData(
-        { fecha: date, id_agenda: agenda, id_usuario: user_id, id_horario: schedule },
+        {
+          fecha: date,
+          id_agenda: doctorAgenda,
+          id_usuario: user_id,
+          id_horario: schedule,
+          estado: 'pendiente',
+        },
         URL_APPOINTMENTS
       )
     }
@@ -53,8 +72,10 @@ const PatientAppointmentForm = ({ user_id, postData }) => {
   return (
     <Form title='New Appointment' handleData={handlePost}>
       <InputText placeholder='Date' type='date' defaultValue={date} setData={setDate} />
-      <DropDown defaultOption='Id Agenda' options={agendas} setData={setAgenda} />
-      <DropDown defaultOption='Horario' options={schedules} setData={setSchedule} />
+      <DropDown defaultOption='Doctor' options={doctors} setData={handleDoctorChange} />
+      {schedules.length > 0 && (
+        <DropDown defaultOption='Doctor Schedule' options={schedules} setData={setSchedule} />
+      )}
     </Form>
   )
 }
