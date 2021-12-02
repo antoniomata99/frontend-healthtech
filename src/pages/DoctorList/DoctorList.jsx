@@ -68,11 +68,12 @@ const DoctorList = () => {
               <TableContent>
                 {listDoctors?.map((item) => (
                   <TableItem
-                    key={`listDoctors--${item.username}`}
+                    key={`listDoctors--${item.id_cita}`}
                     data={item}
                     handleEdit={toggleModal}
                     remove={false}
                   >
+                    <TableData data={item.id_cita}/>
                     <TableData data={item.username}/>
                     <TableData data={item.fecha} />
                     <TableData data={item.hora_inicio} />

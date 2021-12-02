@@ -4,6 +4,6 @@ const roomsTitles = ['ID', 'Name', 'Code', 'Floor', 'State']
 const doctorListTitles = ['ID', 'Name', 'Mail', 'Phone', 'RH']
 const specialtyTitles = ['ID', 'Name', 'Description', 'State']
 const usersTitles = ['ID', 'Document', 'Rol', 'Name', 'Email', 'Phone', 'Gender']
-const doctorListsTitles = ['Username', 'Date', 'Start Time', 'End time', 'State']
+const doctorListsTitles = ['ID Date', 'Username', 'Date', 'Start Time', 'End time', 'State']
 
 export { scheduleTitles, roomsTitles, doctorListTitles, specialtyTitles, usersTitles, doctorListsTitles}
