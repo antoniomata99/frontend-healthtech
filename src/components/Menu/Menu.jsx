@@ -11,6 +11,7 @@ import '@styles/components/Menu.scss'
 import { MenuLink } from '@components'
 
 const menu = [
+  { link: '/dashboard', Icon: BsFillPieChartFill, text: 'Dashboard' },
   { link: '/admin', Icon: BsFillPieChartFill, text: 'Dashboard' },
   // { link: '#', Icon: BsFillFilePersonFill, text: 'Profile' },
   // { link: '#', Icon: BsFillPersonFill, text: 'Patient' },

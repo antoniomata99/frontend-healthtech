@@ -12,7 +12,8 @@ import {
   DoctorsList,
   Users,
   ScheduleAppointments,
-  Patient,
+  Dashboard,
+  Patient
 } from '@pages'
 
 const Home = () => (
@@ -29,6 +30,7 @@ function App() {
         <Route exact path='/login' component={Login} />
         {/* Admin Pages */}
         <Route exact path='/admin' component={Home} />
+        
         <Route exact path='/admin/doctor' component={Doctor} />
         <Route exact path='/admin/doctor/schedule' component={Schedule} />
         <Route exact path='/admin/doctor/specialty' component={Specialty} />
