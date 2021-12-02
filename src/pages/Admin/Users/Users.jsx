@@ -67,9 +67,11 @@ const Users = () => {
       <Container>
         <section className='Users_Menu'>
           <div className='Users_Button Users_Button--download'>
-            <Button modifier='download' name='Download'>
-              <AiOutlineCloudDownload />
-            </Button>
+            <a href='https://healt-tech-back.herokuapp.com/api/Excel' rel="noreferrer">
+              <Button modifier='download' name='Download'>
+                <AiOutlineCloudDownload />
+              </Button>
+            </a>
           </div>
           <div className='Users_Buttons-container '>
             <Button modifier='add' name='Admin' handle={() => handleUserNavigation('admin')} />
