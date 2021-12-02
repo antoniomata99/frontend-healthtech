@@ -9,7 +9,8 @@ const URL_DOCTORS = `${URL_BASE}/medico/`
 const URL_PATIENT = `${URL_BASE}/paciente/`
 const URL_USERS = `${URL_BASE}/usuarios/`
 const URL_LOGIN = `${URL_BASE}/login/`
-
+const URL_DOCTOR_LIST = `${URL_BASE}/medico/traerAgendaMedico`
+const URL_SET_STATE_DOCTOR_LIST = `${URL_BASE}/cita/`
 export {
   URL_DOCTOR_SCHEDULE,
   URL_SPECIALTY,
@@ -20,5 +21,7 @@ export {
   URL_APPOINTMENT_SCHEDULE,
   URL_AGENDAS,
   URL_PATIENT,
-  URL_LOGIN
+  URL_LOGIN,
+  URL_DOCTOR_LIST,
+  URL_SET_STATE_DOCTOR_LIST
 }
