@@ -22,6 +22,8 @@ const DoctorList = () => {
   const { handleModal, openModal } = useModal()
   const { postData, updateData, error, message, setIsUpdate, setMessage } = useAxios()
   const [listDoctors, setListDoctors] = useState([])
+  const { userEmail } = useContext(UserContext)
+
   const [listDoctor, setListDoctor] = useState({
     username: '',
     id_agenda: '',
@@ -37,8 +39,9 @@ const DoctorList = () => {
   useEffect(() => {
     ;(async () => {
       const data = await postData(
-        {
-          username: 'evilsatan@gmail.com',
+        { 
+          username: userEmail,
+          // username: 'evilsatan@gmail.com',
         },
         URL_DOCTOR_LIST
       )
