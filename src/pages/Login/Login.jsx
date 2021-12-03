@@ -1,9 +1,8 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import '../../styles/components/Login.scss'
 import { useHistory } from 'react-router'
-import { URL_LOGIN } from '../../utils/constants'
+import { URL_LOGIN, USER_KEY } from '../../utils/constants'
 import { useAxios } from '../../hooks/useAxios'
-import { UserContext } from '../../context/UserContext'
 
 const Login = () => {
   const { postData } = useAxios()
@@ -11,7 +10,10 @@ const Login = () => {
   const [role, setRole] = useState()
   const [email, setEmail] = useState()
   const [passwd, setPasswd] = useState()
-  const { setUserEmail } = useContext(UserContext)
+
+  useEffect(() => {
+    localStorage.setItem(USER_KEY, JSON.stringify(''))
+  }, [])
 
   const handleData = async (e) => {
     e.preventDefault()
@@ -26,7 +28,7 @@ const Login = () => {
 
     if (data !== 'Credenciales invalidas') {
       if (data?.user.username) {
-        setUserEmail(data.user.username)
+        localStorage.setItem(USER_KEY, JSON.stringify(data.user.username))
         if (role == '1') {
           history.push('/admin')
         } else if (role == '2') {
@@ -37,7 +39,7 @@ const Login = () => {
       } else {
         alert('Error login the user')
       }
-    }else{
+    } else {
       alert('Error login the user')
     }
   }
@@ -61,7 +63,7 @@ const Login = () => {
                         </option>
                         <option value='1'>Administrator</option>
                         <option value='2'>Patient</option>
-                        <option value='3'>Medic</option>
+                        <option value='3'>Doctor</option>
                       </select>
                     </div>
                   </div>

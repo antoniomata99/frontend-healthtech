@@ -1,10 +1,14 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../../styles/components/Patient.scss'
 import fileDownload from 'js-file-download'
 import { AiOutlineCloudDownload } from 'react-icons/ai'
-import { UserContext } from '../../context/UserContext'
 import { useAxios } from '../../hooks/useAxios'
-import { URL_PATIENT_APPOINTMENTS, URL_PATIENT_ID, URL_CERTIFIED } from '../../utils/constants'
+import {
+  URL_PATIENT_APPOINTMENTS,
+  URL_PATIENT_ID,
+  URL_CERTIFIED,
+  USER_KEY,
+} from '../../utils/constants'
 import { PatientLayout } from '../../layouts'
 import { PatientAppointmentForm } from '../../forms'
 import { Button, Container, InfoCard, Message } from '../../components'
@@ -13,7 +17,7 @@ const Patient = () => {
   const [appointments, setAppointments] = useState([])
   const [patientID, setPatientID] = useState([])
   const { postData, setIsUpdate, message, error, setMessage } = useAxios()
-  const { userEmail } = useContext(UserContext)
+  const userEmail = JSON.parse(localStorage.getItem(USER_KEY))
 
   useEffect(() => {
     ;(async () => {
