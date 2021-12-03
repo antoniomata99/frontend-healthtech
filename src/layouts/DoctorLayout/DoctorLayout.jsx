@@ -8,7 +8,6 @@ const DoctorLayout = ({ children }) => {
     <div className='Layout'>
       <Header userType='Doctor' />
       <div className='Layout__Container'>
-        <Menu />
         <main className='Layout__Content Layout__Content--Doctor'>{children}</main>
       </div>
     </div>

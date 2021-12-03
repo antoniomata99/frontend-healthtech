@@ -14,7 +14,6 @@ const PatientAppointmentForm = ({ user_id, postData }) => {
   useEffect(() => {
     ;(async () => {
       const doctorsList = await getData(URL_DOCTORS_LIST)
-      console.log(doctorsList)
       const doctorsElements = []
       // * Set Doctors List
       doctorsList?.map(async (doctor) => {
@@ -45,7 +44,7 @@ const PatientAppointmentForm = ({ user_id, postData }) => {
       })
       setSchedules(scheduleElements)
     } else {
-      console.log('No se ha seleccionado una fecha')
+      alert('No se ha seleccionado una fecha')
     }
   }
 
@@ -54,7 +53,7 @@ const PatientAppointmentForm = ({ user_id, postData }) => {
     const dateSelected = new Date(date)
     if (dateSelected.getTime() < new Date().getTime()) {
       // * Check if date is less than current date
-      console.error('Current date is less than selected date')
+      alert('Current date is less than selected date')
     } else {
       postData(
         {

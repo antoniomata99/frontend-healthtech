@@ -20,17 +20,8 @@ import {
 
 const ConsultingRooms = () => {
   const { handleModal, openModal } = useModal()
-  const {
-    getData,
-    postData,
-    updateData,
-    deleteData,
-    error,
-    message,
-    setMessage,
-    isUpdate,
-    setIsUpdate,
-  } = useAxios()
+  const { getData, postData, updateData, error, message, setMessage, isUpdate, setIsUpdate } =
+    useAxios()
   const [consultingRooms, setConsultingRooms] = useState([])
   const [consultingRoom, setConsultingRoom] = useState({
     id_consultorio: 0,
@@ -59,24 +50,31 @@ const ConsultingRooms = () => {
     })
   }
 
-  const handleDelete = (data) => {
-    setConsultingRoom({
-      id_consultorio: data.id_consultorio,
-      nombre: data.nombre,
-      codigo: data.codigo,
-      piso: data.piso,
-      estado: data.estado,
-    })
-    deleteData(data.id_consultorio, consultingRoom, URL_ROOMS)
-  }
+  // const handleDelete = (data) => {
+  //   setConsultingRoom({
+  //     id_consultorio: data.id_consultorio,
+  //     nombre: data.nombre,
+  //     codigo: data.codigo,
+  //     piso: data.piso,
+  //     estado: data.estado,
+  //   })
+  //   deleteData(data.id_consultorio, consultingRoom, URL_ROOMS)
+  // }
 
   // TODO: Add loading state render
 
   return (
     <AdminLayout>
-      {error && <Message modifier='error' text={`Error: ${message}`} state={true} />}
+      {error && (
+        <Message modifier='error' text={`Error: ${message}`} state={true} setMessage={setMessage} />
+      )}
       {!error && message.length > 3 && (
-        <Message modifier='good' text={`Success: ${message}`} state={true} />
+        <Message
+          modifier='good'
+          text={`Success: ${message}`}
+          state={true}
+          setMessage={setMessage}
+        />
       )}
       <Container>
         <ConsultingRoomsForm postData={postData} />
@@ -94,7 +92,7 @@ const ConsultingRooms = () => {
                 <TableData data={item.nombre} />
                 <TableData data={item.codigo} />
                 <TableData data={item.piso} />
-                <TableData data={item.estado} />
+                <TableData data={item.estado === '1' ? 'Activo' : 'Inactivo'} />
               </TableItem>
             ))}
           </TableContent>

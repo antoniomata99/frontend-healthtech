@@ -24,17 +24,19 @@ const Login = () => {
       URL_LOGIN
     )
 
-    if (data?.user.username) {
-      setUserEmail(data.user.username)
-      if (role == '1') {
-        history.push('/admin')
-      } else if (role == '2') {
-        history.push('/patient')
-      } else if (role == '3') {
-        history.push('/doctor')
+    if (data !== 'Credenciales invalidas') {
+      if (data?.user.username) {
+        setUserEmail(data.user.username)
+        if (role == '1') {
+          history.push('/admin')
+        } else if (role == '2') {
+          history.push('/patient')
+        } else if (role == '3') {
+          history.push('/doctor')
+        }
+      } else {
+        console.error('Error login the user')
       }
-    } else {
-      console.error('Error login the user')
     }
   }
 

@@ -14,12 +14,23 @@ import {
   TableData,
   Modal,
   Button,
+  Message,
 } from '../../../components'
 import { AdminLayout } from '../../../layouts'
 
 const ScheduleAppointments = () => {
   const { openModal, handleModal } = useModal()
-  const { getData, postData, updateData, deleteData, isUpdate, setIsUpdate } = useAxios()
+  const {
+    getData,
+    postData,
+    updateData,
+    deleteData,
+    isUpdate,
+    setIsUpdate,
+    message,
+    setMessage,
+    error,
+  } = useAxios()
   const [scheduleAppointments, setScheduleAppointments] = useState([])
   const [scheduleAppointment, setScheduleAppointment] = useState({
     id_horario: 0,
@@ -50,8 +61,19 @@ const ScheduleAppointments = () => {
 
   return (
     <AdminLayout>
+      {error && (
+        <Message modifier='error' text={`Error: ${message}`} state={true} setMessage={setMessage} />
+      )}
+      {!error && message.length > 3 && (
+        <Message
+          modifier='good'
+          text={`Success: ${message}`}
+          state={true}
+          setMessage={setMessage}
+        />
+      )}
       <Container button={true} linkText='/admin/doctor'>
-        <ScheduleForm postData={postData} update={false} />
+        <ScheduleForm postData={postData} update={false} url={URL_APPOINTMENT_SCHEDULE} />
         <Table>
           <TableHeader titles={scheduleTitles} />
           <TableContent>
@@ -83,6 +105,7 @@ const ScheduleAppointments = () => {
             finishTime={scheduleAppointment.hora_fin}
             handleModal={handleModal}
             update={true}
+            url={URL_APPOINTMENT_SCHEDULE}
           />
         </Modal>
       )}

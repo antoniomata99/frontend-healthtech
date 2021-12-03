@@ -9,3 +9,4 @@ export { Dashboard } from './DashBoard/Dashboard.jsx'
 
 export { Users } from './Admin/Users/Users.jsx'
 export { Patient } from './Patient/Patient.jsx'
+export { DoctorList } from './DoctorList/DoctorList.jsx'

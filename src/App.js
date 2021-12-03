@@ -13,6 +13,8 @@ import {
   Users,
   ScheduleAppointments,
   Patient,
+  DoctorList,
+  Dashboard,
 } from './pages'
 
 const Home = () => (
@@ -28,7 +30,7 @@ function App() {
         <Redirect exact from='/' to='/login' />
         <Route exact path='/login' component={Login} />
         {/* Admin Pages */}
-        <Route exact path='/admin' component={Home} />
+        <Route exact path='/admin' component={Dashboard} />
         <Route exact path='/admin/doctor' component={Doctor} />
         <Route exact path='/admin/doctor/schedule' component={Schedule} />
         <Route exact path='/admin/doctor/specialty' component={Specialty} />
@@ -37,10 +39,11 @@ function App() {
         <Route exact path='/admin/consulting-rooms' component={ConsultingRooms} />
         <Route exact path='/admin/users' component={Users} />
         <Route exact path='/admin/users/add/:type' component={UserForm} />
+        <Route exact path='/admin/users/edit/:type/:idUserEdit' component={UserForm} />
         {/* Patient Pages */}
         <Route exact path='/patient' component={Patient} />
         {/* Doctor Pages */}
-        <Route exact path='/doctor' component={Patient} />
+        <Route exact path='/doctor' component={DoctorList} />
       </Switch>
     </Router>
   )

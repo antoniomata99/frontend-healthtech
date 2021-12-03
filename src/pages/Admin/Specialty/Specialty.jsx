@@ -20,7 +20,8 @@ import {
 
 const Specialty = () => {
   const { handleModal, openModal } = useModal()
-  const { getData, postData, updateData, error, message, isUpdate, setIsUpdate } = useAxios()
+  const { getData, postData, updateData, error, message, isUpdate, setIsUpdate, setMessage } =
+    useAxios()
   const [specialties, setSpecialties] = useState([])
   const [specialty, setSpecialty] = useState({
     id_especialidad: 0,
@@ -51,9 +52,16 @@ const Specialty = () => {
 
   return (
     <AdminLayout>
-      {error && <Message modifier='error' text={`Error: ${message}`} state={true} />}
+      {error && (
+        <Message modifier='error' text={`Error: ${message}`} state={true} setMessage={setMessage} />
+      )}
       {!error && message.length > 3 && (
-        <Message modifier='good' text={`Success: ${message}`} state={true} />
+        <Message
+          modifier='good'
+          text={`Success: ${message}`}
+          state={true}
+          setMessage={setMessage}
+        />
       )}
       {<Message modifier='error' text={`Error: ${message}`} />}
       <Container button='true' linkText='/admin/doctor'>
@@ -71,7 +79,7 @@ const Specialty = () => {
                 <TableData data={item.id_especialidad} />
                 <TableData data={item.nombre} />
                 <TableData data={item.descripcion} />
-                <TableData data={item.estado} />
+                <TableData data={item.estado === '1' ? 'Activo' : 'Inactivo'} />
               </TableItem>
             ))}
           </TableContent>

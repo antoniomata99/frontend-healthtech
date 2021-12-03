@@ -20,7 +20,7 @@ import {
 
 const Schedule = () => {
   const { handleModal, openModal } = useModal()
-  const { getData, postData, updateData, deleteData, error, message } = useAxios()
+  const { getData, postData, updateData, setMessage, error, message, isUpdate } = useAxios()
   const [schedules, setSchedules] = useState([])
   const [schedule, setSchedule] = useState({
     id_horario_medico: 0,
@@ -33,7 +33,7 @@ const Schedule = () => {
       const data = await getData(URL_DOCTOR_SCHEDULE)
       setSchedules(data)
     })()
-  }, [])
+  }, [isUpdate])
 
   const toggleModal = (data) => {
     handleModal()
@@ -48,12 +48,19 @@ const Schedule = () => {
 
   return (
     <AdminLayout>
-      {error && <Message modifier='error' text={`Error: ${message}`} state={true} />}
+      {error && (
+        <Message modifier='error' text={`Error: ${message}`} state={true} setMessage={setMessage} />
+      )}
       {!error && message.length > 3 && (
-        <Message modifier='good' text={`Success: ${message}`} state={true} />
+        <Message
+          modifier='good'
+          text={`Success: ${message}`}
+          state={true}
+          setMessage={setMessage}
+        />
       )}
       <Container button={true} linkText='/admin/doctor'>
-        <ScheduleForm postData={postData} update={false} />
+        <ScheduleForm postData={postData} update={false} url={URL_DOCTOR_SCHEDULE} />
         <Table>
           <TableHeader titles={scheduleTitles} />
           <TableContent>
@@ -84,6 +91,7 @@ const Schedule = () => {
             finishTime={schedule.hora_fin}
             handleModal={handleModal}
             update={true}
+            url={URL_DOCTOR_SCHEDULE}
           />
         </Modal>
       )}

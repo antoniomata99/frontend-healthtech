@@ -16,7 +16,7 @@ const useAxios = () => {
       return response.data
     } catch (error) {
       setError(true)
-      setMessage(error.message)
+      setMessage('An Internal error occurred ❌')
     }
   }
 
@@ -26,7 +26,7 @@ const useAxios = () => {
       setLoading(true)
       const response = await axios.post(url, item)
       if (response.status === 201 || response.status === 200) {
-        setMessage('Data added 🤗')
+        response.status === 200 ? setMessage('Good request 🤗') : setMessage('Data added 🤗')
         setIsUpdate(true)
         setLoading(false)
         setError(false)
@@ -37,7 +37,7 @@ const useAxios = () => {
       }
     } catch (error) {
       setError(true)
-      setMessage(error.message)
+      setMessage('An Internal error occurred ❌')
     }
   }
 
@@ -58,7 +58,7 @@ const useAxios = () => {
       }
     } catch (error) {
       setError(true)
-      setMessage(error.message)
+      setMessage('An Internal error occurred ❌')
     }
   }
 
@@ -74,7 +74,7 @@ const useAxios = () => {
       return response.data
     } catch (error) {
       setError(true)
-      setMessage(error.message)
+      setMessage('An Internal error occurred ❌')
     }
   }
 

@@ -14,15 +14,13 @@ import {
   TableData,
   Container,
   Button,
+  Message,
 } from '../../../components'
 
 const Users = () => {
-  const { getData, deleteData, isUpdate, setIsUpdate } = useAxios()
+  const { getData, deleteData, isUpdate, setIsUpdate, message, setMessage, error } = useAxios()
   const history = useHistory()
   const [users, setUsers] = useState()
-  const [user, setUser] = useState({
-    id_usuario: 0,
-  })
 
   useEffect(() => {
     ;(async () => {
@@ -64,6 +62,17 @@ const Users = () => {
 
   return (
     <AdminLayout>
+      {error && (
+        <Message modifier='error' text={`Error: ${message}`} state={true} setMessage={setMessage} />
+      )}
+      {!error && message.length > 3 && (
+        <Message
+          modifier='good'
+          text={`Success: ${message}`}
+          state={true}
+          setMessage={setMessage}
+        />
+      )}
       <Container>
         <section className='Users_Menu'>
           <div className='Users_Button Users_Button--download'>
@@ -88,13 +97,14 @@ const Users = () => {
                 handleEdit={handleEdit}
                 handleDelete={handleDelete}
                 data={item}
-                id={item.id_perfil}
+                id={item.id_usuario}
+                remove={false}
               >
                 <TableData data={item.id_usuario} />
                 <TableData data={item.numero_documento} />
                 <TableData data={handleUserType(item.id_perfil)} />
-                <TableData data={item.nombre_usuario} />
-                <TableData data={item.correo} />
+                <TableData data={item.username} />
+                <TableData data={item.email} />
                 <TableData data={item.telefono} />
                 <TableData data={item.sexo} />
               </TableItem>

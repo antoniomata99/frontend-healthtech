@@ -32,8 +32,8 @@ const DoctorsList = () => {
             {doctors?.map((item) => (
               <TableItem key={`doctor--${item.id_usuario}`} edit={false} view={true} remove={false}>
                 <TableData data={item.id_usuario} />
-                <TableData data={item.nombre_usuario} />
-                <TableData data={item.correo} />
+                <TableData data={item.username} />
+                <TableData data={item.email} />
                 <TableData data={item.telefono} />
                 <TableData data={item.grupo_sanguineo} />
               </TableItem>
