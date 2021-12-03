@@ -59,7 +59,7 @@ const Schedule = () => {
           setMessage={setMessage}
         />
       )}
-      <Container button={true} linkText='/admin/doctor'>
+      <Container button={true} linkText='/admin/doctor' title='Doctor schedule'>
         <ScheduleForm postData={postData} update={false} url={URL_DOCTOR_SCHEDULE} />
         <Table>
           <TableHeader titles={scheduleTitles} />

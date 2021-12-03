@@ -139,7 +139,7 @@ const UserForm = () => {
           setMessage={setMessage}
         />
       )}
-      <Container button={true} linkText={'/admin/users'}>
+      <Container button={true} linkText={'/admin/users'} title={`User ${type ? type : ''}`}>
         <Form
           title={`Add ${type ? type : ''}`}
           handleData={handleData}

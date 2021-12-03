@@ -72,7 +72,7 @@ const DoctorList = () => {
           setMessage={setMessage}
         />
       )}
-      <Container>
+      <Container title='Your schedule for today'>
         <Table>
           <TableHeader titles={doctorListsTitles} />
           <TableContent>

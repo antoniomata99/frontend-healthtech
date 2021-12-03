@@ -25,7 +25,7 @@ const DoctorsList = () => {
 
   return (
     <AdminLayout>
-      <Container button={true} linkText='/admin/doctor'>
+      <Container button={true} linkText='/admin/doctor' title='Doctors'>
         <Table>
           <TableHeader titles={doctorListTitles} />
           <TableContent>

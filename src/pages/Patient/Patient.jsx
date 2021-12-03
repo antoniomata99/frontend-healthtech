@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react'
 import '../../styles/components/Patient.scss'
+import fileDownload from 'js-file-download'
+import { AiOutlineCloudDownload } from 'react-icons/ai'
 import { UserContext } from '../../context/UserContext'
 import { useAxios } from '../../hooks/useAxios'
-import { URL_PATIENT_APPOINTMENTS, URL_PATIENT_ID } from '../../utils/constants'
+import { URL_PATIENT_APPOINTMENTS, URL_PATIENT_ID, URL_CERTIFIED } from '../../utils/constants'
 import { PatientLayout } from '../../layouts'
 import { PatientAppointmentForm } from '../../forms'
-import { Container, InfoCard, Message } from '../../components'
+import { Button, Container, InfoCard, Message } from '../../components'
 
 const Patient = () => {
   const [appointments, setAppointments] = useState([])
@@ -17,22 +19,33 @@ const Patient = () => {
     ;(async () => {
       const data = await postData(
         {
-          // username: userEmail,
-          username: 'fernan@gmail.com',
+          username: userEmail,
+          // username: 'fernan@gmail.com',
         },
         URL_PATIENT_APPOINTMENTS
       )
       setAppointments(data)
       const patientIdData = await postData(
         {
-          // username: userEmail,
-          username: 'patient@patient',
+          username: userEmail,
+          // username: 'patient@patient',
         },
         URL_PATIENT_ID
       )
-      // setPatientID(patientIdData.id_usuario)
+      setPatientID(patientIdData.id_usuario)
     })()
   }, [setIsUpdate])
+
+  const handleDownload = async () => {
+    const data = await postData(
+      {
+        username: userEmail,
+        // username: 'paciente45@gmail.com',
+      },
+      URL_CERTIFIED
+    )
+    fileDownload(data, 'Certificado.pdf') // Download the PDF file
+  }
 
   return (
     <PatientLayout>
@@ -48,6 +61,9 @@ const Patient = () => {
         />
       )}
       <Container>
+        <Button modifier='download' name='Download' handle={handleDownload}>
+          <AiOutlineCloudDownload />
+        </Button>
         <PatientAppointmentForm postData={postData} user_id={patientID} />
         <h6 className='Appointment__Title--Warning'>
           * Please select the date and the doctor, before continuing with the schedule.

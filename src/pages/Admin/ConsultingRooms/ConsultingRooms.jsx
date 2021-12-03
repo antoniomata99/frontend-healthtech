@@ -76,7 +76,7 @@ const ConsultingRooms = () => {
           setMessage={setMessage}
         />
       )}
-      <Container>
+      <Container title='Consulting Rooms'>
         <ConsultingRoomsForm postData={postData} />
         <Table>
           <TableHeader titles={roomsTitles} />
