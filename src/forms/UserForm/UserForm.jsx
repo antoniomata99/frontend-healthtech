@@ -8,7 +8,6 @@ import {
   URL_SPECIALTY,
   URL_AGENDAS,
 } from '../../utils/constants'
-import '../../styles/components/UserForm.scss'
 import {
   rhElements,
   documentTypeElements,
@@ -16,7 +15,9 @@ import {
   sexElements,
   socialStatusElements,
 } from '../../utils/dropDownInfo'
-import { Container, Form, InputText, DropDown, Message } from '..'
+import '../../styles/components/UserForm.scss'
+import { AdminLayout } from '../../layouts'
+import { Container, Form, InputText, DropDown, Message } from '../../components'
 
 const UserForm = () => {
   const { type, idUserEdit } = useParams()
@@ -53,7 +54,7 @@ const UserForm = () => {
         specialtiesData.map(async (specialty) => {
           await specialtiesElements.push({
             id: specialty.id_especialidad,
-            value: specialty.id_especialidad,
+            value: `${specialty.nombre}`,
           })
         })
         agendaData.map(async (agenda) => {
@@ -78,9 +79,9 @@ const UserForm = () => {
   const addUserInfo = (data) => {
     setDocument(data.numero_documento)
     setDocument(data.numero_documento)
-    setName(data.nombre_usuario)
+    setName(data.username)
     setPassword(data.contrasena)
-    setEmail(data.correo)
+    setEmail(data.email)
     setPhone(data.telefono)
     setBirthday(data.fecha_nacimiento)
     if (type === 'patient') {
@@ -92,9 +93,9 @@ const UserForm = () => {
     let data = {
       tipo_documento: documentType,
       numero_documento: document,
-      nombre_usuario: name,
-      contrasena: password,
-      correo: email,
+      username: name,
+      password: password,
+      email: email,
       telefono: phone,
       sexo: sex,
       fecha_nacimiento: birthday,
@@ -115,21 +116,30 @@ const UserForm = () => {
   const handleData = async (e) => {
     e.preventDefault()
     if (password === password2) {
-      idUserEdit
-        ? await updateData(idUserEdit, fillData(), getUrlByType())
-        : await postData(fillData(), getUrlByType())
+      if (idUserEdit) {
+        await updateData(idUserEdit, fillData(), getUrlByType())
+      } else {
+        await postData(fillData(), getUrlByType())
+      }
     } else {
       setMessage("Password's are not equal 🙄")
     }
   }
 
   return (
-    <>
-      {/* // TODO: Change execution message form */}
-      {(error || message.length > 0) && (
-        <Message modifier='error' text={`Error: ${message}`} state={true} />
+    <AdminLayout>
+      {error && (
+        <Message modifier='error' text={`Error: ${message}`} state={true} setMessage={setMessage} />
       )}
-      <Container button={true} linkText={'/users'}>
+      {!error && message.length > 3 && (
+        <Message
+          modifier='good'
+          text={`Success: ${message}`}
+          state={true}
+          setMessage={setMessage}
+        />
+      )}
+      <Container button={true} linkText={'/admin/users'} title={`User ${type ? type : ''}`}>
         <Form
           title={`Add ${type ? type : ''}`}
           handleData={handleData}
@@ -212,7 +222,7 @@ const UserForm = () => {
           </div>
         </Form>
       </Container>
-    </>
+    </AdminLayout>
   )
 }
 

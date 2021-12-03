@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-// * Style
 import '../../styles/globals/Input.scss'
 
 const InputTime = ({ setData, defaultValue }) => {

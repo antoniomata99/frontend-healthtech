@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { useAxios } from '../../hooks/useAxios'
-import { useModal } from '../../hooks/useModal'
-import { URL_APPOINTMENT_SCHEDULE } from '../../utils/constants'
-import { scheduleTitles } from '../../utils/tableHeaders'
 import { AiOutlineClose } from 'react-icons/ai'
+import { useAxios } from '../../../hooks/useAxios'
+import { useModal } from '../../../hooks/useModal'
+import { URL_APPOINTMENT_SCHEDULE } from '../../../utils/constants'
+import { scheduleTitles } from '../../../utils/tableHeaders'
+import { ScheduleForm } from '../../../forms'
 import {
   Container,
   Table,
@@ -13,12 +14,23 @@ import {
   TableData,
   Modal,
   Button,
-  ScheduleForm,
-} from '../../components'
+  Message,
+} from '../../../components'
+import { AdminLayout } from '../../../layouts'
 
 const ScheduleAppointments = () => {
   const { openModal, handleModal } = useModal()
-  const { getData, postData, updateData, deleteData, isUpdate, setIsUpdate } = useAxios()
+  const {
+    getData,
+    postData,
+    updateData,
+    deleteData,
+    isUpdate,
+    setIsUpdate,
+    message,
+    setMessage,
+    error,
+  } = useAxios()
   const [scheduleAppointments, setScheduleAppointments] = useState([])
   const [scheduleAppointment, setScheduleAppointment] = useState({
     id_horario: 0,
@@ -48,9 +60,20 @@ const ScheduleAppointments = () => {
   }
 
   return (
-    <>
-      <Container button={true} linkText='/doctor'>
-        <ScheduleForm postData={postData} update={false} />
+    <AdminLayout>
+      {error && (
+        <Message modifier='error' text={`Error: ${message}`} state={true} setMessage={setMessage} />
+      )}
+      {!error && message.length > 3 && (
+        <Message
+          modifier='good'
+          text={`Success: ${message}`}
+          state={true}
+          setMessage={setMessage}
+        />
+      )}
+      <Container button={true} linkText='/admin/doctor' title='Schedule appointments'>
+        <ScheduleForm postData={postData} update={false} url={URL_APPOINTMENT_SCHEDULE} />
         <Table>
           <TableHeader titles={scheduleTitles} />
           <TableContent>
@@ -82,10 +105,11 @@ const ScheduleAppointments = () => {
             finishTime={scheduleAppointment.hora_fin}
             handleModal={handleModal}
             update={true}
+            url={URL_APPOINTMENT_SCHEDULE}
           />
         </Modal>
       )}
-    </>
+    </AdminLayout>
   )
 }
 

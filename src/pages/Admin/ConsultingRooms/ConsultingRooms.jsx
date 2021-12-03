@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { useAxios } from '../../hooks/useAxios'
-import { useModal } from '../../hooks/useModal'
-import { roomsTitles } from '../../utils/tableHeaders'
-import { URL_ROOMS } from '../../utils/constants'
+import { useAxios } from '../../../hooks/useAxios'
+import { useModal } from '../../../hooks/useModal'
+import { roomsTitles } from '../../../utils/tableHeaders'
+import { URL_ROOMS } from '../../../utils/constants'
 import { AiOutlineClose } from 'react-icons/ai'
+import { ConsultingRoomsForm } from '../../../forms'
+import { AdminLayout } from '../../../layouts'
 import {
   Table,
   TableHeader,
@@ -13,23 +15,13 @@ import {
   Container,
   Modal,
   Button,
-  ConsultingRoomsForm,
   Message,
-} from '../../components'
+} from '../../../components'
 
 const ConsultingRooms = () => {
   const { handleModal, openModal } = useModal()
-  const {
-    getData,
-    postData,
-    updateData,
-    deleteData,
-    error,
-    message,
-    setMessage,
-    isUpdate,
-    setIsUpdate,
-  } = useAxios()
+  const { getData, postData, updateData, error, message, setMessage, isUpdate, setIsUpdate } =
+    useAxios()
   const [consultingRooms, setConsultingRooms] = useState([])
   const [consultingRoom, setConsultingRoom] = useState({
     id_consultorio: 0,
@@ -58,26 +50,33 @@ const ConsultingRooms = () => {
     })
   }
 
-  const handleDelete = (data) => {
-    setConsultingRoom({
-      id_consultorio: data.id_consultorio,
-      nombre: data.nombre,
-      codigo: data.codigo,
-      piso: data.piso,
-      estado: data.estado,
-    })
-    deleteData(data.id_consultorio, consultingRoom, URL_ROOMS)
-  }
+  // const handleDelete = (data) => {
+  //   setConsultingRoom({
+  //     id_consultorio: data.id_consultorio,
+  //     nombre: data.nombre,
+  //     codigo: data.codigo,
+  //     piso: data.piso,
+  //     estado: data.estado,
+  //   })
+  //   deleteData(data.id_consultorio, consultingRoom, URL_ROOMS)
+  // }
 
   // TODO: Add loading state render
 
   return (
-    <>
-      {error && <Message modifier='error' text={`Error: ${message}`} state={true} />}
-      {!error && message.length > 3 && (
-        <Message modifier='good' text={`Success: ${message}`} state={true} />
+    <AdminLayout>
+      {error && (
+        <Message modifier='error' text={`Error: ${message}`} state={true} setMessage={setMessage} />
       )}
-      <Container>
+      {!error && message.length > 3 && (
+        <Message
+          modifier='good'
+          text={`Success: ${message}`}
+          state={true}
+          setMessage={setMessage}
+        />
+      )}
+      <Container title='Consulting Rooms'>
         <ConsultingRoomsForm postData={postData} />
         <Table>
           <TableHeader titles={roomsTitles} />
@@ -93,7 +92,7 @@ const ConsultingRooms = () => {
                 <TableData data={item.nombre} />
                 <TableData data={item.codigo} />
                 <TableData data={item.piso} />
-                <TableData data={item.estado} />
+                <TableData data={item.estado === '1' ? 'Activo' : 'Inactivo'} />
               </TableItem>
             ))}
           </TableContent>
@@ -116,7 +115,7 @@ const ConsultingRooms = () => {
           />
         </Modal>
       )}
-    </>
+    </AdminLayout>
   )
 }
 

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { useAxios } from '../../hooks/useAxios'
-import { useModal } from '../../hooks/useModal'
-import { scheduleTitles } from '../../utils/tableHeaders'
-import { URL_DOCTOR_SCHEDULE } from '../../utils/constants'
+import { useAxios } from '../../../hooks/useAxios'
+import { useModal } from '../../../hooks/useModal'
+import { scheduleTitles } from '../../../utils/tableHeaders'
+import { URL_DOCTOR_SCHEDULE } from '../../../utils/constants'
 import { AiOutlineClose } from 'react-icons/ai'
+import { ScheduleForm } from '../../../forms'
+import { AdminLayout } from '../../../layouts'
 import {
   Container,
   Table,
@@ -13,13 +15,12 @@ import {
   TableData,
   Modal,
   Button,
-  ScheduleForm,
   Message,
-} from '../../components'
+} from '../../../components'
 
 const Schedule = () => {
   const { handleModal, openModal } = useModal()
-  const { getData, postData, updateData, deleteData, error, message } = useAxios()
+  const { getData, postData, updateData, setMessage, error, message, isUpdate } = useAxios()
   const [schedules, setSchedules] = useState([])
   const [schedule, setSchedule] = useState({
     id_horario_medico: 0,
@@ -28,12 +29,11 @@ const Schedule = () => {
   })
 
   useEffect(() => {
-    console.log('Schedule')
     ;(async () => {
       const data = await getData(URL_DOCTOR_SCHEDULE)
       setSchedules(data)
     })()
-  }, [])
+  }, [isUpdate])
 
   const toggleModal = (data) => {
     handleModal()
@@ -47,13 +47,20 @@ const Schedule = () => {
   // TODO: Add loading state render
 
   return (
-    <>
-      {error && <Message modifier='error' text={`Error: ${message}`} state={true} />}
-      {!error && message.length > 3 && (
-        <Message modifier='good' text={`Success: ${message}`} state={true} />
+    <AdminLayout>
+      {error && (
+        <Message modifier='error' text={`Error: ${message}`} state={true} setMessage={setMessage} />
       )}
-      <Container button={true} linkText='/admin/doctor'>
-        <ScheduleForm postData={postData} update={false} />
+      {!error && message.length > 3 && (
+        <Message
+          modifier='good'
+          text={`Success: ${message}`}
+          state={true}
+          setMessage={setMessage}
+        />
+      )}
+      <Container button={true} linkText='/admin/doctor' title='Doctor schedule'>
+        <ScheduleForm postData={postData} update={false} url={URL_DOCTOR_SCHEDULE} />
         <Table>
           <TableHeader titles={scheduleTitles} />
           <TableContent>
@@ -84,10 +91,11 @@ const Schedule = () => {
             finishTime={schedule.hora_fin}
             handleModal={handleModal}
             update={true}
+            url={URL_DOCTOR_SCHEDULE}
           />
         </Modal>
       )}
-    </>
+    </AdminLayout>
   )
 }
 

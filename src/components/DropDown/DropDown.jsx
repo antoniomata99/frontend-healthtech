@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-// * Styles
 import '../../styles/globals/Button.scss'
 
 const DropDown = ({ defaultOption, options, setData }) => {
@@ -15,7 +14,7 @@ const DropDown = ({ defaultOption, options, setData }) => {
         {defaultOption}
       </option>
       {options.map((item) => (
-        <option value={item.value} key={item.id}>
+        <option value={item.id} key={item.id}>
           {`${item.value}`}
         </option>
       ))}

@@ -1,6 +1,6 @@
 .Form {
   position: relative;
-  margin: 5rem 0 0;
+  margin: 3rem 0 0;
   padding: 1rem 2rem;
   width: 100%;
   border: 0;
@@ -16,6 +16,11 @@
     color: black;
     background-color: white;
     font-size: 1.3rem;
+  }
+
+  &__Info {
+    width: 90%;
+    font-size: 1.4rem;
   }
 
   &__Section {

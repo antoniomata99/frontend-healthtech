@@ -1,9 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-// * Icons
 import { RiEdit2Line, RiDeleteBin6Line, RiEyeFill } from 'react-icons/ri'
-// * Components
-import { Button } from '../'
+import { Button } from '../../components'
 
 const TableItem = ({ children, view, handleEdit, handleDelete, edit, remove, data, id }) => {
   return (

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { useAxios } from '../../hooks/useAxios'
-import { useModal } from '../../hooks/useModal'
-import { specialtyTitles } from '../../utils/tableHeaders'
-import { URL_SPECIALTY } from '../../utils/constants'
+import { useAxios } from '../../../hooks/useAxios'
+import { useModal } from '../../../hooks/useModal'
+import { specialtyTitles } from '../../../utils/tableHeaders'
+import { URL_SPECIALTY } from '../../../utils/constants'
 import { AiOutlineClose } from 'react-icons/ai'
+import { SpecialtyForm } from '../../../forms'
+import { AdminLayout } from '../../../layouts'
 import {
   Container,
   Table,
@@ -13,13 +15,13 @@ import {
   TableData,
   Modal,
   Button,
-  SpecialtyForm,
   Message,
-} from '../../components'
+} from '../../../components'
 
 const Specialty = () => {
   const { handleModal, openModal } = useModal()
-  const { getData, postData, updateData, error, message, isUpdate, setIsUpdate } = useAxios()
+  const { getData, postData, updateData, error, message, isUpdate, setIsUpdate, setMessage } =
+    useAxios()
   const [specialties, setSpecialties] = useState([])
   const [specialty, setSpecialty] = useState({
     id_especialidad: 0,
@@ -49,13 +51,20 @@ const Specialty = () => {
   // TODO: Add loading state render
 
   return (
-    <>
-      {error && <Message modifier='error' text={`Error: ${message}`} state={true} />}
+    <AdminLayout>
+      {error && (
+        <Message modifier='error' text={`Error: ${message}`} state={true} setMessage={setMessage} />
+      )}
       {!error && message.length > 3 && (
-        <Message modifier='good' text={`Success: ${message}`} state={true} />
+        <Message
+          modifier='good'
+          text={`Success: ${message}`}
+          state={true}
+          setMessage={setMessage}
+        />
       )}
       {<Message modifier='error' text={`Error: ${message}`} />}
-      <Container button='true' linkText='/admin/doctor'>
+      <Container button='true' linkText='/admin/doctor' title='Specialty'>
         <SpecialtyForm postData={postData} />
         <Table>
           <TableHeader titles={specialtyTitles} />
@@ -70,7 +79,7 @@ const Specialty = () => {
                 <TableData data={item.id_especialidad} />
                 <TableData data={item.nombre} />
                 <TableData data={item.descripcion} />
-                <TableData data={item.estado} />
+                <TableData data={item.estado === '1' ? 'Activo' : 'Inactivo'} />
               </TableItem>
             ))}
           </TableContent>
@@ -92,7 +101,7 @@ const Specialty = () => {
           />
         </Modal>
       )}
-    </>
+    </AdminLayout>
   )
 }
 

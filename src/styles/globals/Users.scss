@@ -4,6 +4,10 @@
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
+
+    &--center {
+      margin-top: 4rem;
+    }
   }
 
   &_Buttons-container {

@@ -1,7 +1,6 @@
 import React from 'react'
 import reactDom from 'react-dom'
 import PropTypes from 'prop-types'
-// * Styles
 import '../../styles/globals/Modal.scss'
 
 const Modal = ({ children }) => {

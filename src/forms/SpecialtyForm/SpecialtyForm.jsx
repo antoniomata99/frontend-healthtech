@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { activeElements } from '../../utils/dropDownInfo'
-import { DropDown, Form, InputText } from '..'
 import { URL_SPECIALTY } from '../../utils/constants'
+import { DropDown, Form, InputText } from '../../components'
 
 const SpecialtyForm = ({
   postData,

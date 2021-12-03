@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import '../../styles/components/Message.scss'
 import { AiOutlineCheckCircle } from 'react-icons/ai'
+import '../../styles/components/Message.scss'
 
-const Message = ({ text, modifier, state }) => {
+const Message = ({ text, modifier, state, setMessage }) => {
   const [showMessage, setShowMessage] = useState(state)
 
   const toggleMessage = () => {
+    setMessage('')
     setShowMessage(!showMessage) // ! Delete message
   }
 

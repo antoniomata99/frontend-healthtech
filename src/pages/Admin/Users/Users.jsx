@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router'
-import { useAxios } from '../../hooks/useAxios'
-import { URL_USERS, URL_ADMIN, URL_DOCTORS, URL_PATIENT } from '../../utils/constants'
-import { usersTitles } from '../../utils/tableHeaders'
+import { useAxios } from '../../../hooks/useAxios'
+import { URL_USERS, URL_ADMIN, URL_DOCTORS, URL_PATIENT } from '../../../utils/constants'
+import { usersTitles } from '../../../utils/tableHeaders'
 import { AiOutlineCloudDownload } from 'react-icons/ai'
-import '../../styles/globals/Users.scss'
+import { AdminLayout } from '../../../layouts'
+import '../../../styles/globals/Users.scss'
 import {
   Table,
   TableHeader,
@@ -13,15 +14,13 @@ import {
   TableData,
   Container,
   Button,
-} from '../../components'
+  Message,
+} from '../../../components'
 
 const Users = () => {
-  const { getData, deleteData, isUpdate, setIsUpdate } = useAxios()
+  const { getData, deleteData, isUpdate, setIsUpdate, message, setMessage, error } = useAxios()
   const history = useHistory()
   const [users, setUsers] = useState()
-  const [user, setUser] = useState({
-    id_usuario: 0,
-  })
 
   useEffect(() => {
     ;(async () => {
@@ -32,7 +31,7 @@ const Users = () => {
   }, [isUpdate])
 
   const handleUserNavigation = (userType) => {
-    history.push(`/users/add/${userType}`)
+    history.push(`/admin/users/add/${userType}`)
   }
 
   const handleUserType = (id) => {
@@ -57,18 +56,31 @@ const Users = () => {
 
   const handleEdit = (data) => {
     history.push(
-      `/users/edit/${handleUserType(data.id_perfil).toLocaleLowerCase()}/${data.id_usuario}`
+      `/admin/users/edit/${handleUserType(data.id_perfil).toLocaleLowerCase()}/${data.id_usuario}`
     )
   }
 
   return (
-    <>
+    <AdminLayout>
+      {error && (
+        <Message modifier='error' text={`Error: ${message}`} state={true} setMessage={setMessage} />
+      )}
+      {!error && message.length > 3 && (
+        <Message
+          modifier='good'
+          text={`Success: ${message}`}
+          state={true}
+          setMessage={setMessage}
+        />
+      )}
       <Container>
         <section className='Users_Menu'>
           <div className='Users_Button Users_Button--download'>
-            <Button modifier='download' name='Download'>
-              <AiOutlineCloudDownload />
-            </Button>
+            <a href='https://healt-tech-back.herokuapp.com/api/Excel' rel='noreferrer'>
+              <Button modifier='download' name='Download'>
+                <AiOutlineCloudDownload />
+              </Button>
+            </a>
           </div>
           <div className='Users_Buttons-container '>
             <Button modifier='add' name='Admin' handle={() => handleUserNavigation('admin')} />
@@ -85,13 +97,14 @@ const Users = () => {
                 handleEdit={handleEdit}
                 handleDelete={handleDelete}
                 data={item}
-                id={item.id_perfil}
+                id={item.id_usuario}
+                remove={false}
               >
                 <TableData data={item.id_usuario} />
                 <TableData data={item.numero_documento} />
                 <TableData data={handleUserType(item.id_perfil)} />
-                <TableData data={item.nombre_usuario} />
-                <TableData data={item.correo} />
+                <TableData data={item.username} />
+                <TableData data={item.email} />
                 <TableData data={item.telefono} />
                 <TableData data={item.sexo} />
               </TableItem>
@@ -99,7 +112,7 @@ const Users = () => {
           </TableContent>
         </Table>
       </Container>
-    </>
+    </AdminLayout>
   )
 }
 
