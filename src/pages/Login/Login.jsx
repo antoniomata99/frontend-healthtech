@@ -37,6 +37,8 @@ const Login = () => {
       } else {
         alert('Error login the user')
       }
+    }else{
+      alert('Error login the user')
     }
   }
 
