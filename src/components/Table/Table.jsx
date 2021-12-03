@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-// * Styles
 import '../../styles/globals/Table.scss'
 
 const Table = ({ children }) => {

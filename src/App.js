@@ -1,26 +1,49 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-// * Styles
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import './styles/styles.scss'
-// * Components and pages
-import { Layout } from './components'
-import { ConsultingRooms, Doctor, Schedule, Specialty, Login, DoctorsList } from './pages'
+import { UserForm } from './forms'
+import { AdminLayout } from './layouts'
+import {
+  ConsultingRooms,
+  Doctor,
+  Schedule,
+  Specialty,
+  Login,
+  DoctorsList,
+  Users,
+  ScheduleAppointments,
+  Patient,
+  DoctorList,
+  Dashboard,
+} from './pages'
 
-const Home = () => <div>Home</div>
+const Home = () => (
+  <AdminLayout>
+    <div>Home</div>
+  </AdminLayout>
+)
 
 function App() {
   return (
     <Router>
       <Switch>
-        <Layout>
-          <Route exact path='/' component={Home} />
-          <Route exact path='/login' component={Login} />
-          <Route exact path='/doctor' component={Doctor} />
-          <Route exact path='/doctor/schedule' component={Schedule} />
-          <Route exact path='/doctor/specialty' component={Specialty} />
-          <Route exact path='/doctor/list' component={DoctorsList} />
-          <Route exact path='/consulting-rooms' component={ConsultingRooms} />
-        </Layout>
+        <Redirect exact from='/' to='/login' />
+        <Route exact path='/login' component={Login} />
+        {/* Admin Pages */}
+        <Route exact path='/admin' component={Dashboard} />
+        <Route exact path='/admin/doctor' component={Doctor} />
+        <Route exact path='/admin/doctor/schedule' component={Schedule} />
+        <Route exact path='/admin/doctor/specialty' component={Specialty} />
+        <Route exact path='/admin/doctor/schedule-appointments' component={ScheduleAppointments} />
+        <Route exact path='/admin/doctor/list' component={DoctorsList} />
+        <Route exact path='/admin/consulting-rooms' component={ConsultingRooms} />
+        <Route exact path='/admin/users' component={Users} />
+        <Route exact path='/admin/users/add/:type' component={UserForm} />
+        <Route exact path='/admin/users/edit/:type/:idUserEdit' component={UserForm} />
+        {/* Patient Pages */}
+        <Route exact path='/patient' component={Patient} />
+        {/* Doctor Pages */}
+        <Route exact path='/doctor' component={DoctorList} />
       </Switch>
     </Router>
   )

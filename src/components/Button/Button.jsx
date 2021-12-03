@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-// * Style
 import '../../styles/globals/Button.scss'
 
 const Button = ({ name, modifier, children, handle }) => {

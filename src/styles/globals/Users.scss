@@ -1,0 +1,18 @@
+.Users {
+  &_Menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+
+    &--center {
+      width: auto;
+    }
+  }
+
+  &_Buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

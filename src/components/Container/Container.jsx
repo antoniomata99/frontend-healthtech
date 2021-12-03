@@ -1,13 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-// * Style
 import '../../styles/globals/Container.scss'
-// * Components
-import { BackArrow } from '../'
+import { BackArrow } from '../../components'
 
-const Container = ({ children, button, linkText }) => {
+const Container = ({ children, button, linkText, title }) => {
   return (
     <section className='Container'>
+      <h1 className='Container__Title'>{title}</h1>
       {children}
       {!!button && <BackArrow link={linkText} />}
     </section>

@@ -1,7 +1,7 @@
 .Form {
   position: relative;
-  margin: 5rem 0 0;
-  padding: 2rem;
+  margin: 3rem 0 0;
+  padding: 1rem 2rem;
   width: 100%;
   border: 0;
   border-radius: 0.6rem;
@@ -18,9 +18,22 @@
     font-size: 1.3rem;
   }
 
+  &__Info {
+    width: 90%;
+    font-size: 1.4rem;
+  }
+
   &__Section {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
+
+    & > button {
+      margin-bottom: 1rem;
+    }
+  }
+
+  &__Container {
+    max-width: 90%;
   }
 }

@@ -1,5 +1,5 @@
 .Table {
-  margin-top: 5rem;
+  margin-top: 3rem;
   width: 100%;
   max-height: 60vh;
   border-radius: 0.6rem;
@@ -38,6 +38,7 @@
     text-align: center;
     &:first-child {
       text-align: left;
+      width: auto;
     }
     &:last-child {
       text-align: end;
