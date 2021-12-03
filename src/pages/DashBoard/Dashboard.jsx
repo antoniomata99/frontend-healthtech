@@ -7,7 +7,7 @@ import { AdminLayout } from '../../layouts'
 const Dashboard = () => {
   return (
     <AdminLayout>
-      <Container>
+      <Container title='Appointments report'>
         <section className='Users_Menu Users_Menu--center'>
           <div className='Users_Button Users_Button--download'>
             <a

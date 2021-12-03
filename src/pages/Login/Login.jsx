@@ -35,7 +35,7 @@ const Login = () => {
           history.push('/doctor')
         }
       } else {
-        console.error('Error login the user')
+        alert('Error login the user')
       }
     }
   }
