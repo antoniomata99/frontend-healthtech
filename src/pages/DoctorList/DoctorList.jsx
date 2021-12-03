@@ -1,5 +1,4 @@
-import React, { useContext ,useEffect, useState } from 'react'
-import { UserContext } from '../../context/UserContext'
+import React, { useEffect, useState } from 'react'
 import { useAxios } from '../../hooks/useAxios'
 import { useModal } from '../../hooks/useModal'
 import { doctorListsTitles } from '../../utils/tableHeaders'
@@ -17,13 +16,13 @@ import {
 } from '../../components'
 import { DoctorListForm } from '../../forms'
 import { DoctorLayout } from '../../layouts'
-import { URL_DOCTOR_LIST } from '../../utils/constants'
+import { URL_DOCTOR_LIST, USER_KEY } from '../../utils/constants'
 
 const DoctorList = () => {
   const { handleModal, openModal } = useModal()
   const { postData, updateData, error, message, setIsUpdate, setMessage } = useAxios()
   const [listDoctors, setListDoctors] = useState([])
-  const { userEmail } = useContext(UserContext)
+  const userEmail = JSON.parse(localStorage.getItem(USER_KEY))
 
   const [listDoctor, setListDoctor] = useState({
     username: '',
@@ -40,7 +39,7 @@ const DoctorList = () => {
   useEffect(() => {
     ;(async () => {
       const data = await postData(
-        { 
+        {
           username: userEmail,
           // username: 'evilsatan@gmail.com',
         },

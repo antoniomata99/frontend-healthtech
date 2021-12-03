@@ -1,7 +1,5 @@
 import React from 'react'
-// * Style
 import '../../styles/components/Doctor.scss'
-// * Components
 import { BannerLink } from '../../components'
 
 const Doctor = () => {

@@ -1,4 +1,5 @@
 const URL_BASE = 'https://healt-tech-back.herokuapp.com/api'
+const USER_KEY = 'USERNAME_KEY'
 
 const URL_DOCTOR_SCHEDULE = `${URL_BASE}/horarioMedico/`
 const URL_APPOINTMENT_SCHEDULE = `${URL_BASE}/horario/`
@@ -38,4 +39,5 @@ export {
   URL_DOCTOR_LIST,
   URL_PATIENT_ID,
   URL_CERTIFIED,
+  USER_KEY,
 }
